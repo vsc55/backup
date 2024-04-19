@@ -416,7 +416,7 @@ class Backup extends FreePBX_Helpers implements BMO {
 			case 'runRestore':
 				$ruid = $_GET['fileid'];
 				$legacycdrenable = isset($_REQUEST['legacycdrenable'])?1:0;
-				if(isset($_GET['filepath'])) {
+				if(isset($_GET['filepath']) && $_GET['filepath']) {
 					//filestore
 					$parts = explode("_",(string) $_GET['fileid']);
 					$info = $this->freepbx->Filestore->getItemById($parts[1]);
@@ -436,6 +436,13 @@ class Backup extends FreePBX_Helpers implements BMO {
 				if($legacycdrenable == 1) {
 					$args = $args. ' --restorelegacycdr';
 				}
+
+				if(isset($_REQUEST['skipchansip']) && $_REQUEST['skipchansip'] == 'skip') {
+					$args = $args. ' --skipchansipexts';
+				} else if(isset($_REQUEST['skipchansip']) && $_REQUEST['skipchansip'] == 'convert') {
+					$args = $args. ' --convertchansipexts';
+				}
+
 				$jobid   = $this->generateId();
 				$location = $this->freepbx->Config->get('ASTLOGDIR');
 				$command = $this->freepbx->Config->get('AMPSBIN').'/fwconsole backup '.$args.' --transaction='.escapeshellarg($jobid);

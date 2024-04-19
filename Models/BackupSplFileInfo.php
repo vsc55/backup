@@ -63,13 +63,19 @@ class BackupSplFileInfo extends SplFileInfo{
 
 		$tar = new Tar();
 		$tar->open($this->getPathname());
-		$tar->extract($backuptmpdir, '', '', '/(manifest|metadata\.json)/');
+		$tar->extract($backuptmpdir, '', '', '/(manifest|metadata\.json|files)/');
 		$metafile = $backuptmpdir . '/metadata.json';
 		$manafestfile = $backuptmpdir . '/manifest';
 		$meta = [];
 		if(file_exists($metafile)){
 			$metadata = file_get_contents($metafile);
 			$meta = json_decode($metadata, true);
+			$version = \FreePBX::Config()->get('ASTVERSION');
+			$sipdriver = \FreePBX::Config()->get('ASTSIPDRIVER');
+			if(version_compare($version, '21', 'ge') || $sipdriver == 'chan_pjsip') {
+				$chansipDevExists = $this->checkChansipDevice($backuptmpdir);
+				$meta['chansipexists'] = $chansipDevExists;
+			}
 		}
 		if(file_exists($manafestfile)){
 			$manifestdata = file_get_contents($manafestfile);
@@ -86,7 +92,44 @@ class BackupSplFileInfo extends SplFileInfo{
 
 		$tar->close();
 		unset($tar);
-
 		return $meta;
+	}
+
+	public function checkChansipDevice($backuptmpdir) {
+		$chansipExists = false;
+		$coreModule = $backuptmpdir . "/modulejson/Core.json";
+		$devDumpFile = $backuptmpdir . "/files/tmp/Devices_dump/Devices.sql";
+		if(file_exists($coreModule)){
+			$coredata = file_get_contents($coreModule);
+			$coremeta = json_decode($coredata, true);
+			if(isset($coremeta['Devices']) && !empty($coremeta['Devices'])){
+				foreach ($coremeta['Devices'] as $dev) {
+					if($dev['tech'] == 'sip') {
+						$chansipExists = true;
+						break;
+					}
+				}
+			}
+		} else if(file_exists($devDumpFile)) {
+			$insertDevicesquery = false;
+			$contents = file($devDumpFile);
+			foreach($contents as $line) {
+				if(str_contains($line,"INSERT INTO `devices`")) {
+					$insertDevicesquery = true;
+				} else {
+					continue;
+				}
+
+				if($insertDevicesquery && str_contains($line,"'sip'")) {
+					$chansipExists = true;
+					break;
+				}
+
+				if(str_contains($line,";")) {
+					break;
+				}
+			}
+		}
+		return $chansipExists;
 	}
 }

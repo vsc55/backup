@@ -42,6 +42,8 @@ class Backup extends Command {
 				new InputOption('skipdns', '', InputOption::VALUE_NONE, 'Option --skipdns skip dns on restore'),
 				new InputOption('skipremotenat', '', InputOption::VALUE_NONE, 'Option --skipremotenat skip remotenat on restore'),
 				new InputOption('skiptrunksandroutes', '', InputOption::VALUE_NONE, 'Option --skiptrunksandroutes skip trunks on restore'),
+				new InputOption('skipchansipexts', '', InputOption::VALUE_NONE, 'Option --skipchansipexts skip sip extensions on restore'),
+				new InputOption('convertchansipexts', '', InputOption::VALUE_NONE, 'Option --convertchansipexts converts extensions to pjsip on restore'),
 		))
 		->setHelp('Run a backup: fwconsole backup --backup [backup-id]'.PHP_EOL
 		.'Run a restore: fwconsole backup --restore [/path/to/restore-xxxxxx.tar.gz]'.PHP_EOL
@@ -95,6 +97,8 @@ class Backup extends Command {
 		$cliarguments['skipdns'] = $input->getOption('skipdns');
 		$cliarguments['skipremotenat'] = $input->getOption('skipremotenat');
 		$cliarguments['skiptrunksandroutes'] = $input->getOption('skiptrunksandroutes');
+		$cliarguments['convertchansipexts'] = $input->getOption('convertchansipexts');
+		$cliarguments['skipchansipexts'] = $input->getOption('skipchansipexts');
 
 		if($b64import){
 			return $this->addBackupByString($b64import);
