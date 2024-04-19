@@ -1,0 +1,18 @@
+#!/usr/bin/php -q
+<?php
+error_reporting(E_ALL);
+
+if (empty($argv[1])) {
+	throw new \Exception("Needs a param");
+}
+// Underp the base64 that the param is using.
+$b = str_replace('_', '/', $argv[1]);
+$params = @json_decode(gzuncompress(@base64_decode($b)), true);
+
+if (!is_array($params)) {
+	throw new \Exception("Invalid param");
+}
+$bin= isset($params['bin']) ? $params['bin'].'/' :'';
+shell_exec($bin.'fwconsole chown');
+
+?>
