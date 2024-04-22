@@ -461,13 +461,16 @@ class Legacy extends Common {
 	 */
 	public function parseModuleTables($module){
 		$tables = [];
+		$moduleTables = [];
 		$xml = $this->loadModuleXML($module);
 		if (!$xml) {
 			return [];
 		}
-		$moduleTables = $xml->database->table;
-		if(!$moduleTables){
-			return [];
+		if (isset($xml->database)) {
+			$moduleTables = $xml->database->table;
+			if(!$moduleTables){
+				return [];
+			}
 		}
 		foreach ($moduleTables as $table) {
 			$tname = (string)$table->attributes()->name;
