@@ -23,10 +23,12 @@
 							<div class="panel-heading"><h3><?php echo _("Restore Information")?></h3></div>
 							<div class="panel-body">
 							<ul class="list-group">
-							<?php if($meta['chansipexists']){ ?>
+							<?php if(version_compare(\FreePBX::Config()->get('ASTVERSION'), '21', 'ge')){ ?>
 								<li class = "list-group-item list-group-item-danger">
 									<?php echo _("Current asterisk installed version is not supported to chan_sip, please switch asterisk to supported version and then try for restore or you can convert chan_sip extensions to pjsip or you can skip the chan_sip extensions.")?>
 								</li>
+							<?php } ?>
+							<?php if(isset($meta['chansipexists']) && $meta['chansipexists']){ ?>
 								<li class = "list-group-item list-group-item-danger">
 									<?php echo _("The backup contains ChanSIP extensions! These ChanSIP extensions can either be converted to pjsip extensions or can be skipped during the restore process.")?>
 								</li>

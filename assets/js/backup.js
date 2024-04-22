@@ -54,7 +54,7 @@ $(document).ready(function () {
 		e.stopPropagation();
 		e.preventDefault();
 		let skip = null;
-		if($("#chasipexists").val() === 1) {
+		if($("#chasipexists").val() == 1) {
 			let result = prompt("Chansip extensions found! \n Type 'convert' to convert the chansip extensions to pjsip extension \n Type 'skip' to skip the chansip extensions");
 			if(result === 'convert') {
 				skip = 'convert';
