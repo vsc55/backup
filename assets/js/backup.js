@@ -36,12 +36,36 @@ $(document).ready(function () {
 	$("#runrestore").click(function(e) {
 		e.stopPropagation();
 		e.preventDefault();
-		runRestore(fileid,'Running Restore');
+		let skip = null;
+		if($("#chasipexists").val() == 1) {
+			let result = prompt("Chansip extensions found! \n Type 'convert' to convert the chansip extensions to pjsip extension \n Type 'skip' to skip the chansip extensions");
+			if(result === 'convert') {
+				skip = 'convert';
+			} else if(result === 'skip') {
+				skip = 'skip';
+			} else {
+				alert("Please enter a valid option!");
+				return;
+			}
+		}
+		runRestore(fileid,'Running Restore','',skip);
 	});
 	$("#runrestorecdr").click(function(e) {
 		e.stopPropagation();
 		e.preventDefault();
-		runRestorelegacycdr(fileid,'Running Restore & Legacy CDR Restore');
+		let skip = null;
+		if($("#chasipexists").val() == 1) {
+			let result = prompt("Chansip extensions found! \n Type 'convert' to convert the chansip extensions to pjsip extension \n Type 'skip' to skip the chansip extensions");
+			if(result === 'convert') {
+				skip = 'convert';
+			} else if(result === 'skip') {
+				skip = 'skip';
+			} else {
+				alert("Please enter a valid option!");
+				return;
+			}
+		}
+		runRestorelegacycdr(fileid,'Running Restore & Legacy CDR Restore',skip);
 	});
 	if(runningRestore) {
 		showStatusModal(_('View running restore'))
@@ -348,13 +372,14 @@ $("#run_backup").on('click', function (e) {
 	$('.fpbx-submit').submit();
 });
 
-function runRestorelegacycdr(id,title) {
+function runRestorelegacycdr(id,title,skip = null) {
 	$.ajax({
 		url: FreePBX.ajaxurl,
 		data: {
 			module: 'backup',
 			command: 'runRestore',
 			fileid: id,
+			skipchansip: skip,
 			legacycdrenable:1
 		},
 	})
@@ -367,13 +392,14 @@ function runRestorelegacycdr(id,title) {
 		}
 	});
 }
-function runRestore(id,title,filepath) {
+function runRestore(id,title,filepath,skip = null) {
 	$.ajax({
 		url: FreePBX.ajaxurl,
 		data: {
 			module: 'backup',
 			command: 'runRestore',
 			fileid: id,
+			skipchansip: skip,
 			filepath
 		},
 	})
