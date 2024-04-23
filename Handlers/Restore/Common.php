@@ -306,7 +306,7 @@ public function setCustomFiles($manifest = NULL) {
 		} else {
 			$fileList = $manifest['file_list'];
 			if(!empty($fileList)) {
-				if($fileList['etc']['asterisk']) {
+				if(isset($fileList['etc']) && $fileList['etc']['asterisk']) {
 					$files = glob("$this->tmp/etc/asterisk/*_custom*.conf");
 					foreach($files as $fval) {
 						$src = $fval;
