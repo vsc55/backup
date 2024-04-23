@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-03 03:47-0400\n"
+"POT-Creation-Date: 2024-04-23 00:10-0400\n"
 "PO-Revision-Date: 2016-07-22 06:45+0200\n"
 "Last-Translator: Media <mousavi.media@gmail.com>\n"
 "Language-Team: Persian (Iran) <http://weblate.freepbx.org/projects/freepbx/"
@@ -69,11 +69,11 @@ msgstr ""
 msgid "%s table Restore Error %s "
 msgstr ""
 
-#: Backup.class.php:1543
+#: Backup.class.php:1550
 msgid "/path/to/dir"
 msgstr "مسیر/به/فولدر"
 
-#: Backup.class.php:1536
+#: Backup.class.php:1543
 msgid "/path/to/file"
 msgstr "مسیر/به/فولدر"
 
@@ -168,7 +168,7 @@ msgstr ""
 msgid "Admin"
 msgstr "مدیر"
 
-#: views/restore/processRestore.php:28
+#: views/restore/processRestore.php:39
 msgid "After the restore you might reload with the apply config button"
 msgstr ""
 
@@ -185,15 +185,15 @@ msgstr ""
 msgid "Apply Configs"
 msgstr "اعمال تنظیمات"
 
-#: assets/js/backup.js:206 assets/js/backup.js:245
+#: assets/js/backup.js:230 assets/js/backup.js:269
 msgid "Are you sure you wish to delete this file? This cannot be undone"
 msgstr ""
 
-#: assets/js/backup.js:231 assets/js/backup.js:272
+#: assets/js/backup.js:255 assets/js/backup.js:296
 msgid "Are you sure, you want to restore this backup?"
 msgstr ""
 
-#: Backup.class.php:1511
+#: Backup.class.php:1518
 #, php-format
 msgid ""
 "Asterisk home dir (%s) doesn't exist, and, ASTSPOOLDIR doesn't exist. "
@@ -208,7 +208,7 @@ msgstr "پشتیبان ضمیمه نشد"
 msgid "Backup"
 msgstr "پشتیبان گیری"
 
-#: Backup.class.php:1180
+#: Backup.class.php:1187
 #, php-format
 msgid "Backup %s"
 msgstr ""
@@ -284,7 +284,7 @@ msgstr "انتخاب موارد جهت تهیه پشتیبان"
 msgid "Backup Name"
 msgstr "نام پشتیبان"
 
-#: Backup.class.php:667
+#: Backup.class.php:674
 msgid "Backup Restored Successfully"
 msgstr ""
 
@@ -300,7 +300,7 @@ msgstr ""
 msgid "Backup Wizard"
 msgstr "ویزارد پشتیبان گیری"
 
-#: Console/Backup.class.php:130 Console/Backup.class.php:227
+#: Console/Backup.class.php:134 Console/Backup.class.php:231
 msgid "Backup completed successfully"
 msgstr ""
 
@@ -343,7 +343,7 @@ msgid ""
 "the transaction id."
 msgstr ""
 
-#: Backup.class.php:465
+#: Backup.class.php:472
 msgid "Backup running"
 msgstr ""
 
@@ -365,7 +365,7 @@ msgstr ""
 msgid "Can't find the module data for %s"
 msgstr ""
 
-#: assets/js/backup.js:207 assets/js/backup.js:246
+#: assets/js/backup.js:231 assets/js/backup.js:270
 msgid "Cancel"
 msgstr ""
 
@@ -458,7 +458,7 @@ msgstr ""
 msgid "Could not locate the manifest for this file"
 msgstr ""
 
-#: Backup.class.php:767 Backup.class.php:835
+#: Backup.class.php:774 Backup.class.php:842
 msgid "Couldn't find your file, please try submitting your file again."
 msgstr ""
 
@@ -470,6 +470,13 @@ msgstr "ساخته شد"
 #, php-format
 msgid "Creating directory '%s'"
 msgstr "در حال ایجاد دایرکتوری '%s'"
+
+#: views/restore/processRestore.php:28
+msgid ""
+"Current asterisk installed version is not supported to chan_sip, please "
+"switch asterisk to supported version and then try for restore or you can "
+"convert chan_sip extensions to pjsip or you can skip the chan_sip extensions."
+msgstr ""
 
 #: views/backup/form.php:121
 msgid "Custom Files"
@@ -487,7 +494,7 @@ msgstr ""
 
 #: Backup.class.php:210 views/backup/item_table.php:14
 #: views/restore/landing.php:49 views/restore/landing.php:79
-#: assets/js/backup.js:207 assets/js/backup.js:246
+#: assets/js/backup.js:231 assets/js/backup.js:270
 msgid "Delete"
 msgstr "حذف"
 
@@ -499,7 +506,7 @@ msgstr ""
 msgid "Delete After Runs"
 msgstr ""
 
-#: Backup.class.php:1549
+#: Backup.class.php:1556
 msgid "Delete this entry. Don't forget to click Submit to save changes!"
 msgstr ""
 "حذف این مقدار ورودی. برای ذخیره ی تنظیمات باید بر روی گزینه ثبت کلیک نمایید!"
@@ -519,11 +526,11 @@ msgstr "توضیحات"
 msgid "Detected file %s as the PBX (Asterisk) database. Attempting restore"
 msgstr ""
 
-#: Console/Backup.class.php:299
+#: Console/Backup.class.php:303
 msgid "Determining backup file type..."
 msgstr ""
 
-#: Backup.class.php:1542
+#: Backup.class.php:1549
 msgid "Directory"
 msgstr "دایرکتوری"
 
@@ -536,7 +543,7 @@ msgstr "دایرکتوری '%s' وجود ندارد و نمی توان آن را
 msgid "Disable Remote Trunks"
 msgstr ""
 
-#: Console/Backup.class.php:285 Handlers/Restore/Common.php:128
+#: Console/Backup.class.php:289 Handlers/Restore/Common.php:128
 #: Handlers/Restore/Legacy.php:248
 msgid "Done"
 msgstr ""
@@ -571,7 +578,7 @@ msgstr ""
 msgid "Enable scheduled backups, default false"
 msgstr ""
 
-#: Backup.class.php:1412 views/backup/form.php:334
+#: Backup.class.php:1419 views/backup/form.php:334
 msgid "Enabled"
 msgstr ""
 
@@ -583,8 +590,8 @@ msgstr ""
 "پس از کلیک بر روی دکمه قرمز رنگ، هم ارزی به صورت خودکار پس از بازیابی بر روی "
 "سیستم فرعی انجام خواهد شد"
 
-#: assets/js/backup.js:366 assets/js/backup.js:385 assets/js/backup.js:404
-#: assets/js/backup.js:496
+#: assets/js/backup.js:391 assets/js/backup.js:411 assets/js/backup.js:430
+#: assets/js/backup.js:522
 msgid "Error"
 msgstr ""
 
@@ -612,7 +619,7 @@ msgstr ""
 msgid "Error installing %s reason(s): %s"
 msgstr ""
 
-#: Backup.class.php:669
+#: Backup.class.php:676
 msgid "Error running Restore on Spare Server"
 msgstr ""
 
@@ -707,7 +714,7 @@ msgstr ""
 msgid "Failure"
 msgstr ""
 
-#: Backup.class.php:1535
+#: Backup.class.php:1542
 msgid "File"
 msgstr "فایل"
 
@@ -737,11 +744,11 @@ msgstr ""
 msgid "Finished Cleaning up"
 msgstr ""
 
-#: Console/Backup.class.php:214
+#: Console/Backup.class.php:218
 msgid "Finished Local Maintenance"
 msgstr ""
 
-#: Console/Backup.class.php:217
+#: Console/Backup.class.php:221
 msgid "Finished Remote Maintenance"
 msgstr ""
 
@@ -818,11 +825,11 @@ msgid ""
 "unlimited"
 msgstr ""
 
-#: Backup.class.php:1496
+#: Backup.class.php:1503
 msgid "I don't know who I should be running Backup as."
 msgstr ""
 
-#: Backup.class.php:1502
+#: Backup.class.php:1509
 #, php-format
 msgid ""
 "I tried to find out about %s, but the system doesn't think that user exists"
@@ -891,7 +898,7 @@ msgstr ""
 msgid "Installing  %s"
 msgstr ""
 
-#: Backup.class.php:683
+#: Backup.class.php:690
 msgid "Invalid Backup ID"
 msgstr ""
 
@@ -927,7 +934,7 @@ msgid ""
 "process %s "
 msgstr ""
 
-#: Models/BackupSplFileInfo.php:81
+#: Models/BackupSplFileInfo.php:87
 msgid "Legacy Restore"
 msgstr ""
 
@@ -957,7 +964,7 @@ msgstr ""
 msgid "List of bakup files"
 msgstr ""
 
-#: assets/js/backup.js:421
+#: assets/js/backup.js:447
 msgid "Loading Please Wait"
 msgstr ""
 
@@ -974,7 +981,7 @@ msgstr ""
 msgid "Loading supplied database file %s"
 msgstr ""
 
-#: Backup.class.php:538
+#: Backup.class.php:545
 msgid "Log file is missing but process is still running!"
 msgstr ""
 
@@ -999,11 +1006,11 @@ msgstr ""
 msgid "Migrating legacy backups to the new backup"
 msgstr ""
 
-#: Backup.class.php:525
+#: Backup.class.php:532
 msgid "Missing id or transaction or pid"
 msgstr ""
 
-#: views/backup/form.php:627 views/restore/processRestore.php:48
+#: views/backup/form.php:627 views/restore/processRestore.php:59
 msgid "Module"
 msgstr ""
 
@@ -1011,11 +1018,11 @@ msgstr ""
 msgid "Modules"
 msgstr ""
 
-#: assets/js/backup.js:315
+#: assets/js/backup.js:339
 msgid "Modules ("
 msgstr ""
 
-#: views/restore/processRestore.php:35
+#: views/restore/processRestore.php:46
 msgid "Modules in this backup"
 msgstr ""
 
@@ -1066,11 +1073,11 @@ msgstr "خیر"
 msgid "No Module or Custom files selected for this backup"
 msgstr ""
 
-#: assets/js/backup.js:288
+#: assets/js/backup.js:312
 msgid "No Storage Locations"
 msgstr ""
 
-#: Api/Gql/Backup.php:101 Backup.class.php:449
+#: Api/Gql/Backup.php:101 Backup.class.php:456
 msgid "No backup id provided"
 msgstr ""
 
@@ -1078,17 +1085,17 @@ msgstr ""
 msgid "No file provided"
 msgstr ""
 
-#: Backup.class.php:756
+#: Backup.class.php:763
 msgid "No id was specified to process. Please try submitting your file again."
 msgstr ""
 
-#: assets/js/backup.js:88 assets/js/backup.js:311
+#: assets/js/backup.js:112 assets/js/backup.js:335
 msgid ""
 "No module has selected for this Backup. Please ensure you are selecting "
 "atleast Custom files"
 msgstr ""
 
-#: assets/js/backup.js:337 assets/js/backup.js:344
+#: assets/js/backup.js:361 assets/js/backup.js:368
 msgid ""
 "No storage location selected for Backup. Please select atleast one storage "
 "location to save the backup"
@@ -1112,7 +1119,7 @@ msgstr "اطلاع رسانی"
 msgid "Only Restoring %s"
 msgstr ""
 
-#: Backup.class.php:1545
+#: Backup.class.php:1552
 msgid "PATTERNs, one per line"
 msgstr "الگوها، یکی در هر خط"
 
@@ -1126,11 +1133,11 @@ msgstr ""
 msgid "Path: %s"
 msgstr ""
 
-#: Console/Backup.class.php:212
+#: Console/Backup.class.php:216
 msgid "Performing Local Maintenance"
 msgstr ""
 
-#: Console/Backup.class.php:215
+#: Console/Backup.class.php:219
 msgid "Performing Remote Maintenance"
 msgstr ""
 
@@ -1156,7 +1163,7 @@ msgstr "تله پیش از اجرای پشتیبان"
 msgid "Pre-Restore Hook"
 msgstr "تله پیش از اجرای بازیابی"
 
-#: Backup.class.php:540
+#: Backup.class.php:547
 msgid "Process is no longer running"
 msgstr ""
 
@@ -1225,11 +1232,11 @@ msgstr ""
 msgid "Resetting %s module data"
 msgstr ""
 
-#: Console/Backup.class.php:270
+#: Console/Backup.class.php:274
 msgid "Response from Warmspare Server "
 msgstr ""
 
-#: Console/Backup.class.php:262
+#: Console/Backup.class.php:266
 msgid "Response from Warmspare backup Server API"
 msgstr ""
 
@@ -1245,7 +1252,7 @@ msgstr ""
 msgid "Restore Information"
 msgstr ""
 
-#: Console/Backup.class.php:159 Console/Backup.class.php:350
+#: Console/Backup.class.php:163 Console/Backup.class.php:354
 msgid "Restore completed successfully"
 msgstr ""
 
@@ -1279,7 +1286,7 @@ msgstr ""
 msgid "Restore processing for modules are finished successfully"
 msgstr ""
 
-#: Backup.class.php:446
+#: Backup.class.php:453
 msgid "Restore running"
 msgstr ""
 
@@ -1309,7 +1316,7 @@ msgstr ""
 msgid "Restoring from %s [%s]"
 msgstr ""
 
-#: Console/Backup.class.php:282
+#: Console/Backup.class.php:286
 #, php-format
 msgid "Retrieving %s from %s:%s..."
 msgstr ""
@@ -1362,7 +1369,7 @@ msgstr ""
 msgid "Run Restore & Legacy CDR "
 msgstr ""
 
-#: assets/js/backup.js:564
+#: assets/js/backup.js:590
 msgid "Run the following in the CLI"
 msgstr ""
 
@@ -1410,7 +1417,7 @@ msgid ""
 "service so please refresh your page (using new ports) "
 msgstr ""
 
-#: views/restore/processRestore.php:26
+#: views/restore/processRestore.php:37
 msgid "Running a restore will overwrite current data. This cannot be undone!"
 msgstr ""
 
@@ -1584,7 +1591,7 @@ msgstr ""
 msgid "Starting mysql dumps of : %s"
 msgstr ""
 
-#: views/restore/processRestore.php:50
+#: views/restore/processRestore.php:61
 msgid "Status"
 msgstr ""
 
@@ -1608,7 +1615,7 @@ msgstr ""
 msgid "Success"
 msgstr ""
 
-#: Backup.class.php:749
+#: Backup.class.php:756
 msgid "System Transfer"
 msgstr ""
 
@@ -1631,7 +1638,7 @@ msgstr ""
 msgid "The Backup Id to delete"
 msgstr ""
 
-#: assets/js/backup.js:97
+#: assets/js/backup.js:121
 #, perl-format
 msgid "The Backup job name %s is already in used, please use a different name."
 msgstr ""
@@ -1639,6 +1646,13 @@ msgstr ""
 #: Handlers/Backup/Multiple.php:253
 #, php-format
 msgid "The backup %s did not set a status and may have had an error"
+msgstr ""
+
+#: views/restore/processRestore.php:33
+msgid ""
+"The backup contains ChanSIP extensions! These ChanSIP extensions can either "
+"be converted to pjsip extensions or can be skipped during the restore "
+"process."
 msgstr ""
 
 #: functions.inc/class.backup.php:399
@@ -1691,7 +1705,7 @@ msgid ""
 "set to 10 hours"
 msgstr ""
 
-#: assets/js/backup.js:496
+#: assets/js/backup.js:522
 #, perl-format
 msgid "There was an error during %s"
 msgstr ""
@@ -1700,19 +1714,19 @@ msgstr ""
 msgid "There was nothing to cleanup"
 msgstr ""
 
-#: Console/Backup.class.php:134 Console/Backup.class.php:232
+#: Console/Backup.class.php:138 Console/Backup.class.php:236
 msgid "There were errors during the backup process"
 msgstr ""
 
-#: Console/Backup.class.php:162 Console/Backup.class.php:353
+#: Console/Backup.class.php:166 Console/Backup.class.php:357
 msgid "There were errors during the restore process"
 msgstr ""
 
-#: Console/Backup.class.php:140 Console/Backup.class.php:238
+#: Console/Backup.class.php:144 Console/Backup.class.php:242
 msgid "There were warnings during the backup process"
 msgstr ""
 
-#: Console/Backup.class.php:168 Console/Backup.class.php:359
+#: Console/Backup.class.php:172 Console/Backup.class.php:363
 msgid "There were warnings during the restore process"
 msgstr ""
 
@@ -1732,15 +1746,15 @@ msgid ""
 "This option has moved to Backup Items -> Core (Disable Trunks on Restore?) "
 msgstr ""
 
-#: views/restore/processRestore.php:27
+#: views/restore/processRestore.php:38
 msgid "This restore will only affect the modules listed below"
 msgstr ""
 
-#: views/restore/processRestore.php:36
+#: views/restore/processRestore.php:47
 msgid "This table will be empty on backups created prior to version 15"
 msgstr ""
 
-#: Console/Backup.class.php:113
+#: Console/Backup.class.php:117
 #, php-format
 msgid "Transaction ID is: %s"
 msgstr ""
@@ -1797,7 +1811,7 @@ msgstr ""
 msgid "Unable to upload file to the remote server"
 msgstr "عدم امکان بارگذاری فایل در سرور راه دور"
 
-#: Backup.class.php:1412
+#: Backup.class.php:1419
 msgid "Uninstalled or Disabled"
 msgstr ""
 
@@ -1848,15 +1862,15 @@ msgstr ""
 msgid "Utilizing file based sqlite at %s, This is SLOW"
 msgstr ""
 
-#: views/restore/processRestore.php:49
+#: views/restore/processRestore.php:60
 msgid "Version in Backup"
 msgstr ""
 
-#: assets/js/backup.js:194
+#: assets/js/backup.js:218
 msgid "View backup log"
 msgstr ""
 
-#: assets/js/backup.js:47
+#: assets/js/backup.js:71
 msgid "View running restore"
 msgstr ""
 
@@ -1874,7 +1888,7 @@ msgid ""
 "and Above"
 msgstr ""
 
-#: Console/Backup.class.php:256 Console/Backup.class.php:267
+#: Console/Backup.class.php:260 Console/Backup.class.php:271
 msgid "Warmspare enabled for this backup"
 msgstr ""
 
@@ -1882,11 +1896,11 @@ msgstr ""
 msgid "Way to Connect Warm spare Server"
 msgstr ""
 
-#: Console/Backup.class.php:259
+#: Console/Backup.class.php:263
 msgid "We Have triggered an API to restore the backup on Spare Server"
 msgstr ""
 
-#: Console/Backup.class.php:268
+#: Console/Backup.class.php:272
 msgid "We are running Restore command on Spare Server"
 msgstr ""
 
@@ -1967,31 +1981,31 @@ msgstr "بله"
 msgid "You have enabled enableBackupSchedule so please add scheduleBackup"
 msgstr ""
 
-#: assets/js/backup.js:68
+#: assets/js/backup.js:92
 msgid "You must enter a valid Warm Spare Access Token URL"
 msgstr ""
 
-#: assets/js/backup.js:73
+#: assets/js/backup.js:97
 msgid "You must enter a valid Warm Spare Server API Client ID"
 msgstr ""
 
-#: assets/js/backup.js:78
+#: assets/js/backup.js:102
 msgid "You must enter a valid Warm Spare Server API Client Secret"
 msgstr ""
 
-#: assets/js/backup.js:83
+#: assets/js/backup.js:107
 msgid "You must enter a valid Warm Spare Server API GraphQL URL"
 msgstr ""
 
-#: assets/js/backup.js:63
+#: assets/js/backup.js:87
 msgid "You must select a valid Warm Spare Server"
 msgstr ""
 
-#: assets/js/backup.js:55
+#: assets/js/backup.js:79
 msgid "You must set a valid job name for this backup"
 msgstr ""
 
-#: assets/js/backup.js:493
+#: assets/js/backup.js:519
 #, perl-format
 msgid "Your %s has finished"
 msgstr ""
@@ -2020,7 +2034,7 @@ msgstr ""
 msgid "success"
 msgstr ""
 
-#: Console/Backup.class.php:304
+#: Console/Backup.class.php:308
 #, php-format
 msgid "type is %s"
 msgstr ""
