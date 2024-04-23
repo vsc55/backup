@@ -10,6 +10,8 @@ use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Command\LockableTrait;
 use function FreePBX\modules\Backup\Json\json_decode;
 use function FreePBX\modules\Backup\Json\json_encode;
+use FreePBX\modules\Backup\Models\BackupSplFileInfo;
+use Symfony\Component\Console\Question\ChoiceQuestion;
 #[\AllowDynamicProperties]
 class Backup extends Command {
 	use LockableTrait;
@@ -309,6 +311,32 @@ class Backup extends Command {
 				$pid = posix_getpid();
 				$bin = \FreePBX::Config()->get('AMPSBIN');
 				$this->freepbx->Backup->runHook("permissioncommands",array('bin'=>$bin));
+
+				if((!isset($cliarguments['skipchansipexts']) || !$cliarguments['skipchansipexts']) && (!isset($cliarguments['convertchansipexts']) || !$cliarguments['convertchansipexts'])) {
+					$version = \FreePBX::Config()->get('ASTVERSION');
+					$fileClass = new BackupSplFileInfo($restore);
+					$manifest = $fileClass->getMetadata();
+					if(isset($manifest['chansipexists']) && $manifest['chansipexists']) {
+						if(version_compare($version, '21', 'ge')) {
+							$output->write(_("The current version of Asterisk installed does not support chan_sip. Upgrade Asterisk to a supported version, convert chan_sip extensions to pjsip, or skip chan_sip extensions for restore."));
+						}
+						$helper = $this->getHelper('question');
+						$question = new ChoiceQuestion(sprintf(_("The backup contains ChanSIP extensions! These ChanSIP extensions can either be converted to pjsip extensions or can be skipped during the restore process.")),array(_("Convert"), _("Skip"),_("Cancel")),0);
+						$question->setErrorMessage('Choice %s is invalid');
+						$action = $helper->ask($this->input,$this->output,$question);
+						switch($action){
+							case _("Convert"):
+								$cliarguments['convertchansipexts'] = 1;
+							break;
+							case _("Skip"):
+								$cliarguments['skipchansipexts'] = 1;
+							break;
+							case _("Cancel"):
+								exit;
+							break;
+						}
+					}
+				}
 				if($backupType === 'current'){
 					$restoreHandler = new Handler\Restore\Multiple($this->freepbx,$restore,$transactionid, posix_getpid());
 				}
