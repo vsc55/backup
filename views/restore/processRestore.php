@@ -25,7 +25,7 @@
 							<ul class="list-group">
 							<?php if(version_compare(\FreePBX::Config()->get('ASTVERSION'), '21', 'ge')){ ?>
 								<li class = "list-group-item list-group-item-danger">
-									<?php echo _("Current asterisk installed version is not supported to chan_sip, please switch asterisk to supported version and then try for restore or you can convert chan_sip extensions to pjsip or you can skip the chan_sip extensions.")?>
+									<?php echo _("The current version of Asterisk installed does not support chan_sip. Upgrade Asterisk to a supported version, convert chan_sip extensions to pjsip, or skip chan_sip extensions for restore.")?>
 								</li>
 							<?php } ?>
 							<?php if(isset($meta['chansipexists']) && $meta['chansipexists']){ ?>
