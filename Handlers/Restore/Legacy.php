@@ -278,7 +278,7 @@ class Legacy extends Common {
 			
 			$this->log(sprintf(_("Processing %s"),$module),'INFO');
 			try {
-				$this->processLegacyModule($module, $versions[$module], $dbh, $tables, $tableMap);
+				$this->processLegacyModule($module, $versions[$module] ?? '', $dbh, $tables, $tableMap);
 			} catch(\Exception $e) {
 				$this->log($e->getMessage(). ' on line '.$e->getLine().' of file '.$e->getFile(),'ERROR');
 				$this->log($e->getTraceAsString(),'ERROR');
