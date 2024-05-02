@@ -63,19 +63,13 @@ class BackupSplFileInfo extends SplFileInfo{
 
 		$tar = new Tar();
 		$tar->open($this->getPathname());
-		$tar->extract($backuptmpdir, '', '', '/(manifest|metadata\.json|files)/');
+		$tar->extract($backuptmpdir, '', '', '/(manifest|metadata\.json|files|mysql-2.sql.gz)/');
 		$metafile = $backuptmpdir . '/metadata.json';
 		$manafestfile = $backuptmpdir . '/manifest';
 		$meta = [];
 		if(file_exists($metafile)){
 			$metadata = file_get_contents($metafile);
 			$meta = json_decode($metadata, true);
-			$version = \FreePBX::Config()->get('ASTVERSION');
-			$sipdriver = \FreePBX::Config()->get('ASTSIPDRIVER');
-			if(version_compare($version, '21', 'ge') || $sipdriver == 'chan_pjsip') {
-				$chansipDevExists = $this->checkChansipDevice($backuptmpdir);
-				$meta['chansipexists'] = $chansipDevExists;
-			}
 		}
 		if(file_exists($manafestfile)){
 			$manifestdata = file_get_contents($manafestfile);
@@ -89,6 +83,12 @@ class BackupSplFileInfo extends SplFileInfo{
 				'manifest' => $tmpdata,
 			];
 		}
+		$version = \FreePBX::Config()->get('ASTVERSION');
+		$sipdriver = \FreePBX::Config()->get('ASTSIPDRIVER');
+		if(version_compare($version, '21', 'ge') || $sipdriver == 'chan_pjsip') {
+			$chansipDevExists = $this->checkChansipDevice($backuptmpdir);
+			$meta['chansipexists'] = $chansipDevExists;
+		}
 
 		$tar->close();
 		unset($tar);
@@ -99,6 +99,7 @@ class BackupSplFileInfo extends SplFileInfo{
 		$chansipExists = false;
 		$coreModule = $backuptmpdir . "/modulejson/Core.json";
 		$devDumpFile = $backuptmpdir . "/files/tmp/Devices_dump/Devices.sql";
+		$legacySqlFile = $backuptmpdir . "/mysql-2.sql.gz";
 		if(file_exists($coreModule)){
 			$coredata = file_get_contents($coreModule);
 			$coremeta = json_decode($coredata, true);
@@ -114,6 +115,25 @@ class BackupSplFileInfo extends SplFileInfo{
 			$insertDevicesquery = false;
 			$contents = file($devDumpFile);
 			foreach($contents as $line) {
+				if(str_contains($line,"INSERT INTO `devices`")) {
+					$insertDevicesquery = true;
+				} else {
+					continue;
+				}
+
+				if($insertDevicesquery && str_contains($line,"'sip'")) {
+					$chansipExists = true;
+					break;
+				}
+
+				if(str_contains($line,";")) {
+					break;
+				}
+			}
+		} else if(file_exists($legacySqlFile)) {
+			$insertDevicesquery = false;
+			$sfp = gzopen($legacySqlFile, "r");
+			while ($line = fgets($sfp)) {
 				if(str_contains($line,"INSERT INTO `devices`")) {
 					$insertDevicesquery = true;
 				} else {
