@@ -37,12 +37,36 @@ $(document).ready(function () {
 		e.stopPropagation();
 		e.preventDefault();
 		let skip = null;
-		if($("#chasipexists").val() == 1) {
-			let result = prompt("Chansip extensions found! \n Type 'convert' to convert the chansip extensions to pjsip extension \n Type 'skip' to skip the chansip extensions");
-			if(result === 'convert') {
-				skip = 'convert';
-			} else if(result === 'skip') {
-				skip = 'skip';
+		if ($("#chasipexists").val() == 1 && $("#chasiptrunkexists").val() ==1) {
+			let result = prompt("Chansip extensions and trunks found! \n Type '1' to Convert All <extension & trunks> \n Type '2' to Skip trunk and convert extension \n Type '3' to Skip extension and convert trunk \n Type '4' to Skip all <extension & trunks>");
+			if(result === '1') {
+				skip = 'convertall';
+			} else if(result === '2') {
+				skip = 'skiptrunk_convertextension';
+			} else if(result === '3') {
+				skip = 'skipextension_converttrunk';
+			} else if(result === '4') {
+				skip = 'skipall';
+			} else {
+				alert("Please enter a valid option!");
+				return;
+			}
+		} else if ($("#chasipexists").val() == 1) {
+			let result = prompt("Chansip extensions found! \n Type '1' to Convert extensions \n Type '2' to Skip extensions");
+			if(result === '1') {
+				skip = 'convertextension';
+			} else if(result === '2') {
+				skip = 'skipextension';
+			} else {
+				alert("Please enter a valid option!");
+				return;
+			}
+		} else if ($("#chasiptrunkexists").val() == 1) {
+			let result = prompt("Chansip trunks found! \n Type '1' to Convert trunks \n Type '2' to Skip trunks");
+			if(result === '1') {
+				skip = 'converttrunk';
+			} else if(result === '2') {
+				skip = 'skiptrunk';
 			} else {
 				alert("Please enter a valid option!");
 				return;
@@ -54,12 +78,36 @@ $(document).ready(function () {
 		e.stopPropagation();
 		e.preventDefault();
 		let skip = null;
-		if($("#chasipexists").val() == 1) {
-			let result = prompt("Chansip extensions found! \n Type 'convert' to convert the chansip extensions to pjsip extension \n Type 'skip' to skip the chansip extensions");
-			if(result === 'convert') {
-				skip = 'convert';
-			} else if(result === 'skip') {
-				skip = 'skip';
+		if ($("#chasipexists").val() == 1 && $("#chasiptrunkexists").val() ==1) {
+			let result = prompt("Chansip extensions and trunks found! \n Type '1' to Convert All <extension & trunks> \n Type '2' to Skip trunk and convert extension \n Type '3' to Skip extension and convert trunk \n Type '4' to Skip all <extension & trunks>");
+			if (result === '1') {
+				skip = 'convertall';
+			} else if(result === '2') {
+				skip = 'skiptrunk_convertextension';
+			} else if(result === '3') {
+				skip = 'skipextension_converttrunk';
+			} else if(result === '4') {
+				skip = 'skipall';
+			} else {
+				alert("Please enter a valid option!");
+				return;
+			}
+		} else if ($("#chasipexists").val() == 1) {
+			let result = prompt("Chansip extensions found! \n Type '1' to Convert extensions \n Type '2' to Skip extensions");
+			if (result === '1') {
+				skip = 'convertextension';
+			} else if(result === '2') {
+				skip = 'skipextension';
+			} else {
+				alert("Please enter a valid option!");
+				return;
+			}
+		} else if ($("#chasiptrunkexists").val() == 1) {
+			let result = prompt("Chansip trunks found! \n Type '1' to Convert trunks \n Type '2' to Skip trunks");
+			if (result === '1') {
+				skip = 'converttrunk';
+			} else if(result === '2') {
+				skip = 'skiptrunk';
 			} else {
 				alert("Please enter a valid option!");
 				return;

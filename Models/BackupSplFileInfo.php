@@ -63,7 +63,7 @@ class BackupSplFileInfo extends SplFileInfo{
 
 		$tar = new Tar();
 		$tar->open($this->getPathname());
-		$tar->extract($backuptmpdir, '', '', '/(manifest|metadata\.json|files|mysql-2.sql.gz|mysql-3.sql)/');
+		$tar->extract($backuptmpdir, '', '', '/(manifest|metadata\.json|files|modulejson|mysql-2.sql.gz|mysql-3.sql)/');
 		$metafile = $backuptmpdir . '/metadata.json';
 		$manafestfile = $backuptmpdir . '/manifest';
 		$meta = [];
@@ -88,6 +88,8 @@ class BackupSplFileInfo extends SplFileInfo{
 		if(version_compare($version, '21', 'ge') || $sipdriver == 'chan_pjsip') {
 			$chansipDevExists = $this->checkChansipDevice($backuptmpdir);
 			$meta['chansipexists'] = $chansipDevExists;
+			$chansipTrunkExists = $this->checkChansipTrunk($backuptmpdir);
+			$meta['chansipTrunkExists'] = $chansipTrunkExists;
 		}
 
 		$tar->close();
@@ -104,15 +106,17 @@ class BackupSplFileInfo extends SplFileInfo{
 		if(file_exists($coreModule)){
 			$coredata = file_get_contents($coreModule);
 			$coremeta = json_decode($coredata, true);
-			if(isset($coremeta['Devices']) && !empty($coremeta['Devices'])){
-				foreach ($coremeta['Devices'] as $dev) {
+			$device_details = isset($coremeta['configs']['Devices']['devices']) ? $coremeta['configs']['Devices']['devices'] : [];
+			if(count($device_details) >0){
+				foreach ($device_details as $dev) {
 					if($dev['tech'] == 'sip') {
 						$chansipExists = true;
 						break;
 					}
 				}
 			}
-		} else if(file_exists($devDumpFile)) {
+		} 
+		if(!$chansipExists && file_exists($devDumpFile)) {
 			$insertDevicesquery = false;
 			$contents = file($devDumpFile);
 			foreach($contents as $line) {
@@ -131,7 +135,8 @@ class BackupSplFileInfo extends SplFileInfo{
 					break;
 				}
 			}
-		} else if(file_exists($legacySqlFile)) {
+		} 
+		if(!$chansipExists && file_exists($legacySqlFile)) {
 			$insertDevicesquery = false;
 			$sfp = gzopen($legacySqlFile, "r");
 			while ($line = fgets($sfp)) {
@@ -150,10 +155,10 @@ class BackupSplFileInfo extends SplFileInfo{
 					break;
 				}
 			}
-		} else if(file_exists($legacyV2file)) {
+		} 
+		if(!$chansipExists && file_exists($legacyV2file)) {
 			$insertDevicesquery = false;
 			$contents = file($legacyV2file);
-			dbug($contents);
 			foreach($contents as $line) {
 				if(str_contains($line,"INSERT INTO `devices`")) {
 					$insertDevicesquery = true;
@@ -174,4 +179,76 @@ class BackupSplFileInfo extends SplFileInfo{
 		}
 		return $chansipExists;
 	}
+
+
+	public function checkChansipTrunk($backuptmpdir) {
+		$chansipExists = false;
+		$coreModule = $backuptmpdir . "/modulejson/Core.json";
+		$devDumpFile = $backuptmpdir . "/files/tmp/Devices_dump/Devices.sql";
+		$legacySqlFile = $backuptmpdir . "/mysql-2.sql.gz"; //legacy backup file containing sip devices (FreePBX v13,14 - mysql-2.sql.gz)
+		$legacyV2file = $backuptmpdir . "/mysql-3.sql"; //(FreePBX v2 - mysql-3.sql)
+		if(file_exists($coreModule)){
+			$coredata = file_get_contents($coreModule);
+			$coremeta = json_decode($coredata, true);
+			$device_details = isset($coremeta['configs']['Trunks']['trunks']) ? $coremeta['configs']['Trunks']['trunks'] : [];
+			if(count($device_details) >0){
+				foreach ($device_details as $dev) {
+					if($dev['tech'] == 'sip') {
+						$chansipExists = true;
+						break;
+					}
+				}
+			}
+		} 
+		if(!$chansipExists && file_exists($devDumpFile)) {
+			$contents = file($devDumpFile);
+			foreach($contents as $line) {
+				if(str_contains($line,"INSERT INTO `trunks`") && (str_contains($line,"'tr-peer") || str_contains($line,"'tr-reg") || str_contains($line,"'tr-user"))) {
+					$chansipExists = true;
+					break;
+				} else {
+					continue;
+				}
+				
+				if(str_contains($line,";")) {
+					break;
+				}
+			}
+		} 
+		if(!$chansipExists && file_exists($legacySqlFile)) {
+			$sfp = gzopen($legacySqlFile, "r");
+			while ($line = fgets($sfp)) {
+				if(str_contains($line,"INSERT INTO `trunks`") && (str_contains($line,"'tr-peer") || str_contains($line,"'tr-reg") || str_contains($line,"'tr-user"))) {
+					$chansipExists = true;
+					break;
+				} else {
+					continue;
+				}
+
+				if(str_contains($line,";")) {
+					break;
+				}
+			}
+		} 
+		if(!$chansipExists && file_exists($legacyV2file)) {
+			$insertDevicesquery = false;
+			$contents = file($legacyV2file);
+			dbug($contents);
+			foreach($contents as $line) {
+				if(str_contains($line,"INSERT INTO `trunks`") && (str_contains($line,"'tr-peer") || str_contains($line,"'tr-reg") || str_contains($line,"'tr-user"))) {
+					$chansipExists = true;
+					break;
+				} else {
+					continue;
+				}
+
+				if(str_contains($line,";")) {
+					break;
+				}
+			}
+
+		}
+		return $chansipExists;
+	}
+
 }

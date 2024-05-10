@@ -437,10 +437,22 @@ class Backup extends FreePBX_Helpers implements BMO {
 					$args = $args. ' --restorelegacycdr';
 				}
 
-				if(isset($_REQUEST['skipchansip']) && $_REQUEST['skipchansip'] == 'skip') {
-					$args = $args. ' --skipchansipexts';
-				} else if(isset($_REQUEST['skipchansip']) && $_REQUEST['skipchansip'] == 'convert') {
+				if (isset($_REQUEST['skipchansip']) && $_REQUEST['skipchansip'] == 'skipall') {
+					$args = $args. ' --skipchansipexts --skipchansiptrunks';
+				} else if (isset($_REQUEST['skipchansip']) && $_REQUEST['skipchansip'] == 'convertall') {
+					$args = $args. ' --convertchansipexts --convertchansiptrunks';
+				} else if (isset($_REQUEST['skipchansip']) && $_REQUEST['skipchansip'] == 'skiptrunk_convertextension') {
+					$args = $args. ' --convertchansipexts --skipchansiptrunks';
+				} else if (isset($_REQUEST['skipchansip']) && $_REQUEST['skipchansip'] == 'skipextension_converttrunk') {
+					$args = $args. ' --convertchansiptrunks --skipchansipexts';
+				} else if (isset($_REQUEST['skipchansip']) && $_REQUEST['skipchansip'] == 'convertextension') {
 					$args = $args. ' --convertchansipexts';
+				} else if (isset($_REQUEST['skipchansip']) && $_REQUEST['skipchansip'] == 'skipextension') {
+					$args = $args. ' --skipchansipexts';
+				} else if (isset($_REQUEST['skipchansip']) && $_REQUEST['skipchansip'] == 'skiptrunk') {
+					$args = $args. ' --skipchansiptrunks';
+				} else if(isset($_REQUEST['skipchansip']) && $_REQUEST['skipchansip'] == 'converttrunk') {
+					$args = $args. ' --convertchansiptrunks';
 				}
 
 				$jobid   = $this->generateId();
