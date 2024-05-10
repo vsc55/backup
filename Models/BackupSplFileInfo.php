@@ -63,7 +63,7 @@ class BackupSplFileInfo extends SplFileInfo{
 
 		$tar = new Tar();
 		$tar->open($this->getPathname());
-		$tar->extract($backuptmpdir, '', '', '/(manifest|metadata\.json|files|mysql-2.sql.gz)/');
+		$tar->extract($backuptmpdir, '', '', '/(manifest|metadata\.json|files|mysql-2.sql.gz|mysql-3.sql)/');
 		$metafile = $backuptmpdir . '/metadata.json';
 		$manafestfile = $backuptmpdir . '/manifest';
 		$meta = [];
@@ -99,7 +99,8 @@ class BackupSplFileInfo extends SplFileInfo{
 		$chansipExists = false;
 		$coreModule = $backuptmpdir . "/modulejson/Core.json";
 		$devDumpFile = $backuptmpdir . "/files/tmp/Devices_dump/Devices.sql";
-		$legacySqlFile = $backuptmpdir . "/mysql-2.sql.gz";
+		$legacySqlFile = $backuptmpdir . "/mysql-2.sql.gz"; //legacy backup file containing sip devices (FreePBX v13,14 - mysql-2.sql.gz)
+		$legacyV2file = $backuptmpdir . "/mysql-3.sql"; //(FreePBX v2 - mysql-3.sql)
 		if(file_exists($coreModule)){
 			$coredata = file_get_contents($coreModule);
 			$coremeta = json_decode($coredata, true);
@@ -149,6 +150,27 @@ class BackupSplFileInfo extends SplFileInfo{
 					break;
 				}
 			}
+		} else if(file_exists($legacyV2file)) {
+			$insertDevicesquery = false;
+			$contents = file($legacyV2file);
+			dbug($contents);
+			foreach($contents as $line) {
+				if(str_contains($line,"INSERT INTO `devices`")) {
+					$insertDevicesquery = true;
+				} else {
+					continue;
+				}
+
+				if($insertDevicesquery && str_contains($line,"'sip'")) {
+					$chansipExists = true;
+					break;
+				}
+
+				if(str_contains($line,";")) {
+					break;
+				}
+			}
+
 		}
 		return $chansipExists;
 	}
