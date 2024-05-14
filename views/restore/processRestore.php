@@ -34,6 +34,12 @@
 								</li>
 								<input type="hidden" id="chasipexists" value="1">
 							<?php } ?>
+							<?php if(isset($meta['chansipTrunkExists']) && $meta['chansipTrunkExists']){ ?>
+								<li class = "list-group-item list-group-item-danger">
+									<?php echo _("The backup contains ChanSIP Trunks! These ChanSIP Trunks can either be converted to pjsip  or can be skipped during the restore process.")?>
+								</li>
+								<input type="hidden" id="chasiptrunkexists" value="1">
+							<?php } ?>
 							<li class = "list-group-item list-group-item-danger"><?php echo _("Running a restore will overwrite current data. This cannot be undone!")?></li>
 							<li class = "list-group-item list-group-item-info"><?php echo _("This restore will only affect the modules listed below")?></li>
 							<li class = "list-group-item list-group-item-info"><?php echo _("After the restore you might reload with the apply config button")?></li>

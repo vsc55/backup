@@ -46,6 +46,8 @@ class Backup extends Command {
 				new InputOption('skiptrunksandroutes', '', InputOption::VALUE_NONE, 'Option --skiptrunksandroutes skip trunks on restore'),
 				new InputOption('skipchansipexts', '', InputOption::VALUE_NONE, 'Option --skipchansipexts skip sip extensions on restore'),
 				new InputOption('convertchansipexts', '', InputOption::VALUE_NONE, 'Option --convertchansipexts converts extensions to pjsip on restore'),
+				new InputOption('skipchansiptrunks', '', InputOption::VALUE_NONE, 'Option --skipchansiptrunks skip sip trunk on restore'),
+				new InputOption('convertchansiptrunks', '', InputOption::VALUE_NONE, 'Option --convertchansiptrunks converts trunks to pjsip on restore'),
 		))
 		->setHelp('Run a backup: fwconsole backup --backup [backup-id]'.PHP_EOL
 		.'Run a restore: fwconsole backup --restore [/path/to/restore-xxxxxx.tar.gz]'.PHP_EOL
@@ -101,6 +103,8 @@ class Backup extends Command {
 		$cliarguments['skiptrunksandroutes'] = $input->getOption('skiptrunksandroutes');
 		$cliarguments['convertchansipexts'] = $input->getOption('convertchansipexts');
 		$cliarguments['skipchansipexts'] = $input->getOption('skipchansipexts');
+		$cliarguments['convertchansiptrunks'] = $input->getOption('convertchansiptrunks');
+		$cliarguments['skipchansiptrunks'] = $input->getOption('skipchansiptrunks');
 
 		if($b64import){
 			return $this->addBackupByString($b64import);
@@ -330,6 +334,31 @@ class Backup extends Command {
 							break;
 							case _("Skip"):
 								$cliarguments['skipchansipexts'] = 1;
+							break;
+							case _("Cancel"):
+								exit;
+							break;
+						}
+					}
+				}
+				if ((!isset($cliarguments['skipchansiptrunks']) || !$cliarguments['skipchansiptrunks']) && (!isset($cliarguments['convertchansiptrunks']) || !$cliarguments['convertchansiptrunks'])) {
+					$version = \FreePBX::Config()->get('ASTVERSION');
+					$fileClass = new BackupSplFileInfo($restore);
+					$manifest = $fileClass->getMetadata();
+					if (isset($manifest['chansipTrunkExists']) && $manifest['chansipTrunkExists']) {
+						if (version_compare($version, '21', 'ge')) {
+							$output->write(_("The current version of Asterisk installed does not support chan_sip. Upgrade Asterisk to a supported version, convert chan_sip trunks to pjsip, or skip chan_sip trunks for restore."));
+						}
+						$helper = $this->getHelper('question');
+						$question = new ChoiceQuestion(sprintf(_("The backup contains ChanSIP trunks! These ChanSIP trunks can either be converted to pjsip trunks or can be skipped during the restore process.")),array(_("Convert"), _("Skip"),_("Cancel")),0);
+						$question->setErrorMessage('Choice %s is invalid');
+						$action = $helper->ask($this->input,$this->output,$question);
+						switch($action){
+							case _("Convert"):
+								$cliarguments['convertchansiptrunks'] = 1;
+							break;
+							case _("Skip"):
+								$cliarguments['skipchansiptrunks'] = 1;
 							break;
 							case _("Cancel"):
 								exit;
