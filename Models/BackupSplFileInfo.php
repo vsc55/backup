@@ -203,7 +203,7 @@ class BackupSplFileInfo extends SplFileInfo{
 		if(!$chansipExists && file_exists($devDumpFile)) {
 			$contents = file($devDumpFile);
 			foreach($contents as $line) {
-				if(str_contains($line,"INSERT INTO `trunks`") && (str_contains($line,"'tr-peer") || str_contains($line,"'tr-reg") || str_contains($line,"'tr-user"))) {
+				if(str_contains($line,"INSERT INTO `trunks`") && str_contains($line,"'sip'")) {
 					$chansipExists = true;
 					break;
 				} else {
@@ -218,7 +218,7 @@ class BackupSplFileInfo extends SplFileInfo{
 		if(!$chansipExists && file_exists($legacySqlFile)) {
 			$sfp = gzopen($legacySqlFile, "r");
 			while ($line = fgets($sfp)) {
-				if(str_contains($line,"INSERT INTO `trunks`") && (str_contains($line,"'tr-peer") || str_contains($line,"'tr-reg") || str_contains($line,"'tr-user"))) {
+				if(str_contains($line,"INSERT INTO `trunks`") && str_contains($line,"'sip'")) {
 					$chansipExists = true;
 					break;
 				} else {
@@ -235,7 +235,7 @@ class BackupSplFileInfo extends SplFileInfo{
 			$contents = file($legacyV2file);
 			dbug($contents);
 			foreach($contents as $line) {
-				if(str_contains($line,"INSERT INTO `trunks`") && (str_contains($line,"'tr-peer") || str_contains($line,"'tr-reg") || str_contains($line,"'tr-user"))) {
+				if(str_contains($line,"INSERT INTO `trunks`") && str_contains($line,"'sip'")) {
 					$chansipExists = true;
 					break;
 				} else {
