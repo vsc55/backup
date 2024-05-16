@@ -156,8 +156,6 @@ class Backup extends Command {
 				return 0;
 			break;
 			case $restoresingle:
-				$bin = \FreePBX::Config()->get('AMPSBIN');
-				$this->freepbx->Backup->runHook("permissioncommands",array('bin'=>$bin));
 				$restoreHandler = new Handler\Restore\Single($this->freepbx, $restoresingle, $transactionid, posix_getpid());
 				if($input->getOption('fallback')){
 					$restoreHandler->setDefaultFallback(true);
@@ -313,8 +311,6 @@ class Backup extends Command {
 				}
 				$output->writeln(sprintf(_("type is %s"),$backupType));
 				$pid = posix_getpid();
-				$bin = \FreePBX::Config()->get('AMPSBIN');
-				$this->freepbx->Backup->runHook("permissioncommands",array('bin'=>$bin));
 
 				if((!isset($cliarguments['skipchansipexts']) || !$cliarguments['skipchansipexts']) && (!isset($cliarguments['convertchansipexts']) || !$cliarguments['convertchansipexts'])) {
 					$version = \FreePBX::Config()->get('ASTVERSION');
