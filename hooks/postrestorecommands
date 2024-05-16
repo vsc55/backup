@@ -2,7 +2,7 @@
 <?php
 error_reporting(E_ALL);
 date_default_timezone_set('UTC');
-$commands = ['fwconsole util clearunuseddevices', 'fwconsole epm rebuild all'];
+$commands = ['fwconsole util clearunuseddevices', 'fwconsole epm rebuild all', 'fwconsole chown'];
 foreach ($commands as $command) {
     exec($command);
 }
