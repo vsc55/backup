@@ -209,37 +209,41 @@ abstract class Common extends \FreePBX\modules\Backup\Handlers\CommonFile {
 	* run the sysadmin hook post restore 
 	*/
 	protected function postRestoreHooks(){
-		// Trigger sysadmin to reload/regen any settings if available
-		if (is_dir("/var/spool/asterisk/incron")) {
-			$triggers = ['update-dns', 'config-postfix', 'update-ftp', 'fail2ban-generate', 'update-mdadm', 'update-timezone-no-restart', 'update-ports', 'update-ups', 'update-sslconf'];
-			foreach ($triggers as $f) {
-				$filename = "/var/spool/asterisk/incron/sysadmin.$f";
+		// run hook only if sysadmin is present/installed
+		if ($this->freepbx->Modules->checkStatus("sysadmin")) {
+			// Trigger sysadmin to reload/regen any settings if available
+			if (is_dir("/var/spool/asterisk/incron")) {
+				$triggers = ['update-dns', 'config-postfix', 'update-ftp', 'fail2ban-generate', 'update-mdadm', 'update-timezone-no-restart', 'update-ports', 'update-ups', 'update-sslconf'];
+				// Run sysadmin related hooks
+				foreach ($triggers as $f) {
+					$filename = "/var/spool/asterisk/incron/sysadmin.$f";
+					if (file_exists($filename)) {
+						@unlink($filename);
+					}
+					$fileHandle = @fopen($filename, "w");
+					if ($fileHandle !== false) {
+						@fclose($fileHandle);
+					}
+				}
+				// run backup related hook
+				$filename = "/var/spool/asterisk/incron/backup.postrestorecommands";
 				if (file_exists($filename)) {
 					@unlink($filename);
 				}
 				$fileHandle = @fopen($filename, "w");
-    			if ($fileHandle !== false) {
+				if ($fileHandle !== false) {
 					@fclose($fileHandle);
 				}
-			}
-		} else {
-			$this->log('post Restore hooks failed !!!!!');
-		}
-		//run backup releated hooks
-		$filename = "/var/spool/asterisk/incron/backup.postrestorecommands";
-		if (file_exists($filename)) {
-			 @unlink($filename);
-		} else {
-			$fileHandle = @fopen($filename, "w");
-			if ($fileHandle !== false) {
-				@fclose($fileHandle);
+			} else {
+				$this->log('Failed to execute post restore hook because /var/spool/asterisk/incron directory not present.');
 			}
 		}
+		return true;
 	}
 
 
-	/**
-	 * Create Restore process id
+/**
+ * Create Restore process id
 	 */
 	public function setRestoreStart() {
 		$fh = fopen($this->restorepid, "w+");
