@@ -21,16 +21,16 @@ class BackupSplFileInfo extends SplFileInfo{
 	*/
 	public function backupData(){
 		//20171012-130011-1507838411-15.0.1alpha1-42886857.tar.gz
-		preg_match("/(\d{8})-(\d{6})-(\d{10,11})-(.*)-\d*\.tar\.gz(.sha256sum)?/", $this->getFilename(), $output_array);
+		preg_match("/(\d{8})-(\d{6})-(\d{10,11})(?:-(.*))?-(\d+)\.(tar\.gz|tgz)(\.sha256sum)?/", $this->getFilename(), $output_array);
 		$arraySize = sizeof($output_array);
-		if ($arraySize != 5 && $arraySize != 6) {
+		if ($arraySize < 5) {
 			return false;
 		}
 		return [
 			'datestring' => $output_array[1],
 			'timestring' => $output_array[2],
 			'timestamp' => $output_array[3],
-			'framework' => $output_array[4],
+			'framework' => !empty($output_array[4]) ? $output_array[4] : 'legacy',
 			'isCheckSum' => ($arraySize == 6),
 			'size' => $this->getSize(),
 		];
