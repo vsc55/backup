@@ -252,6 +252,7 @@ class Backup extends FreePBX_Helpers implements BMO {
 			case 'getRestoreLog':
 			case 'deleteBackup':
 			case 'accesstoken':
+			case 'checkchansip':
 				return true;
 			case 'restorestatus':
 			case 'backupstatus':
@@ -518,6 +519,25 @@ class Backup extends FreePBX_Helpers implements BMO {
 			case 'backupItems':
 				$id  = $_GET['id'] ?? '';
 				return $this->moduleItemsByBackupID($id);
+			case 'checkchansip':
+				if($_REQUEST['type'] == 'local'){
+					$fileid = $_REQUEST['fileid'];
+					$path = $this->pathFromId($_REQUEST['fileid']);
+				}
+				if($_REQUEST['type'] == 'remote'){
+					$path = $this->remoteToLocal($_REQUEST['fileid'],$_REQUEST['filepath']);
+					$fileid = md5((string) $path);
+				}
+				if(empty($path)){
+					return ['status' => false, "message" => "file path not found"];
+				}
+				$fileClass = new BackupSplFileInfo($path);
+				$manifest = $fileClass->getMetadata();
+				$res['chansipexists'] = $manifest['chansipexists'] ?? false;
+				$res['chansipTrunkExists'] = $manifest['chansipTrunkExists'] ?? false;
+				$res['status'] = true;
+				return $res;
+				break;
 			default:
 				return false;
 		}
