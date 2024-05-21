@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreePBX - módulo backup module spanish translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-16 05:24-0400\n"
+"POT-Creation-Date: 2024-05-21 06:33-0400\n"
 "PO-Revision-Date: 2016-12-09 05:35+0200\n"
 "Last-Translator: Ernesto <ecasas@sangoma.com>\n"
 "Language-Team: Spanish <http://weblate.freepbx.org/projects/freepbx/backup/"
@@ -82,11 +82,11 @@ msgstr ""
 msgid "%s table Restore Error %s "
 msgstr ""
 
-#: Backup.class.php:1562
+#: Backup.class.php:1582
 msgid "/path/to/dir"
 msgstr "/path/to/dir"
 
-#: Backup.class.php:1555
+#: Backup.class.php:1575
 msgid "/path/to/file"
 msgstr "/path/to/file"
 
@@ -198,15 +198,15 @@ msgstr ""
 msgid "Apply Configs"
 msgstr "Aplicar configuraciones"
 
-#: assets/js/backup.js:278 assets/js/backup.js:317
+#: assets/js/backup.js:278 assets/js/backup.js:367
 msgid "Are you sure you wish to delete this file? This cannot be undone"
 msgstr ""
 
-#: assets/js/backup.js:303 assets/js/backup.js:344
+#: assets/js/backup.js:304 assets/js/backup.js:395
 msgid "Are you sure, you want to restore this backup?"
 msgstr ""
 
-#: Backup.class.php:1530
+#: Backup.class.php:1550
 #, php-format
 msgid ""
 "Asterisk home dir (%s) doesn't exist, and, ASTSPOOLDIR doesn't exist. "
@@ -221,7 +221,7 @@ msgstr "RESPALDO NO ANEXO"
 msgid "Backup"
 msgstr "Respaldo"
 
-#: Backup.class.php:1199
+#: Backup.class.php:1219
 #, php-format
 msgid "Backup %s"
 msgstr ""
@@ -252,7 +252,7 @@ msgstr "respaldar & restaurar para su ambiente FreePBX"
 msgid "Backup Date"
 msgstr ""
 
-#: Backup.class.php:315
+#: Backup.class.php:316
 msgid "Backup Deleted"
 msgstr ""
 
@@ -297,7 +297,7 @@ msgstr "Respaldar Elementos"
 msgid "Backup Name"
 msgstr "Nombre del Respaldo"
 
-#: Backup.class.php:686
+#: Backup.class.php:706
 msgid "Backup Restored Successfully"
 msgstr ""
 
@@ -356,7 +356,7 @@ msgid ""
 "the transaction id."
 msgstr ""
 
-#: Backup.class.php:484
+#: Backup.class.php:485
 msgid "Backup running"
 msgstr ""
 
@@ -380,7 +380,7 @@ msgstr ""
 
 #: Console/Backup.class.php:324 Console/Backup.class.php:334
 #: Console/Backup.class.php:349 Console/Backup.class.php:359
-#: assets/js/backup.js:279 assets/js/backup.js:318
+#: assets/js/backup.js:279 assets/js/backup.js:368
 msgid "Cancel"
 msgstr ""
 
@@ -470,7 +470,7 @@ msgstr ""
 msgid "Could not find %s on the remote system"
 msgstr ""
 
-#: Backup.class.php:424 Backup.class.php:432
+#: Backup.class.php:425 Backup.class.php:433
 msgid "Could not find a file for the id supplied"
 msgstr ""
 
@@ -478,7 +478,7 @@ msgstr ""
 msgid "Could not locate the manifest for this file"
 msgstr ""
 
-#: Backup.class.php:786 Backup.class.php:854
+#: Backup.class.php:806 Backup.class.php:874
 msgid "Couldn't find your file, please try submitting your file again."
 msgstr ""
 
@@ -507,7 +507,7 @@ msgstr ""
 
 #: Backup.class.php:210 views/backup/item_table.php:14
 #: views/restore/landing.php:49 views/restore/landing.php:79
-#: assets/js/backup.js:279 assets/js/backup.js:318
+#: assets/js/backup.js:279 assets/js/backup.js:368
 msgid "Delete"
 msgstr "Eliminar"
 
@@ -519,7 +519,7 @@ msgstr ""
 msgid "Delete After Runs"
 msgstr ""
 
-#: Backup.class.php:1568
+#: Backup.class.php:1588
 msgid "Delete this entry. Don't forget to click Submit to save changes!"
 msgstr ""
 "Borrar esta entrada. No olvide oprimir \"Enviar\" para guardar los cambios!"
@@ -543,7 +543,7 @@ msgstr ""
 msgid "Determining backup file type..."
 msgstr ""
 
-#: Backup.class.php:1561
+#: Backup.class.php:1581
 msgid "Directory"
 msgstr "Directorio"
 
@@ -591,7 +591,7 @@ msgstr ""
 msgid "Enable scheduled backups, default false"
 msgstr ""
 
-#: Backup.class.php:1431 views/backup/form.php:334
+#: Backup.class.php:1451 views/backup/form.php:334
 msgid "Enabled"
 msgstr ""
 
@@ -603,8 +603,8 @@ msgstr ""
 "Equivalente de hacer clic en el botón rojo, se producirá automáticamente "
 "después de una restauración en un sistema de espera"
 
-#: assets/js/backup.js:439 assets/js/backup.js:459 assets/js/backup.js:478
-#: assets/js/backup.js:570
+#: assets/js/backup.js:538 assets/js/backup.js:558 assets/js/backup.js:577
+#: assets/js/backup.js:669
 msgid "Error"
 msgstr ""
 
@@ -632,7 +632,7 @@ msgstr ""
 msgid "Error installing %s reason(s): %s"
 msgstr ""
 
-#: Backup.class.php:688
+#: Backup.class.php:708
 msgid "Error running Restore on Spare Server"
 msgstr ""
 
@@ -728,11 +728,11 @@ msgstr ""
 msgid "Failure"
 msgstr ""
 
-#: Backup.class.php:1554
+#: Backup.class.php:1574
 msgid "File"
 msgstr "Archivo"
 
-#: Backup.class.php:324
+#: Backup.class.php:325
 msgid "File Deleted"
 msgstr ""
 
@@ -741,7 +741,7 @@ msgstr ""
 msgid "File named: %s"
 msgstr ""
 
-#: Backup.class.php:352
+#: Backup.class.php:353
 msgid "File reached the server but could not be processed"
 msgstr ""
 
@@ -839,11 +839,11 @@ msgid ""
 "unlimited"
 msgstr ""
 
-#: Backup.class.php:1515
+#: Backup.class.php:1535
 msgid "I don't know who I should be running Backup as."
 msgstr ""
 
-#: Backup.class.php:1521
+#: Backup.class.php:1541
 #, php-format
 msgid ""
 "I tried to find out about %s, but the system doesn't think that user exists"
@@ -912,7 +912,7 @@ msgstr ""
 msgid "Installing  %s"
 msgstr ""
 
-#: Backup.class.php:702
+#: Backup.class.php:722
 msgid "Invalid Backup ID"
 msgstr ""
 
@@ -920,7 +920,7 @@ msgstr ""
 msgid "Invalid Backup id"
 msgstr ""
 
-#: Backup.class.php:282 Backup.class.php:330
+#: Backup.class.php:283 Backup.class.php:331
 msgid "Invalid ID Provided"
 msgstr ""
 
@@ -978,7 +978,7 @@ msgstr ""
 msgid "List of bakup files"
 msgstr ""
 
-#: assets/js/backup.js:495
+#: assets/js/backup.js:594
 msgid "Loading Please Wait"
 msgstr ""
 
@@ -995,7 +995,7 @@ msgstr ""
 msgid "Loading supplied database file %s"
 msgstr ""
 
-#: Backup.class.php:557
+#: Backup.class.php:577
 msgid "Log file is missing but process is still running!"
 msgstr ""
 
@@ -1020,7 +1020,7 @@ msgstr ""
 msgid "Migrating legacy backups to the new backup"
 msgstr ""
 
-#: Backup.class.php:544
+#: Backup.class.php:564
 msgid "Missing id or transaction or pid"
 msgstr ""
 
@@ -1032,7 +1032,7 @@ msgstr ""
 msgid "Modules"
 msgstr ""
 
-#: assets/js/backup.js:387
+#: assets/js/backup.js:486
 msgid "Modules ("
 msgstr ""
 
@@ -1087,29 +1087,29 @@ msgstr "No"
 msgid "No Module or Custom files selected for this backup"
 msgstr ""
 
-#: assets/js/backup.js:360
+#: assets/js/backup.js:459
 msgid "No Storage Locations"
 msgstr ""
 
-#: Api/Gql/Backup.php:101 Backup.class.php:468
+#: Api/Gql/Backup.php:101 Backup.class.php:469
 msgid "No backup id provided"
 msgstr ""
 
-#: Backup.class.php:349
+#: Backup.class.php:350
 msgid "No file provided"
 msgstr ""
 
-#: Backup.class.php:775
+#: Backup.class.php:795
 msgid "No id was specified to process. Please try submitting your file again."
 msgstr ""
 
-#: assets/js/backup.js:160 assets/js/backup.js:383
+#: assets/js/backup.js:160 assets/js/backup.js:482
 msgid ""
 "No module has selected for this Backup. Please ensure you are selecting "
 "atleast Custom files"
 msgstr ""
 
-#: assets/js/backup.js:409 assets/js/backup.js:416
+#: assets/js/backup.js:508 assets/js/backup.js:515
 msgid ""
 "No storage location selected for Backup. Please select atleast one storage "
 "location to save the backup"
@@ -1133,7 +1133,7 @@ msgstr "Notificaciones"
 msgid "Only Restoring %s"
 msgstr ""
 
-#: Backup.class.php:1564
+#: Backup.class.php:1584
 msgid "PATTERNs, one per line"
 msgstr "PATRONes, uno por linea"
 
@@ -1177,7 +1177,7 @@ msgstr "Gancho Pre-Respaldo"
 msgid "Pre-Restore Hook"
 msgstr "Gancho Pre-Restaurar"
 
-#: Backup.class.php:559
+#: Backup.class.php:579
 msgid "Process is no longer running"
 msgstr ""
 
@@ -1300,7 +1300,7 @@ msgstr ""
 msgid "Restore processing for modules are finished successfully"
 msgstr ""
 
-#: Backup.class.php:465
+#: Backup.class.php:466
 msgid "Restore running"
 msgstr ""
 
@@ -1383,7 +1383,7 @@ msgstr ""
 msgid "Run Restore & Legacy CDR "
 msgstr ""
 
-#: assets/js/backup.js:638
+#: assets/js/backup.js:737
 msgid "Run the following in the CLI"
 msgstr ""
 
@@ -1551,11 +1551,11 @@ msgid ""
 "requirement. Framework should be removed as a dependency"
 msgstr ""
 
-#: Backup.class.php:301 Backup.class.php:326
+#: Backup.class.php:302 Backup.class.php:327
 msgid "Something failed, The file may need to be removed manually."
 msgstr ""
 
-#: Backup.class.php:317
+#: Backup.class.php:318
 msgid "Something failed."
 msgstr ""
 
@@ -1634,7 +1634,7 @@ msgstr ""
 msgid "Success"
 msgstr ""
 
-#: Backup.class.php:768
+#: Backup.class.php:788
 msgid "System Transfer"
 msgstr ""
 
@@ -1753,7 +1753,7 @@ msgid ""
 "set to 10 hours"
 msgstr ""
 
-#: assets/js/backup.js:570
+#: assets/js/backup.js:669
 #, perl-format
 msgid "There was an error during %s"
 msgstr ""
@@ -1859,7 +1859,7 @@ msgstr ""
 msgid "Unable to upload file to the remote server"
 msgstr "No se puede subir el archivo al servidor remoto"
 
-#: Backup.class.php:1431
+#: Backup.class.php:1451
 msgid "Uninstalled or Disabled"
 msgstr ""
 
@@ -1952,11 +1952,11 @@ msgstr ""
 msgid "We are running Restore command on Spare Server"
 msgstr ""
 
-#: Backup.class.php:289 Backup.class.php:339
+#: Backup.class.php:290 Backup.class.php:340
 msgid "We can't seem to delete the chosen file"
 msgstr ""
 
-#: Backup.class.php:286 Backup.class.php:334
+#: Backup.class.php:287 Backup.class.php:335
 msgid "We don't have permissions to this file"
 msgstr ""
 
@@ -2053,7 +2053,7 @@ msgstr ""
 msgid "You must set a valid job name for this backup"
 msgstr ""
 
-#: assets/js/backup.js:567
+#: assets/js/backup.js:666
 #, perl-format
 msgid "Your %s has finished"
 msgstr ""
