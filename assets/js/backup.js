@@ -300,10 +300,60 @@ $("#restoreFiles").on("post-body.bs.table", function () {
 		);
 	});
 	$("#restoreFiles .run").click(function() {
+		let skip = null;
 		if(confirm(_('Are you sure, you want to restore this backup?'))) {
 			var id = $(this).data('id');
 			var filepath = $(this).data('filepath');
-			runRestore(id,'Running Remote Restore',filepath);
+			$.ajax({
+				url: FreePBX.ajaxurl,
+				data: {
+					module: 'backup',
+					command: 'checkchansip',
+					fileid: id,
+					type: 'remote',
+					filepath
+				},
+			})
+			.then(data => {
+				if (data.status) {
+					if (data.chansipexists && data.chansipTrunkExists) {
+						let result = prompt("Chansip extensions and trunks found! \n Type '1' to Convert All <extension & trunks> \n Type '2' to Skip trunk and convert extension \n Type '3' to Skip extension and convert trunk \n Type '4' to Skip all <extension & trunks>");
+						if(result === '1') {
+							skip = 'convertall';
+						} else if(result === '2') {
+							skip = 'skiptrunk_convertextension';
+						} else if(result === '3') {
+							skip = 'skipextension_converttrunk';
+						} else if(result === '4') {
+							skip = 'skipall';
+						} else {
+							alert("Please enter a valid option!");
+							return;
+						}
+					} else if (data.chansipexists) {
+						let result = prompt("Chansip extensions found! \n Type '1' to Convert extensions \n Type '2' to Skip extensions");
+						if(result === '1') {
+							skip = 'convertextension';
+						} else if(result === '2') {
+							skip = 'skipextension';
+						} else {
+							alert("Please enter a valid option!");
+							return;
+						}
+					} else if (data.chansipTrunkExists) {
+						let result = prompt("Chansip trunks found! \n Type '1' to Convert trunks \n Type '2' to Skip trunks");
+						if(result === '1') {
+							skip = 'converttrunk';
+						} else if(result === '2') {
+							skip = 'skiptrunk';
+						} else {
+							alert("Please enter a valid option!");
+							return;
+						}
+					}
+				}
+				runRestore(id,'Running Remote Restore',filepath,skip);
+			});
 		}
 	});
 });
@@ -341,9 +391,58 @@ $("#localrestorefiles").on("post-body.bs.table", function () {
 		);
 	});
 	$("#localrestorefiles .run").click(function() {
+		let skip = null;
 		if(confirm(_('Are you sure, you want to restore this backup?'))) {
 			var id = $(this).data('id');
-			runRestore(id,'Running Local Restore');
+			$.ajax({
+				url: FreePBX.ajaxurl,
+				data: {
+					module: 'backup',
+					command: 'checkchansip',
+					fileid: id,
+					type: 'local'
+				},
+			})
+			.then(data => {
+				if (data.status) {
+					if (data.chansipexists && data.chansipTrunkExists) {
+						let result = prompt("Chansip extensions and trunks found! \n Type '1' to Convert All <extension & trunks> \n Type '2' to Skip trunk and convert extension \n Type '3' to Skip extension and convert trunk \n Type '4' to Skip all <extension & trunks>");
+						if(result === '1') {
+							skip = 'convertall';
+						} else if(result === '2') {
+							skip = 'skiptrunk_convertextension';
+						} else if(result === '3') {
+							skip = 'skipextension_converttrunk';
+						} else if(result === '4') {
+							skip = 'skipall';
+						} else {
+							alert("Please enter a valid option!");
+							return;
+						}
+					} else if (data.chansipexists) {
+						let result = prompt("Chansip extensions found! \n Type '1' to Convert extensions \n Type '2' to Skip extensions");
+						if(result === '1') {
+							skip = 'convertextension';
+						} else if(result === '2') {
+							skip = 'skipextension';
+						} else {
+							alert("Please enter a valid option!");
+							return;
+						}
+					} else if (data.chansipTrunkExists) {
+						let result = prompt("Chansip trunks found! \n Type '1' to Convert trunks \n Type '2' to Skip trunks");
+						if(result === '1') {
+							skip = 'converttrunk';
+						} else if(result === '2') {
+							skip = 'skiptrunk';
+						} else {
+							alert("Please enter a valid option!");
+							return;
+						}
+					}
+				}
+				runRestore(id,'Running Local Restore','',skip);
+			});
 		}
 	});
 });
