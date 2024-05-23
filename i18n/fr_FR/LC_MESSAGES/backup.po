@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-23 01:46-0400\n"
+"POT-Creation-Date: 2024-05-23 03:26-0400\n"
 "PO-Revision-Date: 2016-02-05 11:17+0200\n"
 "Last-Translator: Nicolas Riendeau <freepbx@riendeau.org>\n"
 "Language-Team: French <http://weblate.freepbx.org/projects/freepbx/backup/"
@@ -79,11 +79,11 @@ msgstr ""
 msgid "%s table Restore Error %s "
 msgstr ""
 
-#: Backup.class.php:1582
+#: Backup.class.php:1595
 msgid "/path/to/dir"
 msgstr ""
 
-#: Backup.class.php:1575
+#: Backup.class.php:1588
 msgid "/path/to/file"
 msgstr ""
 
@@ -203,7 +203,7 @@ msgstr ""
 msgid "Are you sure, you want to restore this backup?"
 msgstr ""
 
-#: Backup.class.php:1550
+#: Backup.class.php:1563
 #, php-format
 msgid ""
 "Asterisk home dir (%s) doesn't exist, and, ASTSPOOLDIR doesn't exist. "
@@ -218,7 +218,7 @@ msgstr ""
 msgid "Backup"
 msgstr "Copie de sauvegarde"
 
-#: Backup.class.php:1219
+#: Backup.class.php:1232
 #, php-format
 msgid "Backup %s"
 msgstr ""
@@ -298,7 +298,7 @@ msgstr ""
 msgid "Backup Name"
 msgstr "Nom de la copie de sauvegarde"
 
-#: Backup.class.php:706
+#: Backup.class.php:719
 msgid "Backup Restored Successfully"
 msgstr ""
 
@@ -355,7 +355,7 @@ msgid ""
 "the transaction id."
 msgstr ""
 
-#: Backup.class.php:485
+#: Backup.class.php:498
 msgid "Backup running"
 msgstr ""
 
@@ -490,7 +490,7 @@ msgstr ""
 msgid "Could not locate the manifest for this file"
 msgstr ""
 
-#: Backup.class.php:806 Backup.class.php:874
+#: Backup.class.php:819 Backup.class.php:887
 msgid "Couldn't find your file, please try submitting your file again."
 msgstr ""
 
@@ -531,7 +531,7 @@ msgstr ""
 msgid "Delete After Runs"
 msgstr ""
 
-#: Backup.class.php:1588
+#: Backup.class.php:1601
 msgid "Delete this entry. Don't forget to click Submit to save changes!"
 msgstr ""
 
@@ -554,7 +554,7 @@ msgstr ""
 msgid "Determining backup file type..."
 msgstr ""
 
-#: Backup.class.php:1581
+#: Backup.class.php:1594
 msgid "Directory"
 msgstr "Répertoire"
 
@@ -606,7 +606,7 @@ msgstr ""
 msgid "Enable scheduled backups, default false"
 msgstr ""
 
-#: Backup.class.php:1451 views/backup/form.php:334
+#: Backup.class.php:1464 views/backup/form.php:334
 msgid "Enabled"
 msgstr ""
 
@@ -645,7 +645,7 @@ msgstr ""
 msgid "Error installing %s reason(s): %s"
 msgstr ""
 
-#: Backup.class.php:708
+#: Backup.class.php:721
 msgid "Error running Restore on Spare Server"
 msgstr ""
 
@@ -738,7 +738,7 @@ msgstr ""
 msgid "Failure"
 msgstr ""
 
-#: Backup.class.php:1574
+#: Backup.class.php:1587
 msgid "File"
 msgstr ""
 
@@ -849,11 +849,11 @@ msgid ""
 "unlimited"
 msgstr ""
 
-#: Backup.class.php:1535
+#: Backup.class.php:1548
 msgid "I don't know who I should be running Backup as."
 msgstr ""
 
-#: Backup.class.php:1541
+#: Backup.class.php:1554
 #, php-format
 msgid ""
 "I tried to find out about %s, but the system doesn't think that user exists"
@@ -922,7 +922,7 @@ msgstr ""
 msgid "Installing  %s"
 msgstr ""
 
-#: Backup.class.php:722
+#: Backup.class.php:735
 msgid "Invalid Backup ID"
 msgstr ""
 
@@ -1009,7 +1009,7 @@ msgstr ""
 msgid "Loading supplied database file %s"
 msgstr ""
 
-#: Backup.class.php:577
+#: Backup.class.php:590
 msgid "Log file is missing but process is still running!"
 msgstr ""
 
@@ -1034,7 +1034,7 @@ msgstr ""
 msgid "Migrating legacy backups to the new backup"
 msgstr ""
 
-#: Backup.class.php:564
+#: Backup.class.php:577
 msgid "Missing id or transaction or pid"
 msgstr ""
 
@@ -1113,7 +1113,7 @@ msgstr ""
 msgid "No Storage Locations"
 msgstr ""
 
-#: Api/Gql/Backup.php:101 Backup.class.php:469
+#: Api/Gql/Backup.php:101 Backup.class.php:482
 msgid "No backup id provided"
 msgstr ""
 
@@ -1121,7 +1121,7 @@ msgstr ""
 msgid "No file provided"
 msgstr ""
 
-#: Backup.class.php:795
+#: Backup.class.php:808
 msgid "No id was specified to process. Please try submitting your file again."
 msgstr ""
 
@@ -1181,7 +1181,7 @@ msgid ""
 "default system uses inmemory"
 msgstr ""
 
-#: Backup.class.php:1584
+#: Backup.class.php:1597
 msgid "PATTERNs, one per line"
 msgstr ""
 
@@ -1225,7 +1225,7 @@ msgstr ""
 msgid "Pre-Restore Hook"
 msgstr ""
 
-#: Backup.class.php:579
+#: Backup.class.php:592
 msgid "Process is no longer running"
 msgstr ""
 
@@ -1352,7 +1352,7 @@ msgstr ""
 msgid "Restore processing for modules are finished successfully"
 msgstr ""
 
-#: Backup.class.php:466
+#: Backup.class.php:479
 msgid "Restore running"
 msgstr ""
 
@@ -1708,7 +1708,7 @@ msgstr ""
 msgid "Success"
 msgstr ""
 
-#: Backup.class.php:788
+#: Backup.class.php:801
 msgid "System Transfer"
 msgstr ""
 
@@ -1930,7 +1930,7 @@ msgstr ""
 msgid "Unable to upload file to the remote server"
 msgstr ""
 
-#: Backup.class.php:1451
+#: Backup.class.php:1464
 msgid "Uninstalled or Disabled"
 msgstr ""
 
