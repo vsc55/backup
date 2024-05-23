@@ -44,10 +44,10 @@ class Backup extends Command {
 				new InputOption('skipdns', '', InputOption::VALUE_NONE, 'Option --skipdns skip dns on restore'),
 				new InputOption('skipremotenat', '', InputOption::VALUE_NONE, 'Option --skipremotenat skip remotenat on restore'),
 				new InputOption('skiptrunksandroutes', '', InputOption::VALUE_NONE, 'Option --skiptrunksandroutes skip trunks on restore'),
-				new InputOption('skipchansipexts', '', InputOption::VALUE_NONE, 'Option --skipchansipexts skip sip extensions on restore'),
-				new InputOption('convertchansipexts', '', InputOption::VALUE_NONE, 'Option --convertchansipexts converts extensions to pjsip on restore'),
-				new InputOption('skipchansiptrunks', '', InputOption::VALUE_NONE, 'Option --skipchansiptrunks skip sip trunk on restore'),
-				new InputOption('convertchansiptrunks', '', InputOption::VALUE_NONE, 'Option --convertchansiptrunks converts trunks to pjsip on restore'),
+				new InputOption('skipchansipexts', '', InputOption::VALUE_NONE, 'Skip legacy chan_sip extensions during restore'),
+				new InputOption('convertchansipexts2pjsip2pjsip', '', InputOption::VALUE_NONE, 'Convert legacy chan_sip extensions to chan_pjsip extensions during restore'),
+				new InputOption('skipchansiptrunks', '', InputOption::VALUE_NONE, 'Skip legacy chan_sip trunks during restore'),
+				new InputOption('convertchansiptrunks2pjsip2pjsip', '', InputOption::VALUE_NONE, 'Convert legacy chan_sip trunks to chan_pjsip trunks during restore'),
 		))
 		->setHelp('Run a backup: fwconsole backup --backup [backup-id]'.PHP_EOL
 		.'Run a restore: fwconsole backup --restore [/path/to/restore-xxxxxx.tar.gz]'.PHP_EOL
@@ -101,9 +101,9 @@ class Backup extends Command {
 		$cliarguments['skipdns'] = $input->getOption('skipdns');
 		$cliarguments['skipremotenat'] = $input->getOption('skipremotenat');
 		$cliarguments['skiptrunksandroutes'] = $input->getOption('skiptrunksandroutes');
-		$cliarguments['convertchansipexts'] = $input->getOption('convertchansipexts');
+		$cliarguments['convertchansipexts2pjsip'] = $input->getOption('convertchansipexts2pjsip');
 		$cliarguments['skipchansipexts'] = $input->getOption('skipchansipexts');
-		$cliarguments['convertchansiptrunks'] = $input->getOption('convertchansiptrunks');
+		$cliarguments['convertchansiptrunks2pjsip'] = $input->getOption('convertchansiptrunks2pjsip');
 		$cliarguments['skipchansiptrunks'] = $input->getOption('skipchansiptrunks');
 
 		if($b64import){
@@ -312,7 +312,7 @@ class Backup extends Command {
 				$output->writeln(sprintf(_("type is %s"),$backupType));
 				$pid = posix_getpid();
 
-				if((!isset($cliarguments['skipchansipexts']) || !$cliarguments['skipchansipexts']) && (!isset($cliarguments['convertchansipexts']) || !$cliarguments['convertchansipexts'])) {
+				if((!isset($cliarguments['skipchansipexts']) || !$cliarguments['skipchansipexts']) && (!isset($cliarguments['convertchansipexts2pjsip']) || !$cliarguments['convertchansipexts2pjsip'])) {
 					$version = \FreePBX::Config()->get('ASTVERSION');
 					$fileClass = new BackupSplFileInfo($restore);
 					$manifest = $fileClass->getMetadata();
@@ -326,7 +326,7 @@ class Backup extends Command {
 						$action = $helper->ask($this->input,$this->output,$question);
 						switch($action){
 							case _("Convert"):
-								$cliarguments['convertchansipexts'] = 1;
+								$cliarguments['convertchansipexts2pjsip'] = 1;
 							break;
 							case _("Skip"):
 								$cliarguments['skipchansipexts'] = 1;
@@ -337,7 +337,7 @@ class Backup extends Command {
 						}
 					}
 				}
-				if ((!isset($cliarguments['skipchansiptrunks']) || !$cliarguments['skipchansiptrunks']) && (!isset($cliarguments['convertchansiptrunks']) || !$cliarguments['convertchansiptrunks'])) {
+				if ((!isset($cliarguments['skipchansiptrunks']) || !$cliarguments['skipchansiptrunks']) && (!isset($cliarguments['convertchansiptrunks2pjsip']) || !$cliarguments['convertchansiptrunks2pjsip'])) {
 					$version = \FreePBX::Config()->get('ASTVERSION');
 					$fileClass = new BackupSplFileInfo($restore);
 					$manifest = $fileClass->getMetadata();
@@ -351,7 +351,7 @@ class Backup extends Command {
 						$action = $helper->ask($this->input,$this->output,$question);
 						switch($action){
 							case _("Convert"):
-								$cliarguments['convertchansiptrunks'] = 1;
+								$cliarguments['convertchansiptrunks2pjsip'] = 1;
 							break;
 							case _("Skip"):
 								$cliarguments['skipchansiptrunks'] = 1;
