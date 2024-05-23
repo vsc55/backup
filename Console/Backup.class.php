@@ -45,9 +45,9 @@ class Backup extends Command {
 				new InputOption('skipremotenat', '', InputOption::VALUE_NONE, _('Option --skipremotenat skip remotenat on restore')),
 				new InputOption('skiptrunksandroutes', '', InputOption::VALUE_NONE, _('Option --skiptrunksandroutes skip trunks on restore')),
 				new InputOption('skipchansipexts', '', InputOption::VALUE_NONE, _('Skip legacy chan_sip extensions during restore')),
-				new InputOption('convertchansipexts2pjsip2pjsip', '', InputOption::VALUE_NONE, _('Convert legacy chan_sip extensions to chan_pjsip extensions during restore')),
+				new InputOption('convertchansipexts2pjsip', '', InputOption::VALUE_NONE, _('Convert legacy chan_sip extensions to chan_pjsip extensions during restore')),
 				new InputOption('skipchansiptrunks', '', InputOption::VALUE_NONE, _('Skip legacy chan_sip trunks during restore')),
-				new InputOption('convertchansiptrunks2pjsip2pjsip', '', InputOption::VALUE_NONE, _('Convert legacy chan_sip trunks to chan_pjsip trunks during restore')),
+				new InputOption('convertchansiptrunks2pjsip', '', InputOption::VALUE_NONE, _('Convert legacy chan_sip trunks to chan_pjsip trunks during restore')),
 		))
 		->setHelp('Run a backup: fwconsole backup --backup [backup-id]'.PHP_EOL
 		.'Run a restore: fwconsole backup --restore [/path/to/restore-xxxxxx.tar.gz]'.PHP_EOL

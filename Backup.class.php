@@ -438,22 +438,35 @@ class Backup extends FreePBX_Helpers implements BMO {
 					$args = $args. ' --restorelegacycdr';
 				}
 
-				if (isset($_REQUEST['skipchansip']) && $_REQUEST['skipchansip'] == 'skipall') {
-					$args = $args. ' --skipchansipexts --skipchansiptrunks';
-				} else if (isset($_REQUEST['skipchansip']) && $_REQUEST['skipchansip'] == 'convertall') {
-					$args = $args. ' --convertchansipexts --convertchansiptrunks';
-				} else if (isset($_REQUEST['skipchansip']) && $_REQUEST['skipchansip'] == 'skiptrunk_convertextension') {
-					$args = $args. ' --convertchansipexts --skipchansiptrunks';
-				} else if (isset($_REQUEST['skipchansip']) && $_REQUEST['skipchansip'] == 'skipextension_converttrunk') {
-					$args = $args. ' --convertchansiptrunks --skipchansipexts';
-				} else if (isset($_REQUEST['skipchansip']) && $_REQUEST['skipchansip'] == 'convertextension') {
-					$args = $args. ' --convertchansipexts';
-				} else if (isset($_REQUEST['skipchansip']) && $_REQUEST['skipchansip'] == 'skipextension') {
-					$args = $args. ' --skipchansipexts';
-				} else if (isset($_REQUEST['skipchansip']) && $_REQUEST['skipchansip'] == 'skiptrunk') {
-					$args = $args. ' --skipchansiptrunks';
-				} else if(isset($_REQUEST['skipchansip']) && $_REQUEST['skipchansip'] == 'converttrunk') {
-					$args = $args. ' --convertchansiptrunks';
+				if (isset($_REQUEST['skipchansip'])) {
+					switch($_REQUEST['skipchansip']) {
+					case 'skipall':
+						$args = $args. ' --skipchansipexts --skipchansiptrunks';
+						break;
+					case 'convertall':
+						$args = $args. ' --convertchansipexts2pjsip --convertchansiptrunks2pjsip';
+						break;
+					case 'skiptrunk_convertextension':
+						$args = $args. ' --convertchansipexts2pjsip --skipchansiptrunks';
+						break;
+					case 'skipextension_converttrunk':
+						$args = $args. ' --convertchansiptrunks2pjsip --skipchansipexts';
+						break;
+					case 'convertextension':
+						$args = $args. ' --convertchansipexts2pjsip';
+						break;
+					case 'skipextension':
+						$args = $args. ' --skipchansipexts';
+						break;
+					case 'skiptrunk':
+						$args = $args. ' --skipchansiptrunks';
+						break;
+					case 'converttrunk':
+						$args = $args. ' --convertchansiptrunks2pjsip';
+						break;
+					default:
+						break;
+					}
 				}
 
 				$jobid   = $this->generateId();
