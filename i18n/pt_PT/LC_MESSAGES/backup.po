@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-21 06:33-0400\n"
+"POT-Creation-Date: 2024-05-23 01:46-0400\n"
 "PO-Revision-Date: 2015-04-25 00:40+0200\n"
 "Last-Translator: Paulo <paulop1975@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <http://weblate.freepbx.org/projects/"
@@ -268,6 +268,10 @@ msgstr ""
 msgid "Backup File Name: %s"
 msgstr ""
 
+#: Console/Backup.class.php:24
+msgid "Backup ID"
+msgstr ""
+
 #: views/restore/processRestore.php:11
 msgid "Backup Info"
 msgstr ""
@@ -345,6 +349,10 @@ msgstr ""
 
 #: Backup.class.php:485
 msgid "Backup running"
+msgstr ""
+
+#: Console/Backup.class.php:25
+msgid "Base64 encoded backup job"
 msgstr ""
 
 #: Handlers/Restore/Common.php:123
@@ -438,6 +446,15 @@ msgstr ""
 #: Console/Backup.class.php:324 Console/Backup.class.php:328
 #: Console/Backup.class.php:349 Console/Backup.class.php:353
 msgid "Convert"
+msgstr ""
+
+#: Console/Backup.class.php:48
+msgid ""
+"Convert legacy chan_sip extensions to chan_pjsip extensions during restore"
+msgstr ""
+
+#: Console/Backup.class.php:50
+msgid "Convert legacy chan_sip trunks to chan_pjsip trunks during restore"
 msgstr ""
 
 #: Handlers/Backup/Multiple.php:131
@@ -550,6 +567,10 @@ msgstr ""
 
 #: views/backup/transfer.php:31
 msgid "Donor"
+msgstr ""
+
+#: Console/Backup.class.php:26
+msgid "Dump Base64 backup data"
 msgstr ""
 
 #: views/backup/form.php:25
@@ -948,6 +969,10 @@ msgstr ""
 msgid "List Backups"
 msgstr ""
 
+#: Console/Backup.class.php:28
+msgid "List backups"
+msgstr ""
+
 #: Api/Gql/Backup.php:156
 msgid "List of backup configurations"
 msgstr ""
@@ -1008,6 +1033,14 @@ msgstr ""
 
 #: views/backup/form.php:627 views/restore/processRestore.php:65
 msgid "Module"
+msgstr ""
+
+#: Console/Backup.class.php:36
+msgid "Module backup to restore"
+msgstr ""
+
+#: Console/Backup.class.php:37
+msgid "Module to backup"
 msgstr ""
 
 #: views/backup/form.php:102
@@ -1113,6 +1146,32 @@ msgstr ""
 #: Handlers/Restore/Legacy.php:265 Handlers/Restore/Multiple.php:51
 #, php-format
 msgid "Only Restoring %s"
+msgstr ""
+
+#: Console/Backup.class.php:43
+msgid "Option --skipbindport skip bindport on restore"
+msgstr ""
+
+#: Console/Backup.class.php:44
+msgid "Option --skipdns skip dns on restore"
+msgstr ""
+
+#: Console/Backup.class.php:45
+msgid "Option --skipremotenat skip remotenat on restore"
+msgstr ""
+
+#: Console/Backup.class.php:42
+msgid "Option --skiprestorehooks skip postrestore hooks on restore"
+msgstr ""
+
+#: Console/Backup.class.php:46
+msgid "Option --skiptrunksandroutes skip trunks on restore"
+msgstr ""
+
+#: Console/Backup.class.php:41
+msgid ""
+"Option --useinfiledb to restore Legacy backup using file based sqlite, By "
+"default system uses inmemory"
 msgstr ""
 
 #: Backup.class.php:1584
@@ -1244,6 +1303,10 @@ msgstr "Restaurar"
 msgid "Restore Backup"
 msgstr ""
 
+#: Console/Backup.class.php:32
+msgid "Restore File"
+msgstr ""
+
 #: views/restore/processRestore.php:23
 msgid "Restore Information"
 msgstr ""
@@ -1363,6 +1426,10 @@ msgstr ""
 
 #: Backup.class.php:186
 msgid "Run Restore & Legacy CDR "
+msgstr ""
+
+#: Console/Backup.class.php:22
+msgid "Run backup and restore jobs"
 msgstr ""
 
 #: assets/js/backup.js:737
@@ -1488,6 +1555,10 @@ msgstr ""
 msgid "Set Backup Configurations"
 msgstr ""
 
+#: Console/Backup.class.php:29
+msgid "Set the warmspare flag"
+msgstr ""
+
 #: views/backup/warmspare.php:69
 msgid "Should the remote trunks be Disabled"
 msgstr ""
@@ -1511,6 +1582,14 @@ msgstr ""
 #: Console/Backup.class.php:324 Console/Backup.class.php:331
 #: Console/Backup.class.php:349 Console/Backup.class.php:356
 msgid "Skip"
+msgstr ""
+
+#: Console/Backup.class.php:47
+msgid "Skip legacy chan_sip extensions during restore"
+msgstr ""
+
+#: Console/Backup.class.php:49
+msgid "Skip legacy chan_sip trunks during restore"
 msgstr ""
 
 #: Handlers/Restore/Multiple.php:106
@@ -1567,6 +1646,12 @@ msgstr ""
 
 #: Api/Gql/Backup.php:147
 msgid "Sorry unable to find the backup files"
+msgstr ""
+
+#: Console/Backup.class.php:35
+msgid ""
+"Specific Modules to restore from using --restore, separate each module by a "
+"comma"
 msgstr ""
 
 #: RestoreBase.php:624
@@ -1777,6 +1862,10 @@ msgstr ""
 msgid "This table will be empty on backups created prior to version 15"
 msgstr ""
 
+#: Console/Backup.class.php:27
+msgid "Transaction ID for the backup"
+msgstr ""
+
 #: Console/Backup.class.php:123
 #, php-format
 msgid "Transaction ID is: %s"
@@ -1861,6 +1950,10 @@ msgstr ""
 
 #: assets/js/backup.js:16
 msgid "Uploading..."
+msgstr ""
+
+#: Console/Backup.class.php:31
+msgid "Use filestore ID to restore a file"
 msgstr ""
 
 #: Handlers/Backup/Common.php:97
@@ -1986,6 +2079,10 @@ msgstr ""
 msgid "When to email default both"
 msgstr ""
 
+#: Console/Backup.class.php:38
+msgid "Where to save the single module backup."
+msgstr ""
+
 #: Handlers/Backup/Common.php:74
 #, php-format
 msgid "Working with %s module"
@@ -2043,6 +2140,14 @@ msgstr "astDb's"
 
 #: views/backup/item_table.php:39
 msgid "choose"
+msgstr ""
+
+#: Console/Backup.class.php:34
+msgid "pass the Option --ignoremodules get ignore modules names"
+msgstr ""
+
+#: Console/Backup.class.php:33
+msgid "pass the Option --restorelegacycdr to restore LegacyCDR"
 msgstr ""
 
 #: Api/Gql/Backup.php:81
