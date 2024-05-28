@@ -37,83 +37,23 @@ $(document).ready(function () {
 		e.stopPropagation();
 		e.preventDefault();
 		let skip = null;
-		if ($("#chasipexists").val() == 1 && $("#chasiptrunkexists").val() ==1) {
-			let result = prompt("Chansip extensions and trunks found! \n Type '1' to Convert All <extension & trunks> \n Type '2' to Skip trunk and convert extension \n Type '3' to Skip extension and convert trunk \n Type '4' to Skip all <extension & trunks>");
-			if(result === '1') {
-				skip = 'convertall';
-			} else if(result === '2') {
-				skip = 'skiptrunk_convertextension';
-			} else if(result === '3') {
-				skip = 'skipextension_converttrunk';
-			} else if(result === '4') {
-				skip = 'skipall';
-			} else {
-				alert("Please enter a valid option!");
-				return;
-			}
-		} else if ($("#chasipexists").val() == 1) {
-			let result = prompt("Chansip extensions found! \n Type '1' to Convert extensions \n Type '2' to Skip extensions");
-			if(result === '1') {
-				skip = 'convertextension';
-			} else if(result === '2') {
-				skip = 'skipextension';
-			} else {
-				alert("Please enter a valid option!");
-				return;
-			}
-		} else if ($("#chasiptrunkexists").val() == 1) {
-			let result = prompt("Chansip trunks found! \n Type '1' to Convert trunks \n Type '2' to Skip trunks");
-			if(result === '1') {
-				skip = 'converttrunk';
-			} else if(result === '2') {
-				skip = 'skiptrunk';
-			} else {
-				alert("Please enter a valid option!");
-				return;
-			}
+		if ($("#chasipexists").val() == 1 || $("#chasiptrunkexists").val() ==1) {
+			skip = 'convertall';
+			handlelocalrestorefiles(fileid,'upload','',skip);
+		} else {
+			runRestore(fileid,'Running Restore','',skip);
 		}
-		runRestore(fileid,'Running Restore','',skip);
 	});
 	$("#runrestorecdr").click(function(e) {
 		e.stopPropagation();
 		e.preventDefault();
 		let skip = null;
-		if ($("#chasipexists").val() == 1 && $("#chasiptrunkexists").val() ==1) {
-			let result = prompt("Chansip extensions and trunks found! \n Type '1' to Convert All <extension & trunks> \n Type '2' to Skip trunk and convert extension \n Type '3' to Skip extension and convert trunk \n Type '4' to Skip all <extension & trunks>");
-			if (result === '1') {
-				skip = 'convertall';
-			} else if(result === '2') {
-				skip = 'skiptrunk_convertextension';
-			} else if(result === '3') {
-				skip = 'skipextension_converttrunk';
-			} else if(result === '4') {
-				skip = 'skipall';
-			} else {
-				alert("Please enter a valid option!");
-				return;
-			}
-		} else if ($("#chasipexists").val() == 1) {
-			let result = prompt("Chansip extensions found! \n Type '1' to Convert extensions \n Type '2' to Skip extensions");
-			if (result === '1') {
-				skip = 'convertextension';
-			} else if(result === '2') {
-				skip = 'skipextension';
-			} else {
-				alert("Please enter a valid option!");
-				return;
-			}
-		} else if ($("#chasiptrunkexists").val() == 1) {
-			let result = prompt("Chansip trunks found! \n Type '1' to Convert trunks \n Type '2' to Skip trunks");
-			if (result === '1') {
-				skip = 'converttrunk';
-			} else if(result === '2') {
-				skip = 'skiptrunk';
-			} else {
-				alert("Please enter a valid option!");
-				return;
-			}
+		if ($("#chasipexists").val() == 1 || $("#chasiptrunkexists").val() ==1) {
+			skip = 'convertall';
+			handlelocalrestorefiles(fileid,'uploadlegacy','',skip);
+		} else {
+			runRestorelegacycdr(fileid,'Running Restore & Legacy CDR Restore',skip);
 		}
-		runRestorelegacycdr(fileid,'Running Restore & Legacy CDR Restore',skip);
 	});
 	if(runningRestore) {
 		showStatusModal(_('View running restore'))
@@ -300,61 +240,9 @@ $("#restoreFiles").on("post-body.bs.table", function () {
 		);
 	});
 	$("#restoreFiles .run").click(function() {
-		let skip = null;
-		if(confirm(_('Are you sure, you want to restore this backup?'))) {
-			var id = $(this).data('id');
-			var filepath = $(this).data('filepath');
-			$.ajax({
-				url: FreePBX.ajaxurl,
-				data: {
-					module: 'backup',
-					command: 'checkchansip',
-					fileid: id,
-					type: 'remote',
-					filepath
-				},
-			})
-			.then(data => {
-				if (data.status) {
-					if (data.chansipexists && data.chansipTrunkExists) {
-						let result = prompt("Chansip extensions and trunks found! \n Type '1' to Convert All <extension & trunks> \n Type '2' to Skip trunk and convert extension \n Type '3' to Skip extension and convert trunk \n Type '4' to Skip all <extension & trunks>");
-						if(result === '1') {
-							skip = 'convertall';
-						} else if(result === '2') {
-							skip = 'skiptrunk_convertextension';
-						} else if(result === '3') {
-							skip = 'skipextension_converttrunk';
-						} else if(result === '4') {
-							skip = 'skipall';
-						} else {
-							alert("Please enter a valid option!");
-							return;
-						}
-					} else if (data.chansipexists) {
-						let result = prompt("Chansip extensions found! \n Type '1' to Convert extensions \n Type '2' to Skip extensions");
-						if(result === '1') {
-							skip = 'convertextension';
-						} else if(result === '2') {
-							skip = 'skipextension';
-						} else {
-							alert("Please enter a valid option!");
-							return;
-						}
-					} else if (data.chansipTrunkExists) {
-						let result = prompt("Chansip trunks found! \n Type '1' to Convert trunks \n Type '2' to Skip trunks");
-						if(result === '1') {
-							skip = 'converttrunk';
-						} else if(result === '2') {
-							skip = 'skiptrunk';
-						} else {
-							alert("Please enter a valid option!");
-							return;
-						}
-					}
-				}
-				runRestore(id,'Running Remote Restore',filepath,skip);
-			});
-		}
+		var id = $(this).data('id');
+		var filepath = $(this).data('filepath');
+		handlelocalrestorefiles(id,'remote',filepath);
 	});
 });
 
@@ -391,61 +279,106 @@ $("#localrestorefiles").on("post-body.bs.table", function () {
 		);
 	});
 	$("#localrestorefiles .run").click(function() {
-		let skip = null;
-		if(confirm(_('Are you sure, you want to restore this backup?'))) {
-			var id = $(this).data('id');
-			$.ajax({
-				url: FreePBX.ajaxurl,
-				data: {
-					module: 'backup',
-					command: 'checkchansip',
-					fileid: id,
-					type: 'local'
-				},
-			})
-			.then(data => {
-				if (data.status) {
-					if (data.chansipexists && data.chansipTrunkExists) {
-						let result = prompt("Chansip extensions and trunks found! \n Type '1' to Convert All <extension & trunks> \n Type '2' to Skip trunk and convert extension \n Type '3' to Skip extension and convert trunk \n Type '4' to Skip all <extension & trunks>");
-						if(result === '1') {
-							skip = 'convertall';
-						} else if(result === '2') {
-							skip = 'skiptrunk_convertextension';
-						} else if(result === '3') {
-							skip = 'skipextension_converttrunk';
-						} else if(result === '4') {
-							skip = 'skipall';
-						} else {
-							alert("Please enter a valid option!");
-							return;
-						}
-					} else if (data.chansipexists) {
-						let result = prompt("Chansip extensions found! \n Type '1' to Convert extensions \n Type '2' to Skip extensions");
-						if(result === '1') {
-							skip = 'convertextension';
-						} else if(result === '2') {
-							skip = 'skipextension';
-						} else {
-							alert("Please enter a valid option!");
-							return;
-						}
-					} else if (data.chansipTrunkExists) {
-						let result = prompt("Chansip trunks found! \n Type '1' to Convert trunks \n Type '2' to Skip trunks");
-						if(result === '1') {
-							skip = 'converttrunk';
-						} else if(result === '2') {
-							skip = 'skiptrunk';
-						} else {
-							alert("Please enter a valid option!");
-							return;
-						}
-					}
-				}
-				runRestore(id,'Running Local Restore','',skip);
-			});
-		}
+		var id = $(this).data('id');
+		handlelocalrestorefiles(id,'local');
 	});
 });
+
+
+async function handlelocalrestorefiles(id,type,filepath='',skip = null) {
+	$('#sipmodal').modal('show');
+	if(type == 'local' || type == 'remote') {
+		$.ajax({
+			url: FreePBX.ajaxurl,
+			data: {
+				module: 'backup',
+				command: 'checkchansip',
+				fileid: id,
+				type: type,
+				filepath
+			},
+		})
+		.then(data => {
+			if (data.status) {
+				if (data.chansipexists || data.chansipTrunkExists) {
+					$('#waittxt').hide();
+					$('#warntxt').show();
+					$('#convertbtn').show();
+				} else {
+					$('#waittxt').hide();
+					$('#warntxt').hide();
+					$('#convertbtn').hide();
+					$('#restoretxt').show();
+					$('#okbtn').show();
+				}
+			}
+		});
+		// Wait for either button click in the modal
+		const result = await waitForModalButtons('#sipmodal', '#convertbtn', '#cancelbtn', '#okbtn');
+		if (result == 'convertbtn') {
+			skip = $('#convertchansip').val();
+			if(type == 'local') {
+				runRestore(id,'Running Local Restore','',skip);
+			} else if(type =='remote') {
+				runRestore(id,'Running Remote Restore',filepath,skip);
+			}
+		} else if(result == 'okbtn') {
+			if(type == 'local') {
+				runRestore(id,'Running Local Restore','');
+			} else if(type =='remote') {
+				runRestore(id,'Running Remote Restore',filepath);
+			}
+		}
+	} else if(type == 'upload' || type == 'uploadlegacy') {
+		if(skip == 'convertall') {
+			$('#waittxt').hide();
+			$('#warntxt').show();
+			$('#convertbtn').show();
+		} else {
+			$('#waittxt').hide();
+			$('#warntxt').hide();
+			$('#convertbtn').hide();
+			$('#restoretxt').show();
+			$('#okbtn').show();
+		}
+		const result = await waitForModalButtons('#sipmodal', '#convertbtn', '#cancelbtn', '#okbtn');
+		if (result === 'convertbtn') {
+			if(type == 'upload') {
+				runRestore(id,'Running Restore','',skip);
+			} else if(type =='uploadlegacy') {
+				runRestorelegacycdr(id,'Running Restore & Legacy CDR Restore',skip);
+			}
+		} else if(result == 'okbtn') {
+			if(type == 'upload') {
+				runRestore(id,'Running Restore','',skip);
+			} else if(type =='uploadlegacy') {
+				runRestorelegacycdr(id,'Running Restore & Legacy CDR Restore',skip);
+			}
+		}
+	}
+}
+
+// Function to wait for either button click in the modal
+function waitForModalButtons(modalId, firstButtonId, cancelButtonId, okbtnId) {
+	return new Promise((resolve) => {
+		// Attach click event to the first button
+		$(firstButtonId).on('click', function() {
+			$('#convertchansip').val('convertall');
+			$('#sipmodal').modal('hide');
+			resolve('convertbtn');  // Resolve the promise
+		});
+
+		$(okbtnId).on('click', function() {
+			$('#sipmodal').modal('hide');
+			resolve('okbtn');  // Resolve the promise
+		});
+
+		// Attach click event to the cancel button
+		$(cancelButtonId).on('click', function() {
+			resolve('cancelButton');  // Resolve the promise
+		});
+	});
+}
 
 if(sessionStorage.getItem("runBackup")) {
 	runBackup(sessionStorage.getItem("runBackup"),'Running Backup');

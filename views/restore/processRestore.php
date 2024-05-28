@@ -73,6 +73,31 @@
 		</div>
 	</div>
 </div>
+
+<input type="hidden" id="convertchansip"  value="">
+<div id='sipmodal' class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><?php echo _("Restore") ?></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="waittxt"><?php echo _("Scanning the backup file. Please wait..."); ?></p>
+		<p id="warntxt" style="display:none;"><b><?php echo _("Attention:"); ?></b><?php echo _(" The backup file contains legacy chan_sip extensions or trunks, which are not compatible with Asterisk 21. You have the option to proceed, in which case these legacy extensions or trunks will be converted to PJSIP. Alternatively, you can cancel the restore process and downgrade the Asterisk version first, then attempt to restore your backup."); ?></p>
+		<p id= "restoretxt" style="display:none;"><?php echo _('Are you sure, you want to restore this backup?'); ?></p>
+      </div>
+      <div class="modal-footer">
+		<button type="button" class="btn btn-primary" id="convertbtn" style="display:none;"><?php echo _('Continue'); ?></button>
+		<button type="button" class="btn btn-primary" id="okbtn" style="display:none;"><?php echo _('Ok'); ?></button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id ="cancelbtn"><?php echo _('Cancel'); ?></button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 var runningRestore = <?php echo json_encode($runningRestore, JSON_THROW_ON_ERROR); ?>;
 var fileid = "<?php echo $fileid?>";

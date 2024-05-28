@@ -312,49 +312,19 @@ class Backup extends Command {
 				$output->writeln(sprintf(_("type is %s"),$backupType));
 				$pid = posix_getpid();
 
-				if((!isset($cliarguments['skipchansipexts']) || !$cliarguments['skipchansipexts']) && (!isset($cliarguments['convertchansipexts2pjsip']) || !$cliarguments['convertchansipexts2pjsip'])) {
+				if(((!isset($cliarguments['skipchansipexts']) || !$cliarguments['skipchansipexts']) && (!isset($cliarguments['convertchansipexts2pjsip']) || !$cliarguments['convertchansipexts2pjsip'])) && ((!isset($cliarguments['skipchansiptrunks']) || !$cliarguments['skipchansiptrunks']) && (!isset($cliarguments['convertchansiptrunks2pjsip']) || !$cliarguments['convertchansiptrunks2pjsip']))) {
 					$version = \FreePBX::Config()->get('ASTVERSION');
 					$fileClass = new BackupSplFileInfo($restore);
 					$manifest = $fileClass->getMetadata();
-					if(isset($manifest['chansipexists']) && $manifest['chansipexists']) {
-						if(version_compare($version, '21', 'ge')) {
-							$output->write(_("The current version of Asterisk installed does not support chan_sip. Upgrade Asterisk to a supported version, convert chan_sip extensions to pjsip, or skip chan_sip extensions for restore."));
-						}
+					if((isset($manifest['chansipexists']) && $manifest['chansipexists']) || (isset($manifest['chansipTrunkExists']) && $manifest['chansipTrunkExists'])) {
 						$helper = $this->getHelper('question');
-						$question = new ChoiceQuestion(sprintf(_("The backup contains ChanSIP extensions! These ChanSIP extensions can either be converted to pjsip extensions or can be skipped during the restore process.")),array(_("Convert"), _("Skip"),_("Cancel")),0);
+						$question = new ChoiceQuestion(sprintf(_("Attention: The backup file contains legacy chan_sip extensions or trunks, which are not compatible with Asterisk 21. You have the option to proceed, in which case these legacy extensions or trunks will be converted to PJSIP. Alternatively, you can cancel the restore process and downgrade the Asterisk version first, then attempt to restore your backup.")),array(_("Continue"),_("Cancel")),0);
 						$question->setErrorMessage('Choice %s is invalid');
 						$action = $helper->ask($this->input,$this->output,$question);
 						switch($action){
-							case _("Convert"):
+							case _("Continue"):
 								$cliarguments['convertchansipexts2pjsip'] = 1;
-							break;
-							case _("Skip"):
-								$cliarguments['skipchansipexts'] = 1;
-							break;
-							case _("Cancel"):
-								exit;
-							break;
-						}
-					}
-				}
-				if ((!isset($cliarguments['skipchansiptrunks']) || !$cliarguments['skipchansiptrunks']) && (!isset($cliarguments['convertchansiptrunks2pjsip']) || !$cliarguments['convertchansiptrunks2pjsip'])) {
-					$version = \FreePBX::Config()->get('ASTVERSION');
-					$fileClass = new BackupSplFileInfo($restore);
-					$manifest = $fileClass->getMetadata();
-					if (isset($manifest['chansipTrunkExists']) && $manifest['chansipTrunkExists']) {
-						if (version_compare($version, '21', 'ge')) {
-							$output->write(_("The current version of Asterisk installed does not support chan_sip. Upgrade Asterisk to a supported version, convert chan_sip trunks to pjsip, or skip chan_sip trunks for restore."));
-						}
-						$helper = $this->getHelper('question');
-						$question = new ChoiceQuestion(sprintf(_("The backup contains ChanSIP trunks! These ChanSIP trunks can either be converted to pjsip trunks or can be skipped during the restore process.")),array(_("Convert"), _("Skip"),_("Cancel")),0);
-						$question->setErrorMessage('Choice %s is invalid');
-						$action = $helper->ask($this->input,$this->output,$question);
-						switch($action){
-							case _("Convert"):
 								$cliarguments['convertchansiptrunks2pjsip'] = 1;
-							break;
-							case _("Skip"):
-								$cliarguments['skipchansiptrunks'] = 1;
 							break;
 							case _("Cancel"):
 								exit;
