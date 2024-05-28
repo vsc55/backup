@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-23 03:26-0400\n"
+"POT-Creation-Date: 2024-05-28 04:54-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,6 +21,16 @@ msgstr ""
 #: RestoreBase.php:259
 #, php-format
 msgid " %s found no database definitions in module.xml"
+msgstr ""
+
+#: views/restore/landing.php:110
+#: views/restore/processRestore.php:89
+msgid ""
+" The backup file contains legacy chan_sip extensions or trunks, which are "
+"not compatible with Asterisk 21. You have the option to proceed, in which "
+"case these legacy extensions or trunks will be converted to PJSIP. "
+"Alternatively, you can cancel the restore process and downgrade the Asterisk "
+"version first, then attempt to restore your backup."
 msgstr ""
 
 #: views/backup/form.php:25
@@ -195,13 +205,13 @@ msgstr ""
 msgid "Apply Configs"
 msgstr ""
 
-#: assets/js/backup.js:278
-#: assets/js/backup.js:367
+#: assets/js/backup.js:218
+#: assets/js/backup.js:255
 msgid "Are you sure you wish to delete this file? This cannot be undone"
 msgstr ""
 
-#: assets/js/backup.js:304
-#: assets/js/backup.js:395
+#: views/restore/landing.php:111
+#: views/restore/processRestore.php:90
 msgid "Are you sure, you want to restore this backup?"
 msgstr ""
 
@@ -210,6 +220,21 @@ msgstr ""
 msgid ""
 "Asterisk home dir (%s) doesn't exist, and, ASTSPOOLDIR doesn't exist. "
 "Aborting"
+msgstr ""
+
+#: views/restore/landing.php:110
+#: views/restore/processRestore.php:89
+msgid "Attention:"
+msgstr ""
+
+#: Console/Backup.class.php:321
+#, php-format
+msgid ""
+"Attention: The backup file contains legacy chan_sip extensions or trunks, "
+"which are not compatible with Asterisk 21. You have the option to proceed, "
+"in which case these legacy extensions or trunks will be converted to PJSIP. "
+"Alternatively, you can cancel the restore process and downgrade the Asterisk "
+"version first, then attempt to restore your backup."
 msgstr ""
 
 #: functions.inc/class.backup.php:399
@@ -393,12 +418,12 @@ msgstr ""
 msgid "Can't find the module data for %s"
 msgstr ""
 
-#: Console/Backup.class.php:324
-#: Console/Backup.class.php:334
-#: Console/Backup.class.php:349
-#: Console/Backup.class.php:359
-#: assets/js/backup.js:279
-#: assets/js/backup.js:368
+#: Console/Backup.class.php:321
+#: Console/Backup.class.php:329
+#: views/restore/landing.php:116
+#: views/restore/processRestore.php:95
+#: assets/js/backup.js:219
+#: assets/js/backup.js:256
 msgid "Cancel"
 msgstr ""
 
@@ -467,11 +492,11 @@ msgstr ""
 msgid "Connect Warm Spare Server Over"
 msgstr ""
 
-#: Console/Backup.class.php:324
-#: Console/Backup.class.php:328
-#: Console/Backup.class.php:349
-#: Console/Backup.class.php:353
-msgid "Convert"
+#: Console/Backup.class.php:321
+#: Console/Backup.class.php:325
+#: views/restore/landing.php:114
+#: views/restore/processRestore.php:93
+msgid "Continue"
 msgstr ""
 
 #: Console/Backup.class.php:48
@@ -541,8 +566,8 @@ msgstr ""
 #: views/backup/item_table.php:14
 #: views/restore/landing.php:49
 #: views/restore/landing.php:79
-#: assets/js/backup.js:279
-#: assets/js/backup.js:368
+#: assets/js/backup.js:219
+#: assets/js/backup.js:256
 msgid "Delete"
 msgstr ""
 
@@ -645,10 +670,10 @@ msgid ""
 "restore on a Standby system"
 msgstr ""
 
-#: assets/js/backup.js:538
-#: assets/js/backup.js:558
-#: assets/js/backup.js:577
-#: assets/js/backup.js:669
+#: assets/js/backup.js:471
+#: assets/js/backup.js:491
+#: assets/js/backup.js:510
+#: assets/js/backup.js:602
 msgid "Error"
 msgstr ""
 
@@ -1036,7 +1061,7 @@ msgstr ""
 msgid "List of bakup files"
 msgstr ""
 
-#: assets/js/backup.js:594
+#: assets/js/backup.js:527
 msgid "Loading Please Wait"
 msgstr ""
 
@@ -1101,7 +1126,7 @@ msgstr ""
 msgid "Modules"
 msgstr ""
 
-#: assets/js/backup.js:486
+#: assets/js/backup.js:419
 msgid "Modules ("
 msgstr ""
 
@@ -1165,7 +1190,7 @@ msgstr ""
 msgid "No Module or Custom files selected for this backup"
 msgstr ""
 
-#: assets/js/backup.js:459
+#: assets/js/backup.js:392
 msgid "No Storage Locations"
 msgstr ""
 
@@ -1182,15 +1207,15 @@ msgstr ""
 msgid "No id was specified to process. Please try submitting your file again."
 msgstr ""
 
-#: assets/js/backup.js:160
-#: assets/js/backup.js:482
+#: assets/js/backup.js:100
+#: assets/js/backup.js:415
 msgid ""
 "No module has selected for this Backup. Please ensure you are selecting "
 "atleast Custom files"
 msgstr ""
 
-#: assets/js/backup.js:508
-#: assets/js/backup.js:515
+#: assets/js/backup.js:441
+#: assets/js/backup.js:448
 msgid ""
 "No storage location selected for Backup. Please select atleast one storage "
 "location to save the backup"
@@ -1207,6 +1232,11 @@ msgstr ""
 
 #: views/backup/form.php:149
 msgid "Notifications"
+msgstr ""
+
+#: views/restore/landing.php:115
+#: views/restore/processRestore.php:94
+msgid "Ok"
 msgstr ""
 
 #: Handlers/Restore/Legacy.php:265
@@ -1369,6 +1399,8 @@ msgid "Response from Warmspare backup Server API"
 msgstr ""
 
 #: views/landing.php:18
+#: views/restore/landing.php:103
+#: views/restore/processRestore.php:82
 msgid "Restore"
 msgstr ""
 
@@ -1385,7 +1417,7 @@ msgid "Restore Information"
 msgstr ""
 
 #: Console/Backup.class.php:167
-#: Console/Backup.class.php:407
+#: Console/Backup.class.php:377
 msgid "Restore completed successfully"
 msgstr ""
 
@@ -1511,7 +1543,7 @@ msgstr ""
 msgid "Run backup and restore jobs"
 msgstr ""
 
-#: assets/js/backup.js:737
+#: assets/js/backup.js:670
 msgid "Run the following in the CLI"
 msgstr ""
 
@@ -1598,6 +1630,11 @@ msgstr ""
 msgid "Saving to: %s:'%s' instance ,File location: %s%s "
 msgstr ""
 
+#: views/restore/landing.php:109
+#: views/restore/processRestore.php:88
+msgid "Scanning the backup file. Please wait..."
+msgstr ""
+
 #: views/backup/form.php:324
 msgid "Schedule and Maintenance"
 msgstr ""
@@ -1664,13 +1701,6 @@ msgstr ""
 #: views/restore/landing.php:58
 #: views/restore/landing.php:88
 msgid "Size"
-msgstr ""
-
-#: Console/Backup.class.php:324
-#: Console/Backup.class.php:331
-#: Console/Backup.class.php:349
-#: Console/Backup.class.php:356
-msgid "Skip"
 msgstr ""
 
 #: Console/Backup.class.php:47
@@ -1815,7 +1845,7 @@ msgstr ""
 msgid "The Backup Id to delete"
 msgstr ""
 
-#: assets/js/backup.js:169
+#: assets/js/backup.js:109
 #, perl-format
 msgid "The Backup job name %s is already in used, please use a different name."
 msgstr ""
@@ -1831,20 +1861,11 @@ msgid ""
 "converted to pjsip  or can be skipped during the restore process."
 msgstr ""
 
-#: Console/Backup.class.php:324
 #: views/restore/processRestore.php:33
-#, php-format
 msgid ""
 "The backup contains ChanSIP extensions! These ChanSIP extensions can either "
 "be converted to pjsip extensions or can be skipped during the restore "
 "process."
-msgstr ""
-
-#: Console/Backup.class.php:349
-#, php-format
-msgid ""
-"The backup contains ChanSIP trunks! These ChanSIP trunks can either be "
-"converted to pjsip trunks or can be skipped during the restore process."
 msgstr ""
 
 #: functions.inc/class.backup.php:399
@@ -1862,19 +1883,11 @@ msgid ""
 "different method of transferring your backup."
 msgstr ""
 
-#: Console/Backup.class.php:321
 #: views/restore/processRestore.php:28
 msgid ""
 "The current version of Asterisk installed does not support chan_sip. Upgrade "
 "Asterisk to a supported version, convert chan_sip extensions to pjsip, or "
 "skip chan_sip extensions for restore."
-msgstr ""
-
-#: Console/Backup.class.php:346
-msgid ""
-"The current version of Asterisk installed does not support chan_sip. Upgrade "
-"Asterisk to a supported version, convert chan_sip trunks to pjsip, or skip "
-"chan_sip trunks for restore."
 msgstr ""
 
 #: Handlers/Restore/Common.php:102
@@ -1906,7 +1919,7 @@ msgid ""
 "set to 10 hours"
 msgstr ""
 
-#: assets/js/backup.js:669
+#: assets/js/backup.js:602
 #, perl-format
 msgid "There was an error during %s"
 msgstr ""
@@ -1921,7 +1934,7 @@ msgid "There were errors during the backup process"
 msgstr ""
 
 #: Console/Backup.class.php:170
-#: Console/Backup.class.php:410
+#: Console/Backup.class.php:380
 msgid "There were errors during the restore process"
 msgstr ""
 
@@ -1931,7 +1944,7 @@ msgid "There were warnings during the backup process"
 msgstr ""
 
 #: Console/Backup.class.php:176
-#: Console/Backup.class.php:416
+#: Console/Backup.class.php:386
 msgid "There were warnings during the restore process"
 msgstr ""
 
@@ -2079,11 +2092,11 @@ msgstr ""
 msgid "Version in Backup"
 msgstr ""
 
-#: assets/js/backup.js:266
+#: assets/js/backup.js:206
 msgid "View backup log"
 msgstr ""
 
-#: assets/js/backup.js:119
+#: assets/js/backup.js:59
 msgid "View running restore"
 msgstr ""
 
@@ -2212,31 +2225,31 @@ msgstr ""
 msgid "You have enabled enableBackupSchedule so please add scheduleBackup"
 msgstr ""
 
-#: assets/js/backup.js:140
+#: assets/js/backup.js:80
 msgid "You must enter a valid Warm Spare Access Token URL"
 msgstr ""
 
-#: assets/js/backup.js:145
+#: assets/js/backup.js:85
 msgid "You must enter a valid Warm Spare Server API Client ID"
 msgstr ""
 
-#: assets/js/backup.js:150
+#: assets/js/backup.js:90
 msgid "You must enter a valid Warm Spare Server API Client Secret"
 msgstr ""
 
-#: assets/js/backup.js:155
+#: assets/js/backup.js:95
 msgid "You must enter a valid Warm Spare Server API GraphQL URL"
 msgstr ""
 
-#: assets/js/backup.js:135
+#: assets/js/backup.js:75
 msgid "You must select a valid Warm Spare Server"
 msgstr ""
 
-#: assets/js/backup.js:127
+#: assets/js/backup.js:67
 msgid "You must set a valid job name for this backup"
 msgstr ""
 
-#: assets/js/backup.js:666
+#: assets/js/backup.js:599
 #, perl-format
 msgid "Your %s has finished"
 msgstr ""
