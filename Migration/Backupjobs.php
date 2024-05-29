@@ -50,12 +50,7 @@ class Backupjobs extends Common{
 	}
 	public function migrate($mapping=[]){
 		$this->buildModuleData();
-		//$migrated = $this->Backup->getAll('migrationcompleted');
-		$migrated = !$migrated?[]:array_column($migrated,'id');
 		foreach($this->backupJobs as $key => $backup){
-			if(!isset($backup['id']) && in_array($backup['id'], $migrated)){
-				continue;
-			}
 			$backupModules = $this->moduleData;
 			$backup['items']['exclude'] = is_array($backup['items']['exclude']) ? $backup['items']['exclude'] : [];
 			$storage = [];
@@ -220,7 +215,7 @@ class Backupjobs extends Common{
 							$cronjob = sprintf('%s %s %s %s *', rand(0, 59), rand(0, 23), rand(1, 28),rand(1,12));
 							break;
 						case 'reboot':
-							$cronjob = sprintf('* * * * *', rand(0, 23));
+							$cronjob = sprintf('* %s * * *', rand(0, 23));
 							break;
 						case 'custom':
 							$minute = isset($backup['data']['cron_minute']) && strlen($backup['data']['cron_minute'] > 0) ? $backup['data']['cron_minute'] : '*';

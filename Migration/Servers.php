@@ -23,12 +23,7 @@ class Servers extends Common {
 		$sql = 'SELECT * FROM backup_server_details';
 		$serverDetails = $this->Database->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 		$final = [];
-		//$migrated = $this->Backup->getAll('migratedservers');
-		$migrated = is_array($migrated) ? $migrated : [];
 		foreach ($servers as $server) {
-			if (isset($migrated['server_' . $server['id']])) {
-				continue;
-			}
 			if (!is_null($server['readonly'])) {
 				$server['readonly'] = unserialize($server['readonly']);
 			}
