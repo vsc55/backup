@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreePBX - módulo backup module spanish translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-28 04:54-0400\n"
+"POT-Creation-Date: 2024-05-29 10:06-0400\n"
 "PO-Revision-Date: 2016-12-09 05:35+0200\n"
 "Last-Translator: Ernesto <ecasas@sangoma.com>\n"
 "Language-Team: Spanish <http://weblate.freepbx.org/projects/freepbx/backup/"
@@ -1641,6 +1641,13 @@ msgstr ""
 msgid "Skipped Post Restore Hooks.."
 msgstr ""
 
+#: Handlers/Backup/Multiple.php:125
+#, php-format
+msgid ""
+"Skipping %s which depends on framework because framework is a system "
+"requirement. Framework should be removed as a dependency"
+msgstr ""
+
 #: Handlers/Restore/Multiple.php:57
 msgid "Skipping CertMan module Restore , Warmspare skip Certificate enabled"
 msgstr ""
@@ -1648,13 +1655,6 @@ msgstr ""
 #: Handlers/Restore/Common.php:351
 #, php-format
 msgid "Skipping directory %s"
-msgstr ""
-
-#: Handlers/Backup/Multiple.php:125
-#, php-format
-msgid ""
-"Skpping %s which depends on framework because framework is a system "
-"requirement. Framework should be removed as a dependency"
 msgstr ""
 
 #: Backup.class.php:302 Backup.class.php:327
@@ -1926,7 +1926,7 @@ msgstr ""
 msgid "Type"
 msgstr "Tipo"
 
-#: Migration/Servers.php:87
+#: Migration/Servers.php:82
 #, php-format
 msgid "Unable to map '%s' of type '%s"
 msgstr ""
