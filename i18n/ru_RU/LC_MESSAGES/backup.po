@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-29 05:03+0000\n"
+"POT-Creation-Date: 2024-05-29 14:04+0000\n"
 "PO-Revision-Date: 2016-07-11 13:48+0000\n"
 "Last-Translator: Weblate Admin <admin@postmet.com>\n"
 "Language-Team: Russian <https://weblate.postmet.com/projects/freepbx/backup/"
@@ -179,10 +179,6 @@ msgstr ""
 msgid "Adding module manifest for %s"
 msgstr ""
 
-#: backup.i18n.php:6
-msgid "Admin"
-msgstr "Админ"
-
 #: views/restore/processRestore.php:28
 msgid "After the restore you might reload with the apply config button"
 msgstr ""
@@ -238,17 +234,9 @@ msgstr ""
 msgid "Backup %s success for %s"
 msgstr ""
 
-#: backup.i18n.php:4 backup.i18n.php:10 views/landing.php:5
+#: views/landing.php:5
 msgid "Backup & Restore"
 msgstr "Резервное копирование и восстановление"
-
-#: backup.i18n.php:12
-msgid "Backup & Restore - Restore"
-msgstr "Резервное копирование и восстановление - Восстановление"
-
-#: backup.i18n.php:8
-msgid "Backup & Restore for your FreePBX environment"
-msgstr "Резервное копирование и восстановление для вашего FreePBX"
 
 #: views/restore/landing.php:73 views/restore/landing.php:119
 msgid "Backup Date"
@@ -1521,6 +1509,13 @@ msgstr ""
 msgid "Skipped Post Restore Hooks.."
 msgstr ""
 
+#: Handlers/Backup/Multiple.php:120
+#, php-format
+msgid ""
+"Skipping %s which depends on framework because framework is a system "
+"requirement. Framework should be removed as a dependency"
+msgstr ""
+
 #: Handlers/Restore/Multiple.php:58
 msgid "Skipping CertMan module Restore , Warmspare skip Certificate enabled"
 msgstr ""
@@ -1528,13 +1523,6 @@ msgstr ""
 #: Handlers/Restore/Common.php:342
 #, php-format
 msgid "Skipping directory %s"
-msgstr ""
-
-#: Handlers/Backup/Multiple.php:120
-#, php-format
-msgid ""
-"Skpping %s which depends on framework because framework is a system "
-"requirement. Framework should be removed as a dependency"
 msgstr ""
 
 #: Backup.class.php:300 Backup.class.php:325
@@ -1697,6 +1685,12 @@ msgstr ""
 msgid "The module %s returned no data, No backup created"
 msgstr ""
 
+#: RestoreBase.php:625
+msgid ""
+"The restore process may require some time, with the current default timeout "
+"set to 10 hours"
+msgstr ""
+
 #: assets/js/backup.js:496
 #, perl-format
 msgid "There was an error during %s"
@@ -1769,7 +1763,7 @@ msgstr ""
 msgid "Type"
 msgstr "Тип"
 
-#: Migration/Servers.php:87
+#: Migration/Servers.php:82
 #, php-format
 msgid "Unable to map '%s' of type '%s"
 msgstr ""
@@ -2034,6 +2028,15 @@ msgstr ""
 #: Api/Gql/Backup.php:66
 msgid "updateBackup"
 msgstr ""
+
+#~ msgid "Admin"
+#~ msgstr "Админ"
+
+#~ msgid "Backup & Restore - Restore"
+#~ msgstr "Резервное копирование и восстановление - Восстановление"
+
+#~ msgid "Backup & Restore for your FreePBX environment"
+#~ msgstr "Резервное копирование и восстановление для вашего FreePBX"
 
 #~ msgid "Backup Module"
 #~ msgstr "Модуль резервного копирования"
