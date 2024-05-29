@@ -85,7 +85,7 @@ class BackupSplFileInfo extends SplFileInfo{
 		}
 		$version = \FreePBX::Config()->get('ASTVERSION');
 		$sipdriver = \FreePBX::Config()->get('ASTSIPDRIVER');
-		if(version_compare($version, '21', 'ge') || $sipdriver == 'chan_pjsip') {
+		if(version_compare($version, '21', 'ge')) {
 			$chansipDevExists = $this->checkChansipDevice($backuptmpdir);
 			$meta['chansipexists'] = $chansipDevExists;
 			$chansipTrunkExists = $this->checkChansipTrunk($backuptmpdir);
