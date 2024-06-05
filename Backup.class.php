@@ -253,6 +253,8 @@ class Backup extends FreePBX_Helpers implements BMO {
 			case 'deleteBackup':
 			case 'accesstoken':
 			case 'checkchansip':
+			case 'publicKeyRemove':
+			case 'publicKeySave':
 				return true;
 			case 'restorestatus':
 			case 'backupstatus':
@@ -551,6 +553,61 @@ class Backup extends FreePBX_Helpers implements BMO {
 				$res['status'] = true;
 				return $res;
 				break;
+			case 'publicKeyRemove':
+				$res=[];
+				$res['status'] = false;
+				try {
+					$keyToRemove=$_POST['keyToRemove'] ?? '';
+					$data = $this->getAll('publickeyAsteriskUser');
+					$publicKeys = $data['publickeyAsteriskUser']['publickeys'] ?? [];
+					// Normalize and remove the specific key
+					$normalizedKeyToRemove = trim($keyToRemove);
+					$transformedArray = array_filter($publicKeys, function ($key) use ($normalizedKeyToRemove) {
+						return trim($key['publickeyAsteriskUser']) !== $normalizedKeyToRemove;
+					});
+					$this->removePublicKey($keyToRemove);
+					$this->freepbx->Backup->setConfig('publickeyAsteriskUser', ["publickeys" => array_values($transformedArray)], 'publickeyAsteriskUser');
+					$res['status'] = true;
+					return $res;
+				} catch (\Exception $e) {
+					$res['status'] = false;
+					$res['message'] = $e->getMessage();
+				} finally {
+					return $res;
+				}
+				break;
+			case 'publicKeySave':
+				$res=[];
+				$res['status'] = false;
+				try {
+					$publickeyAsteriskUser = $_POST['publickeyAsteriskUser'] ?? '';
+					$servername = $_POST['servername'] ?? '';
+					$data = $this->getAll('publickeyAsteriskUser');
+					$publicKeys = $data['publickeyAsteriskUser']['publickeys'] ?? [];
+					$keyalreadyExist=false;
+					foreach($publicKeys as $value) {
+						if (trim($value['publickeyAsteriskUser']) == trim($publickeyAsteriskUser)) {
+							$keyalreadyExist=true;
+						}
+					}
+					if ($keyalreadyExist) {
+						$res['status'] = false;
+						$res['message'] = 'Public key already added';
+						return $res;
+					}
+					$publicKeys[] = ["servername" => $servername, "publickeyAsteriskUser" => $publickeyAsteriskUser];
+					$this->appendPublicKey($publickeyAsteriskUser);
+					$this->freepbx->Backup->setConfig('publickeyAsteriskUser', ["publickeys" => $publicKeys], 'publickeyAsteriskUser');
+					$res['status'] = true;
+					$res['message'] = 'Public key saved successfully';
+					return $res;
+				} catch (\Exception $e) {
+					$res['status'] = false;
+					$res['message'] = $e->getMessage();
+				} finally {
+					return $res;
+				}
+				break;
 			default:
 				return false;
 		}
@@ -847,6 +904,8 @@ public function GraphQL_Access_token($request) {
 				$filePub = $hdir.'/.ssh/id_ecdsa.pub';
 				$data = file_get_contents($filePub);
 				$vars['publickey'] = $data;
+				$data = $this->getAll('publickeyAsteriskUser');
+				$vars['publickeyAsteriskUser'] = $data['publickeyAsteriskUser']['publickeys'] ?? '';
 				return load_view(__DIR__.'/views/backup/settings.php',$vars);
 			break;
 			case 'backup':
@@ -1610,6 +1669,29 @@ public function GraphQL_Access_token($request) {
 		} else {
 			return ['type' => $type, 'path' => $path, 'exclude' => $exclude, 'delete' => $delete];
 		}
+	}
+
+	public function appendPublicKey($publicKey) {
+		$filePath = '/home/asterisk/.ssh/authorized_keys';
+		$existingKeys = file($filePath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+		$keyExists = false;
+		foreach ($existingKeys as $existingKey) {
+			if (trim($existingKey) === trim($publicKey)) {
+				$keyExists = true;
+				break;
+			}
+		}
+		if (!$keyExists) {
+			file_put_contents($filePath, $publicKey . PHP_EOL, FILE_APPEND);
+		}
+	}
+
+	public function removePublicKey($publicKey) {
+		$filePath = '/home/asterisk/.ssh/authorized_keys';
+		$fileContent = file_get_contents($filePath);
+		$updatedContent = str_replace($publicKey, '', $fileContent);
+		$updatedContent = preg_replace("/^\s*[\r\n]/m", '', $updatedContent);
+		file_put_contents($filePath, $updatedContent);
 	}
 
 }
