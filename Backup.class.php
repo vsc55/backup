@@ -102,7 +102,20 @@ class Backup extends FreePBX_Helpers implements BMO {
 	}
 
 	public function install(){
-
+		//generate key on install 
+		$homedir = $this->getAsteriskUserHomeDir();
+		$keyFilePath = $homedir.'/.ssh/id_ecdsa';
+		if (!file_exists($keyFilePath)) {
+			$command = 'ssh-keygen -t ecdsa -b 521 -f ' . escapeshellarg($keyFilePath) . ' -N ""';
+			$output = shell_exec($command);
+			$cmd = "sudo chmod 600 /home/asterisk/.ssh/id_ecdsa";
+			shell_exec($cmd);
+			$cmd = "sudo chown asterisk:asterisk /home/asterisk/.ssh/id_ecdsa";
+			shell_exec($cmd);
+			out(_("SSH key Generated"));
+		} else {
+			out(_("The SSH key already exists"));
+		}
 		/** Oh... Migration, migration, let's learn about migration. It's nature's inspiration to move around the sea.
 		 * We have split the functionality up so things backup use to do may be done by another module. The other module(s)
 		 * May not yet be installed or may install after.  So we need to keep a kvstore with the various data and when installing
@@ -340,8 +353,9 @@ class Backup extends FreePBX_Helpers implements BMO {
 				return ['status' => false, "message" => _("We can't seem to delete the chosen file")];
 			case 'generateRSA':
 				$homedir = $this->getAsteriskUserHomeDir();
-				$ssh = new FilestoreRemote();
-				$ret = $ssh->generateKey($homedir.'/.ssh');
+				//$ssh = new FilestoreRemote();
+				//$ret = $ssh->generateKey($homedir.'/.ssh');
+				$ret = true;
 			return ['status' => $ret];
 			case 'uploadrestore':
 				$response = new Response(null,400,['Content-Type' => 'application/json']);
@@ -841,8 +855,8 @@ public function GraphQL_Access_token($request) {
 				$hdir = $this->getAsteriskUserHomeDir();
 				$file = $hdir.'/.ssh/id_ecdsa';
 				if (!file_exists($file)) {
-					$ssh = new FilestoreRemote();
-					$ssh->generateKey($hdir.'/.ssh');
+			//		$ssh = new FilestoreRemote();
+			//		$ssh->generateKey($hdir.'/.ssh');
 				}
 				$filePub = $hdir.'/.ssh/id_ecdsa.pub';
 				$data = file_get_contents($filePub);
