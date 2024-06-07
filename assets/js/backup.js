@@ -713,3 +713,80 @@ $('#backupmodules').bootstrapTable({
 		$('#backup_modules').text(_("Modules ("+$('#backupmodules').bootstrapTable('getSelections').length+')'));
     }
 });
+
+$('#addFieldsButton').click(function() {
+	var newRow = $('#serverTable tbody tr:first').clone();
+	var allFilled = true;
+	$('#serverTable tbody tr').not(':first').find('input, textarea').each(function() {
+        if ($.trim($(this).val()) === '') {
+            allFilled = false;
+			$(this).focus();
+			alert("Please fill all fields in existing rows before adding a new one.");
+            return false;
+        }
+    });
+	if (allFilled) {
+		newRow.removeClass('d-none');
+		newRow.find('input, textarea').val('');
+		var saveButton = newRow.find('button.deleteRow');
+		saveButton.removeClass('deleteRow btn-danger').addClass('btn-success saveRow').text('Save');
+		$('#serverTable tbody').append(newRow);
+	}
+});
+
+$('#serverTable').on('click', '.deleteRow', function() {
+	if ($('#serverTable tbody tr').length > 1) {
+		var tr = $(this).closest('tr');
+		var publicKey = $(this).closest('tr').find('textarea').val().trim();
+		if (publicKey !='') {
+			if (confirm('Are you sure you want to delete this public key?')) {
+				$.post(
+					FreePBX.ajaxurl,
+					{
+						module: "backup",
+						command: "publicKeyRemove",
+						keyToRemove: publicKey
+					}
+				).done(function(data) {
+					if (data.status) {
+						fpbxToast('Public key deletion succesfully ');
+						tr.remove();
+					} else {
+						fpbxToast(data.message, _('Error'),'error');
+					}
+				});
+			}
+		}else {
+			tr.remove();
+		}
+	}
+});
+
+$('#serverTable').on('click', '.saveRow', function() {
+	if ($('#serverTable tbody tr').length > 1) {
+		var publicKey = $(this).closest('tr').find('textarea').val().trim();
+		var servername = $(this).closest('tr').find('input').val().trim();
+		var tr = $(this).closest('tr');
+		if (publicKey !='') {
+			if (confirm('Are you sure you want to save this public key?')) {
+				$.post(
+					FreePBX.ajaxurl,
+					{
+						module: "backup",
+						command: "publicKeySave",
+						publickeyAsteriskUser: publicKey,
+						servername: servername,
+					}
+				).done(function(data) {
+					if(data.status) {
+						tr.find('button.saveRow').removeClass('saveRow btn-success').addClass('btn-danger deleteRow').text('Delete');
+						fpbxToast('Public key Saved succesfully ');
+					} else {
+						tr.find('textarea').val('');
+						fpbxToast(data.message, _('Error'),'error');
+					}
+				});
+			}
+		}
+	}
+});
