@@ -100,15 +100,29 @@ class Backup extends FreePBX_Helpers implements BMO {
 			break;
 		}
 	}
-
-	public function install(){
-		//generate key on install 
+	/* Generate ecdsa key */
+	private function generatekey($delete =false) {
 		$homedir = $this->getAsteriskUserHomeDir();
+		// authorized_keys check file exists or not
+		if( !file_exists($homedir.'/.ssh/authorized_keys')){
+			$cmd = "sudo touch ".$homedir.'/.ssh/authorized_keys';
+			shell_exec($cmd);
+			$cmd = "sudo chmod 600 ".$homedir.'/.ssh/authorized_keys';
+			shell_exec($cmd);
+			$cmd = "sudo chown asterisk:asterisk ".$homedir.'/.ssh/authorized_keys';
+                        shell_exec($cmd);
+		}
 		$keyFilePath = $homedir.'/.ssh/id_ecdsa';
+		if($delete == true) {
+			$cmd = "sudo rm  ".$keyFilePath;
+			shell_exec($cmd);
+			$cmd = "sudo rm  ".$homedir.'/.ssh/id_ecdsa.pub';
+			shell_exec($cmd);
+		}
 		if (!file_exists($keyFilePath)) {
 			if(!file_exists($homedir.'/.ssh')) {
 				$cmd = "sudo mkdir ".$homedir."/.ssh";
-                        	shell_exec($cmd);
+				shell_exec($cmd);
 			}
 			$command = 'ssh-keygen -t ecdsa -b 521 -f ' . escapeshellarg($keyFilePath) . ' -N ""';
 			$output = shell_exec($command);
@@ -120,6 +134,34 @@ class Backup extends FreePBX_Helpers implements BMO {
 		} else {
 			out(_("The SSH key already exists"));
 		}
+	}
+	/* key health is good or not "ecdsa-sha2-nistp521" */
+	private function checkKeyhealth() {
+		// the public is start with ecdsa-sha2-nistp521  then it is good
+		$homedir = $this->getAsteriskUserHomeDir();
+		$filePath = $homedir.'/.ssh/id_ecdsa.pub';
+		if (!file_exists($filePath)) {
+			return true;
+		}
+		$fileContents = file_get_contents($filePath);
+		if ($fileContents === false) {
+			return false;
+		}
+		$startsWith = 'ecdsa-sha2-nistp521';
+		if (strpos($fileContents, $startsWith) === 0) {
+			return true;
+		}
+		return false;
+	}
+	public function install(){
+		// check  already generate key is suported key or not, we need ecdsa-sha2-nistp521
+		$good = $this->checkKeyhealth();
+		$delete = false;
+		if($good == false) {
+			$delete =  true;
+		}
+		//generate key on install
+		$this->generatekey($delete);
 		/** Oh... Migration, migration, let's learn about migration. It's nature's inspiration to move around the sea.
 		 * We have split the functionality up so things backup use to do may be done by another module. The other module(s)
 		 * May not yet be installed or may install after.  So we need to keep a kvstore with the various data and when installing
@@ -915,9 +957,8 @@ public function GraphQL_Access_token($request) {
 				$vars = [];
 				$hdir = $this->getAsteriskUserHomeDir();
 				$file = $hdir.'/.ssh/id_ecdsa';
-				if (!file_exists($file)) {
-			//		$ssh = new FilestoreRemote();
-			//		$ssh->generateKey($hdir.'/.ssh');
+				if(!file_exists($file)) {
+					$this->generatekey();
 				}
 				$filePub = $hdir.'/.ssh/id_ecdsa.pub';
 				$data = file_get_contents($filePub);
