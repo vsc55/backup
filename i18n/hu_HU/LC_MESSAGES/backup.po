@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-06 09:18-0400\n"
+"POT-Creation-Date: 2024-06-07 02:13-0400\n"
 "PO-Revision-Date: 2010-01-23 00:00+0100\n"
 "Last-Translator: Lónyai Gergely <alephlg@gmail.com>\n"
 "Language-Team: Magyar <support@freepbx.hu>\n"
@@ -88,11 +88,11 @@ msgstr ""
 msgid "%s table Restore Error %s "
 msgstr ""
 
-#: Backup.class.php:1609
+#: Backup.class.php:1668
 msgid "/path/to/dir"
 msgstr ""
 
-#: Backup.class.php:1602
+#: Backup.class.php:1661
 msgid "/path/to/file"
 msgstr ""
 
@@ -212,7 +212,7 @@ msgstr ""
 msgid "Are you sure, you want to restore this backup?"
 msgstr ""
 
-#: Backup.class.php:1577
+#: Backup.class.php:1636
 #, php-format
 msgid ""
 "Asterisk home dir (%s) doesn't exist, and, ASTSPOOLDIR doesn't exist. "
@@ -241,7 +241,7 @@ msgstr ""
 msgid "Backup"
 msgstr ""
 
-#: Backup.class.php:1246
+#: Backup.class.php:1305
 #, php-format
 msgid "Backup %s"
 msgstr ""
@@ -272,7 +272,7 @@ msgstr ""
 msgid "Backup Date"
 msgstr ""
 
-#: Backup.class.php:329
+#: Backup.class.php:331
 msgid "Backup Deleted"
 msgstr ""
 
@@ -321,7 +321,7 @@ msgstr ""
 msgid "Backup Name"
 msgstr ""
 
-#: Backup.class.php:733
+#: Backup.class.php:790
 msgid "Backup Restored Successfully"
 msgstr ""
 
@@ -378,7 +378,7 @@ msgid ""
 "the transaction id."
 msgstr ""
 
-#: Backup.class.php:512
+#: Backup.class.php:514
 msgid "Backup running"
 msgstr ""
 
@@ -505,7 +505,7 @@ msgstr ""
 msgid "Could not find %s on the remote system"
 msgstr ""
 
-#: Backup.class.php:439 Backup.class.php:447
+#: Backup.class.php:441 Backup.class.php:449
 msgid "Could not find a file for the id supplied"
 msgstr ""
 
@@ -513,7 +513,7 @@ msgstr ""
 msgid "Could not locate the manifest for this file"
 msgstr ""
 
-#: Backup.class.php:833 Backup.class.php:901
+#: Backup.class.php:890 Backup.class.php:960
 msgid "Couldn't find your file, please try submitting your file again."
 msgstr ""
 
@@ -554,7 +554,7 @@ msgstr ""
 msgid "Delete After Runs"
 msgstr ""
 
-#: Backup.class.php:1615
+#: Backup.class.php:1674
 msgid "Delete this entry. Don't forget to click Submit to save changes!"
 msgstr ""
 
@@ -577,7 +577,7 @@ msgstr ""
 msgid "Determining backup file type..."
 msgstr ""
 
-#: Backup.class.php:1608
+#: Backup.class.php:1667
 msgid "Directory"
 msgstr ""
 
@@ -629,7 +629,7 @@ msgstr ""
 msgid "Enable scheduled backups, default false"
 msgstr ""
 
-#: Backup.class.php:1478 views/backup/form.php:334
+#: Backup.class.php:1537 views/backup/form.php:334
 msgid "Enabled"
 msgstr ""
 
@@ -668,7 +668,7 @@ msgstr ""
 msgid "Error installing %s reason(s): %s"
 msgstr ""
 
-#: Backup.class.php:735
+#: Backup.class.php:792
 msgid "Error running Restore on Spare Server"
 msgstr ""
 
@@ -761,11 +761,11 @@ msgstr ""
 msgid "Failure"
 msgstr ""
 
-#: Backup.class.php:1601
+#: Backup.class.php:1660
 msgid "File"
 msgstr ""
 
-#: Backup.class.php:338
+#: Backup.class.php:340
 msgid "File Deleted"
 msgstr ""
 
@@ -774,7 +774,7 @@ msgstr ""
 msgid "File named: %s"
 msgstr ""
 
-#: Backup.class.php:367
+#: Backup.class.php:369
 msgid "File reached the server but could not be processed"
 msgstr ""
 
@@ -872,11 +872,11 @@ msgid ""
 "unlimited"
 msgstr ""
 
-#: Backup.class.php:1562
+#: Backup.class.php:1621
 msgid "I don't know who I should be running Backup as."
 msgstr ""
 
-#: Backup.class.php:1568
+#: Backup.class.php:1627
 #, php-format
 msgid ""
 "I tried to find out about %s, but the system doesn't think that user exists"
@@ -945,7 +945,7 @@ msgstr ""
 msgid "Installing  %s"
 msgstr ""
 
-#: Backup.class.php:749
+#: Backup.class.php:806
 msgid "Invalid Backup ID"
 msgstr ""
 
@@ -953,7 +953,7 @@ msgstr ""
 msgid "Invalid Backup id"
 msgstr ""
 
-#: Backup.class.php:296 Backup.class.php:344
+#: Backup.class.php:298 Backup.class.php:346
 msgid "Invalid ID Provided"
 msgstr ""
 
@@ -1032,7 +1032,7 @@ msgstr ""
 msgid "Loading supplied database file %s"
 msgstr ""
 
-#: Backup.class.php:604
+#: Backup.class.php:661
 msgid "Log file is missing but process is still running!"
 msgstr ""
 
@@ -1057,7 +1057,7 @@ msgstr ""
 msgid "Migrating legacy backups to the new backup"
 msgstr ""
 
-#: Backup.class.php:591
+#: Backup.class.php:648
 msgid "Missing id or transaction or pid"
 msgstr ""
 
@@ -1136,15 +1136,15 @@ msgstr ""
 msgid "No Storage Locations"
 msgstr ""
 
-#: Api/Gql/Backup.php:101 Backup.class.php:496
+#: Api/Gql/Backup.php:101 Backup.class.php:498
 msgid "No backup id provided"
 msgstr ""
 
-#: Backup.class.php:364
+#: Backup.class.php:366
 msgid "No file provided"
 msgstr ""
 
-#: Backup.class.php:822
+#: Backup.class.php:879
 msgid "No id was specified to process. Please try submitting your file again."
 msgstr ""
 
@@ -1208,7 +1208,7 @@ msgid ""
 "default system uses inmemory"
 msgstr ""
 
-#: Backup.class.php:1611
+#: Backup.class.php:1670
 msgid "PATTERNs, one per line"
 msgstr ""
 
@@ -1252,7 +1252,7 @@ msgstr ""
 msgid "Pre-Restore Hook"
 msgstr ""
 
-#: Backup.class.php:606
+#: Backup.class.php:663
 msgid "Process is no longer running"
 msgstr ""
 
@@ -1273,14 +1273,22 @@ msgid ""
 "restore the backup from the CLI "
 msgstr ""
 
-#: views/backup/settings.php:6
+#: views/backup/settings.php:19
 msgid "Public Key"
 msgstr ""
 
-#: views/backup/settings.php:16
+#: views/backup/settings.php:29
 msgid ""
 "Public SSH key to allow other servers to connect. Only ECDSA SSH key is "
 "supported"
+msgstr ""
+
+#: views/backup/settings.php:9
+msgid "Public key of other system"
+msgstr ""
+
+#: views/backup/settings.php:4
+msgid "Public key of this system"
 msgstr ""
 
 #: RestoreBase.php:263
@@ -1380,7 +1388,7 @@ msgstr ""
 msgid "Restore processing for modules are finished successfully"
 msgstr ""
 
-#: Backup.class.php:493
+#: Backup.class.php:495
 msgid "Restore running"
 msgstr ""
 
@@ -1650,11 +1658,11 @@ msgstr ""
 msgid "Skipping directory %s"
 msgstr ""
 
-#: Backup.class.php:315 Backup.class.php:340
+#: Backup.class.php:317 Backup.class.php:342
 msgid "Something failed, The file may need to be removed manually."
 msgstr ""
 
-#: Backup.class.php:331
+#: Backup.class.php:333
 msgid "Something failed."
 msgstr ""
 
@@ -1739,7 +1747,7 @@ msgstr ""
 msgid "Success"
 msgstr ""
 
-#: Backup.class.php:815
+#: Backup.class.php:872
 msgid "System Transfer"
 msgstr ""
 
@@ -1950,7 +1958,7 @@ msgstr ""
 msgid "Unable to upload file to the remote server"
 msgstr ""
 
-#: Backup.class.php:1478
+#: Backup.class.php:1537
 msgid "Uninstalled or Disabled"
 msgstr ""
 
@@ -2047,11 +2055,11 @@ msgstr ""
 msgid "We are running Restore command on Spare Server"
 msgstr ""
 
-#: Backup.class.php:303 Backup.class.php:353
+#: Backup.class.php:305 Backup.class.php:355
 msgid "We can't seem to delete the chosen file"
 msgstr ""
 
-#: Backup.class.php:300 Backup.class.php:348
+#: Backup.class.php:302 Backup.class.php:350
 msgid "We don't have permissions to this file"
 msgstr ""
 
