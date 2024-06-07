@@ -106,6 +106,10 @@ class Backup extends FreePBX_Helpers implements BMO {
 		$homedir = $this->getAsteriskUserHomeDir();
 		$keyFilePath = $homedir.'/.ssh/id_ecdsa';
 		if (!file_exists($keyFilePath)) {
+			if(!file_exists($homedir.'/.ssh')) {
+				$cmd = "sudo mkdir ".$homedir."/.ssh";
+                        	shell_exec($cmd);
+			}
 			$command = 'ssh-keygen -t ecdsa -b 521 -f ' . escapeshellarg($keyFilePath) . ' -N ""';
 			$output = shell_exec($command);
 			$cmd = "sudo chmod 600 /home/asterisk/.ssh/id_ecdsa";
