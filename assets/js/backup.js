@@ -523,7 +523,7 @@ function showStatusModal(title) {
 	$("#runModal .btn-close").prop("disabled",true);
 	$("#runModal .modal-title").text(title);
 	$("#runModal .modal-body").css("height",(window.innerHeight-200)+"px")
-	$("#runModal .modal-body").css("overflow-y","hidden")
+	$("#runModal .modal-body").css("overflow-y","auto")
 	$("#runModal .modal-body").html("<pre>"+_("Loading Please Wait")+"</pre>");
 }
 
