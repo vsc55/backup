@@ -156,7 +156,9 @@ class RestoreBase extends \FreePBX\modules\Backup\Models\Restore{
 					continue;
 				}
 				foreach($extra as $children => $val ){
-					$this->log(sprintf(_('Importing AstDB family %s from %s'),$family,$this->data['module']));
+					if ($family != 'AMPUSER') { //do not want to flood the log with lots of AMPUSER prints
+						$this->log(sprintf(_('Importing AstDB family %s from %s'),$family,$this->data['module']));
+					}
 					$this->FreePBX->astman->database_put($family,$children,$val);
 				}
 			}
