@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreePBX - módulo backup module spanish translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-13 03:44-0400\n"
+"POT-Creation-Date: 2024-06-13 12:56-0400\n"
 "PO-Revision-Date: 2016-12-09 05:35+0200\n"
 "Last-Translator: Ernesto <ecasas@sangoma.com>\n"
 "Language-Team: Spanish <http://weblate.freepbx.org/projects/freepbx/backup/"
@@ -34,7 +34,7 @@ msgstr ""
 "X-Poedit-Country: SPAIN\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: RestoreBase.php:259
+#: RestoreBase.php:261
 #, php-format
 msgid " %s found no database definitions in module.xml"
 msgstr ""
@@ -71,7 +71,7 @@ msgstr ""
 msgid "%s does not exist"
 msgstr ""
 
-#: RestoreBase.php:193 RestoreBase.php:390
+#: RestoreBase.php:195 RestoreBase.php:392
 #, php-format
 msgid "%s does not implement KVStore"
 msgstr ""
@@ -86,7 +86,7 @@ msgstr ""
 msgid "%s table Backup Error %s "
 msgstr ""
 
-#: RestoreBase.php:632
+#: RestoreBase.php:634
 #, php-format
 msgid "%s table Restore Error %s "
 msgstr ""
@@ -456,7 +456,7 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: RestoreBase.php:552
+#: RestoreBase.php:554
 #, php-format
 msgid "Column '%s' does not exist in %s, skipping"
 msgstr ""
@@ -470,7 +470,7 @@ msgstr ""
 msgid "Completed mysql dumps of : %s"
 msgstr ""
 
-#: RestoreBase.php:636
+#: RestoreBase.php:638
 #, php-format
 msgid "Completed restoring mysql dumps of : %s"
 msgstr ""
@@ -903,12 +903,12 @@ msgid ""
 "require HTTPS config to be rebuild manually with spare server certificate."
 msgstr ""
 
-#: RestoreBase.php:85 RestoreBase.php:365
+#: RestoreBase.php:85 RestoreBase.php:367
 #, php-format
 msgid "Importing Advanced Settings from %s"
 msgstr ""
 
-#: RestoreBase.php:159
+#: RestoreBase.php:160
 #, php-format
 msgid "Importing AstDB family %s from %s"
 msgstr ""
@@ -918,7 +918,7 @@ msgstr ""
 msgid "Importing AstDB family %s/%s  : %s"
 msgstr ""
 
-#: RestoreBase.php:282
+#: RestoreBase.php:284
 #, php-format
 msgid "Importing Databases from %s"
 msgstr ""
@@ -928,17 +928,17 @@ msgstr ""
 msgid "Importing Feature Codes from %s"
 msgstr ""
 
-#: RestoreBase.php:196
+#: RestoreBase.php:198
 #, php-format
 msgid "Importing KVStore from %s"
 msgstr ""
 
-#: RestoreBase.php:177
+#: RestoreBase.php:179
 #, php-format
 msgid "Importing Table %s from %s"
 msgstr ""
 
-#: RestoreBase.php:292
+#: RestoreBase.php:294
 #, php-format
 msgid "Importing table '%s' from legacy %s"
 msgstr ""
@@ -1302,7 +1302,7 @@ msgstr ""
 msgid "Public key of this system"
 msgstr ""
 
-#: RestoreBase.php:263
+#: RestoreBase.php:265
 #, php-format
 msgid "Reading Databases Table infromation using module name %s"
 msgstr ""
@@ -1711,7 +1711,7 @@ msgid ""
 "comma"
 msgstr ""
 
-#: RestoreBase.php:624
+#: RestoreBase.php:626
 #, php-format
 msgid "Started restoring mysql dumps of : %s"
 msgstr ""
@@ -1767,12 +1767,12 @@ msgstr ""
 msgid "System is not Activated,Skipping %s module"
 msgstr ""
 
-#: RestoreBase.php:298
+#: RestoreBase.php:300
 #, php-format
 msgid "Table '%s' does not exist in legacy %s, skipping"
 msgstr ""
 
-#: RestoreBase.php:295
+#: RestoreBase.php:297
 #, php-format
 msgid "Table '%s' is empty from legacy %s, skipping"
 msgstr ""
@@ -1860,7 +1860,7 @@ msgstr ""
 msgid "The module %s returned no data, No backup created"
 msgstr ""
 
-#: RestoreBase.php:625
+#: RestoreBase.php:627
 msgid ""
 "The restore process may require some time, with the current default timeout "
 "set to 10 hours"
@@ -1951,14 +1951,14 @@ msgstr ""
 msgid "Unable to perform backup"
 msgstr ""
 
-#: RestoreBase.php:278
+#: RestoreBase.php:280
 #, php-format
 msgid ""
 "Unable to run restoreLegacyDatabase on %s because NO Database information "
 "provided"
 msgstr ""
 
-#: RestoreBase.php:254
+#: RestoreBase.php:256
 #, php-format
 msgid ""
 "Unable to run restoreLegacyDatabase on %s because module.xml was not found"
