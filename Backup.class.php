@@ -154,14 +154,6 @@ class Backup extends FreePBX_Helpers implements BMO {
 		return false;
 	}
 	public function install(){
-		// check  already generate key is suported key or not, we need ecdsa-sha2-nistp521
-		$good = $this->checkKeyhealth();
-		$delete = false;
-		if($good == false) {
-			$delete =  true;
-		}
-		//generate key on install
-		$this->generatekey($delete);
 		/** Oh... Migration, migration, let's learn about migration. It's nature's inspiration to move around the sea.
 		 * We have split the functionality up so things backup use to do may be done by another module. The other module(s)
 		 * May not yet be installed or may install after.  So we need to keep a kvstore with the various data and when installing
@@ -957,7 +949,8 @@ public function GraphQL_Access_token($request) {
 				$vars = [];
 				$hdir = $this->getAsteriskUserHomeDir();
 				$file = $hdir.'/.ssh/id_ecdsa';
-				if(!file_exists($file)) {
+				$good = $this->checkKeyhealth();
+				if(!file_exists($file) || $good == false) {
 					$this->generatekey();
 				}
 				$filePub = $hdir.'/.ssh/id_ecdsa.pub';
@@ -1605,6 +1598,9 @@ public function GraphQL_Access_token($request) {
 					if($file['type'] == 'dir'){
 						continue;
 					}
+					if(!isset($file['path'])) {
+						continue;
+					}
 					$backupFile = new BackupSplFileInfo($file['path']);
 					$info = $backupFile->backupData();
 					if($info === false) {
@@ -1617,7 +1613,7 @@ public function GraphQL_Access_token($request) {
 						'file' => $file['path'],
 						'framework' => $info['framework'],
 						'timestamp' => $info['timestamp'],
-						'name' => $file['basename'],
+						'name' => $file['basename'] ?? '',
 						'instancename' => $location['name'],
 						'size'     => $infoSize,
 					];
