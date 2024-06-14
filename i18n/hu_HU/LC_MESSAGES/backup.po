@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-13 12:56-0400\n"
+"POT-Creation-Date: 2024-06-14 02:20-0400\n"
 "PO-Revision-Date: 2010-01-23 00:00+0100\n"
 "Last-Translator: Lónyai Gergely <alephlg@gmail.com>\n"
 "Language-Team: Magyar <support@freepbx.hu>\n"
@@ -1304,7 +1304,7 @@ msgstr ""
 msgid "Reloading...... DONE"
 msgstr ""
 
-#: Handlers/Backup/Maintenance.php:134 Handlers/Backup/Maintenance.php:155
+#: Handlers/Backup/Maintenance.php:134 Handlers/Backup/Maintenance.php:158
 #: Handlers/Backup/Multiple.php:211 Handlers/Backup/Single.php:54
 #, php-format
 msgid "Removing %s"
