@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-14 07:18-0400\n"
+"POT-Creation-Date: 2024-06-14 07:32-0400\n"
 "PO-Revision-Date: 2016-02-05 11:17+0200\n"
 "Last-Translator: Nicolas Riendeau <freepbx@riendeau.org>\n"
 "Language-Team: French <http://weblate.freepbx.org/projects/freepbx/backup/"
@@ -88,11 +88,11 @@ msgstr ""
 msgid "%s table Restore Error %s "
 msgstr ""
 
-#: Backup.class.php:1709
+#: Backup.class.php:1707
 msgid "/path/to/dir"
 msgstr ""
 
-#: Backup.class.php:1702
+#: Backup.class.php:1700
 msgid "/path/to/file"
 msgstr ""
 
@@ -212,7 +212,7 @@ msgstr ""
 msgid "Are you sure, you want to restore this backup?"
 msgstr ""
 
-#: Backup.class.php:1677
+#: Backup.class.php:1675
 #, php-format
 msgid ""
 "Asterisk home dir (%s) doesn't exist, and, ASTSPOOLDIR doesn't exist. "
@@ -241,7 +241,7 @@ msgstr ""
 msgid "Backup"
 msgstr "Copie de sauvegarde"
 
-#: Backup.class.php:1343
+#: Backup.class.php:1341
 #, php-format
 msgid "Backup %s"
 msgstr ""
@@ -513,7 +513,7 @@ msgstr ""
 msgid "Could not locate the manifest for this file"
 msgstr ""
 
-#: Backup.class.php:928 Backup.class.php:998
+#: Backup.class.php:928 Backup.class.php:996
 msgid "Couldn't find your file, please try submitting your file again."
 msgstr ""
 
@@ -554,7 +554,7 @@ msgstr ""
 msgid "Delete After Runs"
 msgstr ""
 
-#: Backup.class.php:1715
+#: Backup.class.php:1713
 msgid "Delete this entry. Don't forget to click Submit to save changes!"
 msgstr ""
 
@@ -577,7 +577,7 @@ msgstr ""
 msgid "Determining backup file type..."
 msgstr ""
 
-#: Backup.class.php:1708
+#: Backup.class.php:1706
 msgid "Directory"
 msgstr "Répertoire"
 
@@ -629,7 +629,7 @@ msgstr ""
 msgid "Enable scheduled backups, default false"
 msgstr ""
 
-#: Backup.class.php:1575 views/backup/form.php:334
+#: Backup.class.php:1573 views/backup/form.php:334
 msgid "Enabled"
 msgstr ""
 
@@ -766,7 +766,7 @@ msgstr ""
 msgid "Failure"
 msgstr ""
 
-#: Backup.class.php:1701
+#: Backup.class.php:1699
 msgid "File"
 msgstr ""
 
@@ -877,11 +877,11 @@ msgid ""
 "unlimited"
 msgstr ""
 
-#: Backup.class.php:1662
+#: Backup.class.php:1660
 msgid "I don't know who I should be running Backup as."
 msgstr ""
 
-#: Backup.class.php:1668
+#: Backup.class.php:1666
 #, php-format
 msgid ""
 "I tried to find out about %s, but the system doesn't think that user exists"
@@ -1213,7 +1213,7 @@ msgid ""
 "default system uses inmemory"
 msgstr ""
 
-#: Backup.class.php:1711
+#: Backup.class.php:1709
 msgid "PATTERNs, one per line"
 msgstr ""
 
@@ -1963,7 +1963,7 @@ msgstr ""
 msgid "Unable to upload file to the remote server"
 msgstr ""
 
-#: Backup.class.php:1575
+#: Backup.class.php:1573
 msgid "Uninstalled or Disabled"
 msgstr ""
 
