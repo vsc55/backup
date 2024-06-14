@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-14 02:20-0400\n"
+"POT-Creation-Date: 2024-06-14 03:09-0400\n"
 "PO-Revision-Date: 2017-06-20 13:27+0200\n"
 "Last-Translator: PETER <ftek@ymail.com>\n"
 "Language-Team: Vietnamese <http://weblate.freepbx.org/projects/freepbx/"
@@ -797,7 +797,7 @@ msgstr ""
 msgid "Finished Remote Maintenance"
 msgstr ""
 
-#: Handlers/Storage.php:86
+#: Handlers/Storage.php:87
 msgid "Finished Saving to selected Filestore locations"
 msgstr ""
 
@@ -959,7 +959,7 @@ msgstr ""
 msgid "Invalid filestore location"
 msgstr ""
 
-#: Handlers/Storage.php:55
+#: Handlers/Storage.php:56
 #, php-format
 msgid "Invalid filestore location. Path not found. Info: %s "
 msgstr ""
@@ -1557,7 +1557,7 @@ msgstr "Đang lưu tệp tới ftp từ xa"
 msgid "Saving to selected Filestore locations"
 msgstr ""
 
-#: Handlers/Storage.php:76
+#: Handlers/Storage.php:77
 #, php-format
 msgid "Saving to: %s:'%s' instance ,File location: %s%s "
 msgstr ""
