@@ -950,9 +950,7 @@ public function GraphQL_Access_token($request) {
 				$hdir = $this->getAsteriskUserHomeDir();
 				$file = $hdir.'/.ssh/id_ecdsa';
 				$good = $this->checkKeyhealth();
-				if(!file_exists($file) || $good == false) {
-					$this->generatekey();
-				}
+				$this->generatekey($good);
 				$filePub = $hdir.'/.ssh/id_ecdsa.pub';
 				$data = file_get_contents($filePub);
 				$vars['publickey'] = $data;
