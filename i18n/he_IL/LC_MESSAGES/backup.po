@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreePBX 2.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-14 03:09-0400\n"
+"POT-Creation-Date: 2024-06-14 07:18-0400\n"
 "PO-Revision-Date: 2006-10-17 17:30+0300\n"
 "Last-Translator: Shimi <shimi@shimi.net>\n"
 "MIME-Version: 1.0\n"
@@ -752,6 +752,11 @@ msgstr ""
 #: Handlers/Restore/Legacy.php:127
 #, php-format
 msgid "Extracting supplied database file %s"
+msgstr ""
+
+#: Handlers/Backup/Common.php:209
+#, php-format
+msgid "Failed to open some directory in "
 msgstr ""
 
 #: views/backup/form.php:233

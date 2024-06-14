@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-14 03:09-0400\n"
+"POT-Creation-Date: 2024-06-14 07:18-0400\n"
 "PO-Revision-Date: 2016-02-05 11:17+0200\n"
 "Last-Translator: Nicolas Riendeau <freepbx@riendeau.org>\n"
 "Language-Team: French <http://weblate.freepbx.org/projects/freepbx/backup/"
@@ -755,6 +755,11 @@ msgstr ""
 #: Handlers/Restore/Legacy.php:127
 #, php-format
 msgid "Extracting supplied database file %s"
+msgstr ""
+
+#: Handlers/Backup/Common.php:209
+#, php-format
+msgid "Failed to open some directory in "
 msgstr ""
 
 #: views/backup/form.php:233
