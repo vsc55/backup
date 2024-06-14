@@ -206,7 +206,7 @@ abstract class Common extends \FreePBX\modules\Backup\Handlers\CommonFile {
 						$process->setTimeout(null);
 						$process->mustRun();
 					} catch(ProcessFailedException $e) {
-						$this->log(sprintf(_($e->getMessage()),'DEBUG'));
+						$this->log("\t".sprintf(_('Failed to open some directory in '.$dir.': Permission denied'),'ERROR'));
 					}
 					$this->log("\t".sprintf(_('Adding custom directory to tar: %s'),$fdir),'DEBUG');
 					$fileList = $this->getFileList("$dst/");
