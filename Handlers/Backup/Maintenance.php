@@ -112,7 +112,7 @@ class Maintenance extends \FreePBX\modules\Backup\Handlers\CommonBase {
 				$this->addError($e->getMessage());
 				continue;
 			}
-			
+			try {
 			foreach ($files as $file) {
 				if(!isset($file['path'])){
 					continue;
@@ -145,6 +145,9 @@ class Maintenance extends \FreePBX\modules\Backup\Handlers\CommonBase {
 					}
 				}
 				$maintfiles[$parsed['timestamp']] = $file['path'];
+			}
+			} catch (\Exception) {
+				continue;
 			}
 			asort($maintfiles, SORT_STRING);
 			$maintfiles = array_reverse($maintfiles);
