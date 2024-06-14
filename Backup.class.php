@@ -105,30 +105,30 @@ class Backup extends FreePBX_Helpers implements BMO {
 		$homedir = $this->getAsteriskUserHomeDir();
 		// authorized_keys check file exists or not
 		if( !file_exists($homedir.'/.ssh/authorized_keys')){
-			$cmd = "sudo touch ".$homedir.'/.ssh/authorized_keys';
+			$cmd = "touch ".$homedir.'/.ssh/authorized_keys';
 			shell_exec($cmd);
-			$cmd = "sudo chmod 600 ".$homedir.'/.ssh/authorized_keys';
+			$cmd = "chmod 600 ".$homedir.'/.ssh/authorized_keys';
 			shell_exec($cmd);
-			$cmd = "sudo chown asterisk:asterisk ".$homedir.'/.ssh/authorized_keys';
+			$cmd = "chown asterisk:asterisk ".$homedir.'/.ssh/authorized_keys';
                         shell_exec($cmd);
 		}
 		$keyFilePath = $homedir.'/.ssh/id_ecdsa';
 		if($delete == true) {
-			$cmd = "sudo rm  ".$keyFilePath;
+			$cmd = "rm  ".$keyFilePath;
 			shell_exec($cmd);
-			$cmd = "sudo rm  ".$homedir.'/.ssh/id_ecdsa.pub';
+			$cmd = "rm  ".$homedir.'/.ssh/id_ecdsa.pub';
 			shell_exec($cmd);
 		}
 		if (!file_exists($keyFilePath)) {
 			if(!file_exists($homedir.'/.ssh')) {
-				$cmd = "sudo mkdir ".$homedir."/.ssh";
+				$cmd = "mkdir ".$homedir."/.ssh";
 				shell_exec($cmd);
 			}
 			$command = 'ssh-keygen -t ecdsa -b 521 -f ' . escapeshellarg($keyFilePath) . ' -N ""';
 			$output = shell_exec($command);
-			$cmd = "sudo chmod 600 /home/asterisk/.ssh/id_ecdsa";
+			$cmd = "chmod 600 /home/asterisk/.ssh/id_ecdsa";
 			shell_exec($cmd);
-			$cmd = "sudo chown asterisk:asterisk /home/asterisk/.ssh/id_ecdsa";
+			$cmd = "chown asterisk:asterisk /home/asterisk/.ssh/id_ecdsa";
 			shell_exec($cmd);
 			out(_("SSH key Generated"));
 		} else {
