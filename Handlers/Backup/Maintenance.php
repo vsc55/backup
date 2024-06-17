@@ -116,13 +116,10 @@ class Maintenance extends \FreePBX\modules\Backup\Handlers\CommonBase {
 				if(!isset($file['path'])){
 					continue;
 				}
-				if(!isset($file['basename'])){
+				if(!in_array($file['path'],$this->backupfiles)) {
 					continue;
 				}
-				if(!in_array($file['basename'],$this->backupfiles)) {
-					continue;
-				}
-				$parsed = $this->parseFile($file['basename']);
+				$parsed = $this->parseFile($file['path']);
 				if($parsed === false){
 					continue;
 				}
