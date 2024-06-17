@@ -103,8 +103,7 @@ class Maintenance extends \FreePBX\modules\Backup\Handlers\CommonBase {
 				$this->addError($e->getMessage());
 				continue;
 			}
-
-			$path = ($this->backupInfo['backup_addbjname'] == 'yes' ? $this->backupInfo['backup_name'] : '');
+			$path = (isset($this->backupInfo['backup_addbjname']) && $this->backupInfo['backup_addbjname'] == 'yes') ? $this->backupInfo['backup_name'] : '';
 			try {
 				$files = $this->freepbx->Filestore->ls($id, $path);
 			} catch (\Exception $e) {
