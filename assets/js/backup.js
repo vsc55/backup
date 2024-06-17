@@ -597,22 +597,26 @@ function getStatus(type, id, transaction, pid) {
 		switch(data.status) {
 			case 'stopped':
 				fpbxToast(sprintf(_('Your %s has finished'),type));
+				$("#runModal .modal-body").css("overflow-y","auto");
 			break;
 			case 'errored':
 				fpbxToast(sprintf(_('There was an error during %s'),type),_('Error'),'error');
+				$("#runModal .modal-body").css("overflow-y","auto");
 			break;
 			case 'running':
+				$("#runModal .modal-body").animate({scrollTop:$("#runModal .modal-body")[0].scrollHeight}, 1000);
+				$("#runModal .modal-body").css("overflow-y", "hidden");
 			break;
 			default:
 			break;
 		}
 
 		if(data.status !== 'running') {
-			$("#runModal .modal-body").animate({scrollTop:$(".modal-body")[0].scrollHeight}, 1000);
+			$("#runModal .modal-body").animate({scrollTop:$("#runModal .modal-body")[0].scrollHeight}, 1000);
 			source.close();
 			$("#runModal .close").prop("disabled",false);
 			$("#runModal .btn-close").prop("disabled",false);
-			$("#runModal .modal-body").css("overflow-y","auto")
+			$("#runModal .modal-body").css("overflow-y","auto");
 		}
 	}, false);
 }
