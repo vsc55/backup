@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-14 07:32-0400\n"
+"POT-Creation-Date: 2024-06-17 00:43-0400\n"
 "PO-Revision-Date: 2016-07-22 06:45+0200\n"
 "Last-Translator: Media <mousavi.media@gmail.com>\n"
 "Language-Team: Persian (Iran) <http://weblate.freepbx.org/projects/freepbx/"
@@ -1477,7 +1477,7 @@ msgstr ""
 msgid "Run backup and restore jobs"
 msgstr ""
 
-#: assets/js/backup.js:670
+#: assets/js/backup.js:669
 msgid "Run the following in the CLI"
 msgstr ""
 
