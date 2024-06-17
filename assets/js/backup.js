@@ -602,7 +602,6 @@ function getStatus(type, id, transaction, pid) {
 				fpbxToast(sprintf(_('There was an error during %s'),type),_('Error'),'error');
 			break;
 			case 'running':
-				$("#runModal .modal-body").animate({scrollTop:$(".modal-body")[0].scrollHeight}, 1000);
 			break;
 			default:
 			break;
