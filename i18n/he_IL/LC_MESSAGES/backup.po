@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreePBX 2.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-17 00:43-0400\n"
+"POT-Creation-Date: 2024-06-17 05:28-0400\n"
 "PO-Revision-Date: 2006-10-17 17:30+0300\n"
 "Last-Translator: Shimi <shimi@shimi.net>\n"
 "MIME-Version: 1.0\n"
@@ -637,7 +637,7 @@ msgid ""
 msgstr ""
 
 #: assets/js/backup.js:471 assets/js/backup.js:491 assets/js/backup.js:510
-#: assets/js/backup.js:602
+#: assets/js/backup.js:603
 msgid "Error"
 msgstr ""
 
@@ -1477,7 +1477,7 @@ msgstr ""
 msgid "Run backup and restore jobs"
 msgstr ""
 
-#: assets/js/backup.js:669
+#: assets/js/backup.js:673
 msgid "Run the following in the CLI"
 msgstr ""
 
@@ -1850,7 +1850,7 @@ msgid ""
 "set to 10 hours"
 msgstr ""
 
-#: assets/js/backup.js:602
+#: assets/js/backup.js:603
 #, perl-format
 msgid "There was an error during %s"
 msgstr ""
