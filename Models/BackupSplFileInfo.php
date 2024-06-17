@@ -63,7 +63,7 @@ class BackupSplFileInfo extends SplFileInfo{
 
 		$tar = new Tar();
 		$tar->open($this->getPathname());
-		$tar->extract($backuptmpdir, '', '', '/(manifest|metadata\.json|files|modulejson|mysql-2.sql.gz|mysql-3.sql)/');
+		$tar->extract($backuptmpdir, '', '', '/(manifest|metadata\.json|files|modulejson|mysql-2.sql.gz|mysql-3.sql.gz|mysql-3.sql)/');
 		$metafile = $backuptmpdir . '/metadata.json';
 		$manafestfile = $backuptmpdir . '/manifest';
 		$meta = [];
@@ -102,6 +102,9 @@ class BackupSplFileInfo extends SplFileInfo{
 		$coreModule = $backuptmpdir . "/modulejson/Core.json";
 		$devDumpFile = $backuptmpdir . "/files/tmp/Devices_dump/Devices.sql";
 		$legacySqlFile = $backuptmpdir . "/mysql-2.sql.gz"; //legacy backup file containing sip devices (FreePBX v13,14 - mysql-2.sql.gz)
+		if(!file_exists($legacySqlFile)) {
+			$legacySqlFile = $backuptmpdir . "/mysql-3.sql.gz"; //on some 13 sql backup file found sip devices in this file
+		}
 		$legacyV2file = $backuptmpdir . "/mysql-3.sql"; //(FreePBX v2 - mysql-3.sql)
 		if(file_exists($coreModule)){
 			$coredata = file_get_contents($coreModule);
