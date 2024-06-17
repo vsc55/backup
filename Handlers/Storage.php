@@ -58,7 +58,7 @@ class Storage extends CommonFile {
 				}
 				$Rpath = ($info['driver'] != 'Email') ? $this->translatePath($info['path']) : '';
 				$Rfile = ($info['driver'] != 'Email') ? basename((string) $this->file) : $this->file;
-				if ($this->backupInfo['backup_addbjname'] == 'yes') {
+				if (isset($this->backupInfo['backup_addbjname']) && $this->backupInfo['backup_addbjname'] == 'yes') {
 					if ($info['driver'] == 'Email') {
 						$Rfile = basename((string) $this->file);
 					} else { 
