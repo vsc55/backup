@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-17 05:28-0400\n"
+"POT-Creation-Date: 2024-06-17 05:42-0400\n"
 "PO-Revision-Date: 2016-07-22 06:45+0200\n"
 "Last-Translator: Media <mousavi.media@gmail.com>\n"
 "Language-Team: Persian (Iran) <http://weblate.freepbx.org/projects/freepbx/"
@@ -1306,7 +1306,7 @@ msgstr ""
 msgid "Reloading...... DONE"
 msgstr ""
 
-#: Handlers/Backup/Maintenance.php:134 Handlers/Backup/Maintenance.php:158
+#: Handlers/Backup/Maintenance.php:133 Handlers/Backup/Maintenance.php:157
 #: Handlers/Backup/Multiple.php:211 Handlers/Backup/Single.php:54
 #, php-format
 msgid "Removing %s"
