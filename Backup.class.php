@@ -101,7 +101,7 @@ class Backup extends FreePBX_Helpers implements BMO {
 		}
 	}
 	/* Generate ecdsa key */
-	private function generatekey($delete =false) {
+	public function generatekey($delete =false) {
 		$homedir = $this->getAsteriskUserHomeDir();
 		// authorized_keys check file exists or not
 		if( !file_exists($homedir.'/.ssh/authorized_keys')){
