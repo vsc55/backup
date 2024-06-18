@@ -819,7 +819,7 @@ public function GraphQL_Access_token($request) {
 		} else {
 			$filename = $sparefilepath.'/'.$filename;
 		}
-		$command = "ssh -t -i $key $user@$host '/usr/sbin/fwconsole backup --restore $path$filename --transaction=$transactionid'";
+		$command = "ssh -tt -i $key $user@$host '/usr/sbin/fwconsole backup --restore $path$filename --transaction=$transactionid'";
 		$process = \freepbx_get_process_obj($command);
 		try {
 			$process->setTimeout(null);
