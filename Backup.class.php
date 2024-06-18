@@ -149,7 +149,7 @@ class Backup extends FreePBX_Helpers implements BMO {
 		}
 		$startsWith = 'ecdsa-sha2-nistp521';
 		if (strpos($fileContents, $startsWith) === 0) {
-			return true;
+			return false;
 		}
 		return false;
 	}
