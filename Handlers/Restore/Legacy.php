@@ -294,6 +294,7 @@ class Legacy extends Common {
 		$this->displayportschanges();
 		$this->freepbx->Backup->postrestoreModulehook($this->transactionId, $backupinfo=[]);
 		do_reload();
+		needreload();
 		$this->log(_('Reloading...... DONE'));
 		$this->log(_('Running Post Restore Hooks.. Please note that hook will restart httpd service so please refresh your page (using new ports) '));
 		$this->postRestoreHooks();
