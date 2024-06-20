@@ -95,6 +95,7 @@ class Multiple extends Common {
 		} else {
 			do_reload();
 			$this->log(_('Reloading...... DONE'));
+			needreload();
 		}
 		$rmcommand = "rm -rf $this->tmp";
 		shell_exec($rmcommand);
