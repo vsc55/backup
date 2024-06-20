@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-17 07:58-0400\n"
+"POT-Creation-Date: 2024-06-20 03:35-0400\n"
 "PO-Revision-Date: 2017-06-20 13:27+0200\n"
 "Last-Translator: PETER <ftek@ymail.com>\n"
 "Language-Team: Vietnamese <http://weblate.freepbx.org/projects/freepbx/"
@@ -785,7 +785,7 @@ msgstr ""
 msgid "Files"
 msgstr "Các tệp"
 
-#: Handlers/Restore/Legacy.php:301 Handlers/Restore/Multiple.php:109
+#: Handlers/Restore/Legacy.php:302 Handlers/Restore/Multiple.php:110
 #: Handlers/Restore/Single.php:34
 msgid "Finished"
 msgstr ""
@@ -1303,7 +1303,7 @@ msgstr ""
 msgid "Recipient"
 msgstr ""
 
-#: Handlers/Restore/Legacy.php:297 Handlers/Restore/Multiple.php:97
+#: Handlers/Restore/Legacy.php:298 Handlers/Restore/Multiple.php:97
 msgid "Reloading...... DONE"
 msgstr ""
 
@@ -1516,11 +1516,11 @@ msgstr ""
 msgid "Running Backup ID: %s"
 msgstr ""
 
-#: Handlers/Restore/Legacy.php:300 Handlers/Restore/Multiple.php:108
+#: Handlers/Restore/Legacy.php:301 Handlers/Restore/Multiple.php:109
 msgid "Running Post Restore Hooks DONE"
 msgstr ""
 
-#: Handlers/Restore/Legacy.php:298 Handlers/Restore/Multiple.php:103
+#: Handlers/Restore/Legacy.php:299 Handlers/Restore/Multiple.php:104
 msgid ""
 "Running Post Restore Hooks.. Please note that hook will restart httpd "
 "service so please refresh your page (using new ports) "
@@ -1641,7 +1641,7 @@ msgstr ""
 msgid "Skip legacy chan_sip trunks during restore"
 msgstr ""
 
-#: Handlers/Restore/Multiple.php:106
+#: Handlers/Restore/Multiple.php:107
 msgid "Skipped Post Restore Hooks.."
 msgstr ""
 
@@ -2011,12 +2011,12 @@ msgstr ""
 msgid "Using fallback restore strategy"
 msgstr ""
 
-#: Handlers/Restore/Legacy.php:318
+#: Handlers/Restore/Legacy.php:319
 #, php-format
 msgid "Utilizing cached based sqlite at %s. The data might be stale!"
 msgstr ""
 
-#: Handlers/Restore/Legacy.php:322
+#: Handlers/Restore/Legacy.php:323
 #, php-format
 msgid "Utilizing file based sqlite at %s, This is SLOW"
 msgstr ""
