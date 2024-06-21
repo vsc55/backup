@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-20 05:03-0400\n"
+"POT-Creation-Date: 2024-06-21 02:42-0400\n"
 "PO-Revision-Date: 2016-07-11 13:48+0000\n"
 "Last-Translator: Weblate Admin <admin@postmet.com>\n"
 "Language-Team: Russian <https://weblate.postmet.com/projects/freepbx/backup/"
@@ -1418,13 +1418,13 @@ msgstr ""
 msgid "Restoring %s"
 msgstr ""
 
-#: Handlers/Restore/Common.php:289
+#: Handlers/Restore/Common.php:291
 #, php-format
 msgid "Restoring custom directory to %s"
 msgstr ""
 
-#: Handlers/Restore/Common.php:278 Handlers/Restore/Common.php:297
-#: Handlers/Restore/Common.php:323 Handlers/Restore/Common.php:360
+#: Handlers/Restore/Common.php:278 Handlers/Restore/Common.php:299
+#: Handlers/Restore/Common.php:325 Handlers/Restore/Common.php:362
 #, php-format
 msgid "Restoring custom file to %s"
 msgstr ""
@@ -1669,7 +1669,7 @@ msgstr ""
 msgid "Skipping CertMan module Restore , Warmspare skip Certificate enabled"
 msgstr ""
 
-#: Handlers/Restore/Common.php:351
+#: Handlers/Restore/Common.php:353
 #, php-format
 msgid "Skipping directory %s"
 msgstr ""
