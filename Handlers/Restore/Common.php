@@ -278,6 +278,8 @@ public function setCustomFiles($manifest = NULL) {
 								$this->log(sprintf(_('Restoring custom file to %s'),$fdstpath),'DEBUG');
 								try {
 									copy($this->tmp.'/customfiles'.$fdstpath, $fdstpath);
+									$sourcePerms = fileperms($this->tmp.'/customfiles'.$fdstpath);
+									chmod($fdstpath, $sourcePerms);
 								} catch(\Exception $e) {
 									$this->log(sprintf(_($e->getMessage()),'DEBUG'));
 								}
