@@ -877,7 +877,7 @@ public function GraphQL_Access_token($request) {
 							}
 							foreach ($locations as $location) {
 								$name = $location['displayname'] ?? $location ['name'];
-								$select = ($driver.'_'.$location['id']== $vars['warmspare_remoteapi_filestoreid'])? true : '';
+								$select = (!empty($vars['warmspare_remoteapi_filestoreid']) && ($driver.'_'.$location['id']== $vars['warmspare_remoteapi_filestoreid']))? true : '';
 								$optgroup[] = [
 									'label'    => $name,
 									'value'    => $driver.'_'.$location['id'],
@@ -889,7 +889,7 @@ public function GraphQL_Access_token($request) {
 							}
 							foreach ($locations as $location) {
 								$name = $location['displayname'] ?? $location ['name'];
-								$select = ($driver.'_'.$location['id']== $vars['warmspare_remotessh_filestoreid'])? true : '';
+								$select = (!empty($vars['warmspare_remotessh_filestoreid']) && ($driver.'_'.$location['id']== $vars['warmspare_remotessh_filestoreid']))? true : '';
 								$sshoptgroup[] = [
 									'label'    => $name,
 									'value'    => $driver.'_'.$location['id'],
@@ -897,8 +897,8 @@ public function GraphQL_Access_token($request) {
 								];
 							}
 						}
-						$vars['filestores'] = is_array($optgroup) ? $optgroup : [];
-						$vars['filestoressh'] = is_array($sshoptgroup) ? $sshoptgroup : [];
+						$vars['filestores'] = (isset($optgroup) && is_array($optgroup)) ? $optgroup : [];
+						$vars['filestoressh'] = (isset($sshoptgroup) && is_array($sshoptgroup)) ? $sshoptgroup : [];
 					} catch (\Exception) {
 						$vars['filestores'] = false;
 					}
