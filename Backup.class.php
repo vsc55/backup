@@ -103,6 +103,11 @@ class Backup extends FreePBX_Helpers implements BMO {
 	/* Generate ecdsa key */
 	public function generatekey($delete =false) {
 		$homedir = $this->getAsteriskUserHomeDir();
+		//.ssh check directory exist or not
+		if(!file_exists($homedir.'/.ssh')) {
+			$cmd = "mkdir ".$homedir."/.ssh";
+			shell_exec($cmd);
+		}
 		// authorized_keys check file exists or not
 		if( !file_exists($homedir.'/.ssh/authorized_keys')){
 			$cmd = "touch ".$homedir.'/.ssh/authorized_keys';
@@ -120,10 +125,6 @@ class Backup extends FreePBX_Helpers implements BMO {
 			shell_exec($cmd);
 		}
 		if (!file_exists($keyFilePath)) {
-			if(!file_exists($homedir.'/.ssh')) {
-				$cmd = "mkdir ".$homedir."/.ssh";
-				shell_exec($cmd);
-			}
 			$command = 'ssh-keygen -t ecdsa -b 521 -f ' . escapeshellarg($keyFilePath) . ' -N ""';
 			$output = shell_exec($command);
 			$cmd = "chmod 600 /home/asterisk/.ssh/id_ecdsa";
