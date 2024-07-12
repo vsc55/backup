@@ -197,6 +197,9 @@ class RestoreBase extends \FreePBX\modules\Backup\Models\Restore{
 		}
 		$this->log(sprintf(_('Importing KVStore from %s'),$this->data['module']));
 		foreach($store as $id => $kv) {
+			if($id == 'publickeyAsteriskUser') {
+				continue;
+			}
 			$this->FreePBX->$module->setMultiConfig($kv, $id);
 		}
 	}
