@@ -38,8 +38,8 @@ $smt = $db->prepare($backupSql);
 while(!$finished) {
     $smt->execute([":jobid" => $jobid, ":id" => 'runningBackupstatus']);
     $result = $smt->fetch();
-    $resDetails = json_decode($result[1],true);
-    if($resDetails['status'] == 'FINISHED') {
+    $resDetails = (!empty($result[1]) ? json_decode($result[1],true) : []);
+    if(!empty($resDetails['status']) && $resDetails['status'] == 'FINISHED') {
         $finished = true;
         break;
     }
