@@ -224,6 +224,10 @@ class Backup extends Base {
 					'type' => Type::String(),
 					'description' => _('Return backup file name')
 				],
+				'size' => [
+					'type' => Type::String(),
+					'description' => _('Return backup file size')
+				],
 				'framework' => [
 					'type' => Type::String(),
 					'description' => _('Return backup framework')
