@@ -293,13 +293,19 @@ class Backup extends Command {
 				$output->writeln(_('Done'));
 				$restore = $path;
 			case $restore:
+				$exceptionmsg = '';
 				if(!file_exists($restore)) {
-					throw new \Exception("File $restore does not exist or can not be found!");
+					$exceptionmsg = sprintf(_("Unable to access the file %s"),$restore);
 				}
-
+				if (!is_readable($restore)) {
+					$exceptionmsg .= sprintf(_("\n Unable to read the file %s. FreePBX restore process run as asterisk user so please ensure that 'asterisk' user has permissions to read the file/directory path. Or move the backup file to the '/home/asterisk' path."), $restore);
+				}
+				if($exceptionmsg) {
+					throw new \Exception($exceptionmsg);
+				}
 				$running = $this->freepbx->Backup->getConfig("runningRestoreJob");
 				if(!empty($running) && posix_getpgid($running['pid']) !== false) {
-					throw new \Exception("There is a restore already running!");
+					throw new \Exception(_("A restore is already in progress; please wait until it completes before starting a new one."));
 				}
 
 				$this->freepbx->Backup->setConfig("runningRestoreJob",["pid" => posix_getpid(), "transaction" => $transactionid, "fileid" => md5($restore)]);
@@ -307,7 +313,7 @@ class Backup extends Command {
 				$output->write(_("Determining backup file type..."));
 				$backupType = $this->freepbx->Backup->determineBackupFileType($restore);
 				if($backupType === false){
-					throw new \Exception('Unknown file type');
+					throw new \Exception(_('Unknown file type'));
 				}
 				$output->writeln(sprintf(_("type is %s"),$backupType));
 				$pid = posix_getpid();
