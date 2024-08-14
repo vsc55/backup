@@ -53,6 +53,16 @@ class Backup extends Base {
 						'outputFields' => $this->getBackupOutputFields(),
 						'mutateAndGetPayload' => function ($input) {
 							$input = $this->resolveNames($input);
+							$backupList = $this->freepbx->backup->listBackups();
+							$arleadyexist = false;
+							foreach($backupList as $backupId => $backupData){
+								if($backupData["name"] === $input['backup_name']){
+									$arleadyexist = true;
+								}
+							}
+							if($arleadyexist){
+								return ['message' => _('The Backup job name '.$input['backup_name'].' is already in use, please use a different name.'), 'status' => false];
+							}
 							if(strpos($input['backup_name'], ' ') !== false || preg_match('/[^A-Za-z0-9\-]/',$input['backup_name'])){
 								return ['message' => _('Name contains whitespaces/special characters use - instead'), 'status' => false];
 							}
