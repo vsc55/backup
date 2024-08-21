@@ -61,7 +61,7 @@ class Backup extends Base {
 								}
 							}
 							if($arleadyexist){
-								return ['message' => _('The Backup job name '.$input['backup_name'].' is already in use, please use a different name.'), 'status' => false];
+								return ['message' => sprintf(_('The Backup job name %s is already in use, please use a different name.'), $input['backup_name']), 'status' => false];
 							}
 							if(strpos($input['backup_name'], ' ') !== false || preg_match('/[^A-Za-z0-9\-]/',$input['backup_name'])){
 								return ['message' => _('Name contains whitespaces/special characters use - instead'), 'status' => false];
