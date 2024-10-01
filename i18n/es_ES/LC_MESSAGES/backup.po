@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreePBX - módulo backup module spanish translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-19 09:30-0400\n"
+"POT-Creation-Date: 2024-10-01 02:12-0400\n"
 "PO-Revision-Date: 2016-12-09 05:35+0200\n"
 "Last-Translator: Ernesto <ecasas@sangoma.com>\n"
 "Language-Team: Spanish <http://weblate.freepbx.org/projects/freepbx/backup/"
@@ -1806,7 +1806,8 @@ msgid "The Backup Id to delete"
 msgstr ""
 
 #: Api/Gql/Backup.php:64
-msgid "The Backup job name "
+#, php-format
+msgid "The Backup job name %s is already in use, please use a different name."
 msgstr ""
 
 #: assets/js/backup.js:109

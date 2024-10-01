@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-19 09:30-0400\n"
+"POT-Creation-Date: 2024-10-01 02:12-0400\n"
 "PO-Revision-Date: 2017-06-20 13:27+0200\n"
 "Last-Translator: PETER <ftek@ymail.com>\n"
 "Language-Team: Vietnamese <http://weblate.freepbx.org/projects/freepbx/"
@@ -1793,7 +1793,8 @@ msgid "The Backup Id to delete"
 msgstr ""
 
 #: Api/Gql/Backup.php:64
-msgid "The Backup job name "
+#, php-format
+msgid "The Backup job name %s is already in use, please use a different name."
 msgstr ""
 
 #: assets/js/backup.js:109
