@@ -167,7 +167,7 @@ class Multiple extends Common {
 		}
 		//FREEPBX-20060 restapps stopping the restore in between, because apache restart
 		//putting restapps to end of the process order
-		$processorder = $manifest['processorder'];
+		$processorder = $manifest['processorder'] ?? '';
 		unset($manifest['processorder']);
 		$ivr = false;
 		$queue = false;
