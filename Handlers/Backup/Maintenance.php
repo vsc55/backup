@@ -77,7 +77,7 @@ class Maintenance extends \FreePBX\modules\Backup\Handlers\CommonBase {
 		asort($maintfiles, SORT_STRING);
 		$maintfiles = array_reverse($maintfiles);
 		if(isset($this->backupInfo['maintruns']) && $this->backupInfo['maintruns'] > 1){
-			$remove = array_slice($maintfiles,$this->backupInfo['maintruns']-1,null,true);
+			$remove = array_slice($maintfiles,$this->backupInfo['maintruns'],null,true);
 			foreach ($remove as $key => $value) {
 				$this->log(sprintf("Removing %s",$value),'DEBUG');
 				if($this->dryrun){
@@ -105,7 +105,7 @@ class Maintenance extends \FreePBX\modules\Backup\Handlers\CommonBase {
 			}
 			$path = (isset($this->backupInfo['backup_addbjname']) && $this->backupInfo['backup_addbjname'] == 'yes') ? $this->backupInfo['backup_name'] : '';
 			try {
-				$files = $this->freepbx->Filestore->ls($id, $path);
+				$files = $this->freepbx->Filestore->listFiles($id, $path);
 			} catch (\Exception $e) {
 				$this->log($e->getMessage(),'ERROR');
 				$this->addError($e->getMessage());
@@ -116,10 +116,10 @@ class Maintenance extends \FreePBX\modules\Backup\Handlers\CommonBase {
 				if(!isset($file['path'])){
 					continue;
 				}
-				if(!in_array($file['path'],$this->backupfiles)) {
+				if(!in_array($file['basename'],$this->backupfiles)) {
 					continue;
 				}
-				$parsed = $this->parseFile($file['path']);
+				$parsed = $this->parseFile($file['basename']);
 				if($parsed === false){
 					continue;
 				}
@@ -148,7 +148,7 @@ class Maintenance extends \FreePBX\modules\Backup\Handlers\CommonBase {
 			asort($maintfiles, SORT_STRING);
 			$maintfiles = array_reverse($maintfiles);
 			if(isset($this->backupInfo['maintruns']) && $this->backupInfo['maintruns'] > 0){
-				$remove = array_slice($maintfiles,$this->backupInfo['maintruns']-1,null,true);
+				$remove = array_slice($maintfiles,$this->backupInfo['maintruns'],null,true);
 				foreach ($remove as $key => $value) {
 					try {
 						$this->log("\t".sprintf(_("Removing %s"),$value),'DEBUG');

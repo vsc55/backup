@@ -220,9 +220,6 @@ class Backup extends Command {
 				$output->writeln(_("Performing Local Maintenance"));
 				$maintenanceHandler->processLocal();
 				$output->writeln(_("Finished Local Maintenance"));
-				$output->writeln(_("Performing Remote Maintenance"));
-				$maintenanceHandler->processRemote();
-				$output->writeln(_("Finished Remote Maintenance"));
 				$this->freepbx->Backup->setConfig($transactionid,["buid" => $buid, "status"=>"PERMOFMINGSTORAGE","backupstatus"=>$bkstatus],"runningBackupstatus");
 				$storageHandler = new Handler\Storage($this->freepbx, $buid, $transactionid, posix_getpid(), $backupHandler->getFile());
 				$storageHandler->process();
@@ -230,6 +227,10 @@ class Backup extends Command {
 				$errors = array_merge($backupHandler->getErrors(),$maintenanceHandler->getErrors(),$storageHandler->getErrors());
 				$warnings = array_merge($backupHandler->getWarnings(),$maintenanceHandler->getWarnings(),$storageHandler->getWarnings());
 
+				$output->writeln(_("Performing Remote Maintenance"));
+				$maintenanceHandler->processRemote();
+				$output->writeln(_("Finished Remote Maintenance"));
+				
 				if(empty($errors) && empty($warnings)) {
 					$backupHandler->sendEmail(false,$transactionid);
 					$output->writeln(_("Backup completed successfully"));
